@@ -2,8 +2,10 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QFileDialog>
 #include <QDebug>
 #include "qhexview.h"
+#include "constants.h"
 
 namespace Ui {
 class MainWindow;
@@ -30,4 +32,5 @@ class MainWindow : public QMainWindow {
     QHexView *hexview;
     void initToolBar();
     void initHexView();
+    void openFile(QString path);
 };

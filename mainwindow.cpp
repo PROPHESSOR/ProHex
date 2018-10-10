@@ -71,6 +71,22 @@ void MainWindow::initHexView() {
     setCentralWidget(hexview);
 }
 
+void MainWindow::openFile(QString path) {
+    qDebug() << "MainWindow::openFile(" << path << ")";
+    QFile file(path);
+
+    if(!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::critical(this, "Can't open the file", "Can't open the file \"" + path + "\" for reading!");
+        return;
+    }
+
+    hexview->clear();
+
+    QByteArray array = file.readAll();
+    hexview->setData(new QHexView::DataStorageArray(array));
+    hexview->update();
+}
+
 void MainWindow::file_new() {
     qDebug() << "File->New";
     doesntimplemented();
@@ -78,7 +94,15 @@ void MainWindow::file_new() {
 
 void MainWindow::file_open() {
     qDebug() << "File->Open";
-    doesntimplemented();
+    QString dir = QDir::currentPath();
+
+    QString filename = QFileDialog::getOpenFileName(this, "Select file", dir);
+    if(!filename.isEmpty()) {
+        openFile(filename);
+
+        QFileInfo info(filename);
+        setWindowTitle(info.fileName() + " - " + PROHEX);
+    }
 }
 
 void MainWindow::file_save() {
@@ -93,11 +117,15 @@ void MainWindow::file_saveas() {
 
 void MainWindow::file_close() {
     qDebug() << "File->Close";
-    doesntimplemented();
+    hexview->clear();
+    hexview->close();
+    setWindowTitle(PROHEX);
 }
 
 void MainWindow::file_exit() {
     qDebug() << "File->Exit";
+    // TODO: Save confirm
+    exit(0);
     doesntimplemented();
 }
 

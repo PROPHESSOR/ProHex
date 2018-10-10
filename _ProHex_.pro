@@ -30,7 +30,8 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-        qhexview.h
+        qhexview.h \
+    constants.h
 
 FORMS += \
         mainwindow.ui

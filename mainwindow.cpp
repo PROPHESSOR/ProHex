@@ -2,8 +2,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow) {
+    QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     initToolBar();
@@ -39,7 +38,7 @@ void MainWindow::initToolBar() {
     edit->addAction("Find", this, SLOT(doesntimplemented()));
     edit->addAction("Replace", this, SLOT(doesntimplemented()));
     edit->addSection("Navigation");
-    edit->addAction("Goto offset", this, SLOT(doesntimplemented()));
+    edit->addAction("Goto offset", this, SLOT(edit_gotooffset()));
 
     // View
     QMenu *view = ui->MenuBar->addMenu("&View");
@@ -61,8 +60,8 @@ void MainWindow::initToolBar() {
     about->addAction("User manual (offline)", this, SLOT(doesntimplemented()));
     about->addAction("Online forum", this, SLOT(doesntimplemented()));
     about->addSection("About");
-    about->addAction("About the program", this, SLOT(doesntimplemented()));
-    about->addAction("About Qt", this, SLOT(doesntimplemented()));
+    about->addAction("About the program", this, SLOT(about_about()));
+    about->addAction("About Qt", this, SLOT(about_aboutqt()));
     about->addAction("License", this, SLOT(doesntimplemented()));
 }
 
@@ -127,6 +126,26 @@ void MainWindow::file_exit() {
     // TODO: Save confirm
     exit(0);
     doesntimplemented();
+}
+
+void MainWindow::edit_gotooffset() {
+    qDebug() << "Edit->Goto offset";
+    bool confirmed = false;
+    std::size_t offset = QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed);
+
+    if(confirmed) {
+        hexview->showFromOffset(offset);
+    }
+}
+
+void MainWindow::about_about() {
+    qDebug() << "About->About the program";
+    QMessageBox::about(this, "About the program", PROHEX + " v." + PROHEX_VERSION + " <br/>Copyright (c) PROPHESSOR 2018");
+}
+
+void MainWindow::about_aboutqt() {
+    qDebug() << "About->About Qt";
+    QMessageBox::aboutQt(this, "About Qt");
 }
 
 void MainWindow::doesntimplemented() {

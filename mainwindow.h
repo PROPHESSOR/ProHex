@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QDebug>
 #include "qhexview.h"
 #include "constants.h"
@@ -25,6 +26,11 @@ class MainWindow : public QMainWindow {
     void file_saveas();
     void file_close();
     void file_exit();
+
+    void edit_gotooffset();
+
+    void about_about();
+    void about_aboutqt();
     void doesntimplemented();
 
   private:

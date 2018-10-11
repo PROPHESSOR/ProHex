@@ -26,12 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        qhexview.cpp
+        qhexview.cpp \
+        converter.cpp
 
 HEADERS += \
         mainwindow.h \
         qhexview.h \
-    constants.h
+        constants.h \
+        converter.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        converter.ui

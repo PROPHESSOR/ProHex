@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "qhexview.h"
 #include "constants.h"
+#include "converter.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +30,8 @@ class MainWindow : public QMainWindow {
 
     void edit_gotooffset();
 
+    void tools_converter();
+
     void about_about();
     void about_aboutqt();
     void doesntimplemented();
@@ -36,6 +39,8 @@ class MainWindow : public QMainWindow {
   private:
     Ui::MainWindow *ui;
     QHexView *hexview;
+    Converter *converter = 0x0;
+
     void initToolBar();
     void initHexView();
     void openFile(QString path);

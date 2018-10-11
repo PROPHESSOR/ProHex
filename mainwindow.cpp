@@ -24,7 +24,6 @@ void MainWindow::initToolBar() {
     file->addAction("Close", this, SLOT(file_close()));
     file->addSection("Analyze");
     file->addAction("About the file", this, SLOT(doesntimplemented()));
-    file->addAction("Open fileripper", this, SLOT(doesntimplemented()));
     file->addSeparator();
     file->addAction("Exit", this, SLOT(file_exit()));
 
@@ -53,6 +52,15 @@ void MainWindow::initToolBar() {
     view->addSection("Settings");
     view->addAction("Preferences", this, SLOT(doesntimplemented()));
     view->addAction("Key bindings", this, SLOT(doesntimplemented()));
+
+    // Tools
+    QMenu *tools = ui->MenuBar->addMenu("&Tools");
+    tools->addSection("About the file");
+    tools->addAction("File ripper", this, SLOT(doesntimplemented()));
+    tools->addSection("Useful utilities");
+    tools->addAction("Converter", this, SLOT(tools_converter()));
+    tools->addAction("ASCII Table", this, SLOT(doesntimplemented()));
+    tools->addAction("Assembler commands", this, SLOT(doesntimplemented()));
 
     // About
     QMenu *about = ui->MenuBar->addMenu("&About");
@@ -136,6 +144,14 @@ void MainWindow::edit_gotooffset() {
     if(confirmed) {
         hexview->showFromOffset(offset);
     }
+}
+
+void MainWindow::tools_converter() {
+    qDebug() << "Tools->Converter";
+    if(converter == 0x0) {
+        converter = new Converter();
+    }
+    converter->show();
 }
 
 void MainWindow::about_about() {

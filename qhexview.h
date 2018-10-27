@@ -2,9 +2,21 @@
 
 // https://github.com/virinext/QHexView
 
+#include "constants.h"
+
 #include <QAbstractScrollArea>
+#include <QScrollBar>
+#include <QPainter>
+#include <QSize>
+#include <QPaintEvent>
+#include <QKeyEvent>
+#include <QClipboard>
+#include <QApplication>
 #include <QByteArray>
 #include <QFile>
+#include <QDebug>
+
+#include <stdexcept>
 
 class QHexView: public QAbstractScrollArea {
   public:
@@ -51,11 +63,11 @@ class QHexView: public QAbstractScrollArea {
     void mousePressEvent(QMouseEvent *event);
   private:
     DataStorage          *m_pdata;
-    std::size_t           m_posAddr;
-    std::size_t           m_posHex;
-    std::size_t           m_posAscii;
-    std::size_t           m_charWidth;
-    std::size_t           m_charHeight;
+    int                   m_posAddr;
+    int                   m_posHex;
+    int                   m_posAscii;
+    unsigned short        m_charWidth;
+    unsigned short        m_charHeight;
 
 
     std::size_t           m_selectBegin;
@@ -69,6 +81,6 @@ class QHexView: public QAbstractScrollArea {
     void resetSelection(int pos);
     void setSelection(int pos);
     void ensureVisible();
-    void setCursorPos(int pos);
+    void setCursorPos(std::size_t pos);
     std::size_t cursorPos(const QPoint &position);
 };

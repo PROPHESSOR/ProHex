@@ -63,7 +63,6 @@ class QHexView: public QAbstractScrollArea {
     void mousePressEvent(QMouseEvent *event);
   private:
     DataStorage          *m_pdata;
-    int                   m_posAddr;
     int                   m_posHex;
     int                   m_posAscii;
     unsigned short        m_charWidth;

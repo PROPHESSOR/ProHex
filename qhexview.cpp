@@ -170,12 +170,20 @@ void QHexView::paintEvent(QPaintEvent *event) {
                 if ((ch < 0x20) || (ch > 0x7e)) ch = '.';
 
                 painter.setPen(QColor(COLOR_ASCII));
+
+
                 if(pos == m_cursorPos / 2) {
                     painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
                 } else {
                     painter.setBackground(painter.brush());
                 }
                 painter.setBackgroundMode(Qt::OpaqueMode);
+
+                if(pos >= m_selectBegin / 2 && pos < m_selectEnd / 2) {
+                    painter.setBackground(selected);
+                    painter.setBackgroundMode(Qt::OpaqueMode);
+                }
+
                 painter.drawText(xPosAscii, yPos, QString(ch));
 
                 painter.setBackground(def);

@@ -411,7 +411,7 @@ uint64_t QHexView::cursorPos(const QPoint &position) {
 
         int firstLineIdx = verticalScrollBar() -> value();
         int y = (position.y() / m_charHeight) * 2 * m_bytesPerLine;
-        pos = uint64_t(x * 2 + y + firstLineIdx * m_bytesPerLine * 2);
+        pos = uint64_t(x * 2 + 1 + y + firstLineIdx * m_bytesPerLine * 2);
     }
     return pos;
 }

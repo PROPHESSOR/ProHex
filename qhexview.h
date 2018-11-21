@@ -36,20 +36,20 @@ class QHexView: public QAbstractScrollArea {
     void mousePressEvent(QMouseEvent *event);
   private:
     DataStorage          *m_pdata;
-    int                   m_posHex;
-    int                   m_hexWidth;
-    int                   m_addressWidth;
-    int                   m_asciiWidth;
-    int                   m_bytesPerLine;
-    int                   m_posAscii;
+    uint16_t              m_posHex;
+    uint16_t              m_hexWidth;
+    uint16_t              m_addressWidth;
+    uint16_t              m_asciiWidth;
+    uint16_t              m_bytesPerLine;
+    uint16_t              m_posAscii;
     uint16_t              m_charWidth;
     uint16_t              m_charHeight;
 
 
-    std::size_t           m_selectBegin;
-    std::size_t           m_selectEnd;
-    std::size_t           m_selectInit;
-    std::size_t           m_cursorPos;
+    uint64_t              m_selectBegin;
+    uint64_t              m_selectEnd;
+    uint64_t              m_selectInit;
+    uint64_t              m_cursorPos;
 
 
     QSize fullSize() const;
@@ -58,5 +58,6 @@ class QHexView: public QAbstractScrollArea {
     void setSelection(int pos);
     void ensureVisible();
     void setCursorPos(std::size_t pos);
+    void recalcView();
     std::size_t cursorPos(const QPoint &position);
 };

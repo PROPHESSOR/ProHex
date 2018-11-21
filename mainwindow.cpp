@@ -74,7 +74,7 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::initHexView() {
-    hexview = new QHexView;
+    hexview = new QHexView(this, m_data);
     setCentralWidget(hexview);
 }
 
@@ -90,7 +90,7 @@ void MainWindow::openFile(QString path) {
     hexview->clear();
 
     QByteArray array = file.readAll();
-    hexview->setData(new QHexView::DataStorageArray(array));
+    hexview->setData(new DataStorageArray(array));
     hexview->update();
 }
 

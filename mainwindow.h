@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QDebug>
 #include "qhexview.h"
+#include "datastorage.h"
 #include "constants.h"
 #include "converter.h"
 
@@ -17,10 +18,11 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
   public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
   private slots:
+
     void file_new();
     void file_open();
     void file_save();
@@ -39,9 +41,12 @@ class MainWindow : public QMainWindow {
   private:
     Ui::MainWindow *ui;
     QHexView *hexview;
-    Converter *converter = 0x0;
+    Converter *converter = nullptr;
 
     void initToolBar();
     void initHexView();
     void openFile(QString path);
+
+  protected:
+    DataStorage *m_data = nullptr;
 };

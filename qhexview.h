@@ -3,6 +3,7 @@
 // https://github.com/virinext/QHexView
 
 #include "constants.h"
+#include "datastorage.h"
 
 #include <QAbstractScrollArea>
 #include <QScrollBar>
@@ -20,35 +21,7 @@
 
 class QHexView: public QAbstractScrollArea {
   public:
-    class DataStorage {
-      public:
-        virtual ~DataStorage() {}
-        virtual QByteArray getData(std::size_t position, std::size_t length) = 0;
-        virtual std::size_t size() = 0;
-    };
-
-
-    class DataStorageArray: public DataStorage {
-      public:
-        DataStorageArray(const QByteArray &arr);
-        virtual QByteArray getData(std::size_t position, std::size_t length);
-        virtual std::size_t size();
-      private:
-        QByteArray    m_data;
-    };
-
-    class DataStorageFile: public DataStorage {
-      public:
-        DataStorageFile(const QString &fileName);
-        virtual QByteArray getData(std::size_t position, std::size_t length);
-        virtual std::size_t size();
-      private:
-        QFile      m_file;
-    };
-
-
-
-    QHexView(QWidget *parent = 0);
+    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr);
     ~QHexView();
 
   public slots:
@@ -64,9 +37,13 @@ class QHexView: public QAbstractScrollArea {
   private:
     DataStorage          *m_pdata;
     int                   m_posHex;
+    int                   m_hexWidth;
+    int                   m_addressWidth;
+    int                   m_asciiWidth;
+    int                   m_bytesPerLine;
     int                   m_posAscii;
-    unsigned short        m_charWidth;
-    unsigned short        m_charHeight;
+    uint16_t              m_charWidth;
+    uint16_t              m_charHeight;
 
 
     std::size_t           m_selectBegin;

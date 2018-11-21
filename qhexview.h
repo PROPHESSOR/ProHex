@@ -27,7 +27,7 @@ class QHexView: public QAbstractScrollArea {
   public slots:
     void setData(DataStorage *pData);
     void clear();
-    void showFromOffset(std::size_t offset);
+    void showFromOffset(uint64_t offset);
 
   protected:
     void paintEvent(QPaintEvent *event);
@@ -57,7 +57,7 @@ class QHexView: public QAbstractScrollArea {
     void resetSelection(int pos);
     void setSelection(int pos);
     void ensureVisible();
-    void setCursorPos(std::size_t pos);
+    void setCursorPos(uint64_t pos);
     void recalcView();
-    std::size_t cursorPos(const QPoint &position);
+    uint64_t cursorPos(const QPoint &position);
 };

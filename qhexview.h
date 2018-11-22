@@ -16,12 +16,13 @@
 #include <QByteArray>
 #include <QFile>
 #include <QDebug>
+#include "config.h"
 
 #include <stdexcept>
 
 class QHexView: public QAbstractScrollArea {
   public:
-    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr);
+    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr);
     ~QHexView();
 
   public slots:
@@ -50,6 +51,8 @@ class QHexView: public QAbstractScrollArea {
     uint64_t              m_selectEnd;
     uint64_t              m_selectInit;
     uint64_t              m_cursorPos;
+
+    Config               *m_config;
 
 
     QSize fullSize() const;

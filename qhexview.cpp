@@ -1,10 +1,13 @@
 //https://github.com/virinext/QHexView
 
+// TODO:
+// Сделать возможность скрытия окон через width=0
+
 #include "qhexview.h"
 
-QHexView::QHexView(QWidget *parent, DataStorage *data):
+QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config):
     QAbstractScrollArea(parent),
-    m_pdata(data) {
+    m_pdata(data), m_config(config) {
     setFont(QFont("Monospace", 14));
 
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));

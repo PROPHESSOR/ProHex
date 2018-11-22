@@ -9,6 +9,7 @@
 #include "datastorage.h"
 #include "constants.h"
 #include "converter.h"
+#include "config.h"
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +23,6 @@ class MainWindow : public QMainWindow {
     ~MainWindow();
 
   private slots:
-
     void file_new();
     void file_open();
     void file_save();
@@ -39,14 +39,15 @@ class MainWindow : public QMainWindow {
     void doesntimplemented();
 
   private:
-    Ui::MainWindow *ui;
-    QHexView *hexview;
-    Converter *converter = nullptr;
+    Ui::MainWindow *ui      = nullptr;
+    QHexView *hexview       = nullptr;
+    Converter *converter    = nullptr;
+    Config *config          = nullptr;
+
 
     void initToolBar();
     void initHexView();
     void openFile(QString path);
-
   protected:
     DataStorage *m_data = nullptr;
 };

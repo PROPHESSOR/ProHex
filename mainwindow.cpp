@@ -2,11 +2,13 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow) {
+    QMainWindow(parent), ui(new Ui::MainWindow), config(new Config) {
     ui->setupUi(this);
 
     initToolBar();
     initHexView();
+
+    config->load();
 }
 
 MainWindow::~MainWindow() {
@@ -74,7 +76,7 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::initHexView() {
-    hexview = new QHexView(this, m_data);
+    hexview = new QHexView(this, m_data, config);
     setCentralWidget(hexview);
 }
 

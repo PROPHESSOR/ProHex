@@ -73,3 +73,31 @@ bool Config::saveToJson(QJsonObject &json) {
 QString Config::getConfigFilePath() {
     return "config.json";
 }
+
+// Getters
+
+bool Config::getViewShowAddress() {
+    return v_show_address;
+}
+
+bool Config::getViewShowHex() {
+    return v_show_hex;
+}
+
+bool Config::getViewShowAscii() {
+    return v_show_ascii;
+}
+
+// Setters
+
+void Config::setViewShowAddress(bool val) {
+    v_show_address = val;
+}
+
+void Config::setViewShowHex(bool val) {
+    v_show_hex = val;
+}
+
+void Config::setViewShowAscii(bool val) {
+    v_show_ascii = val;
+}

@@ -1,7 +1,8 @@
 //https://github.com/virinext/QHexView
 
 // TODO:
-// Сделать возможность скрытия окон через width=0
+// Сделать возможность скрытия окон через ~width=0~ через config
+// FIXME: Адрес не изменяется при масштабировании окна
 
 #include "qhexview.h"
 
@@ -29,11 +30,11 @@ void QHexView::recalcView() {
 
     uint16_t gridOne = hexAsciiWidth / 4;
 
-    m_hexWidth = gridOne * 3;
-    m_asciiWidth = gridOne;
-    m_bytesPerLine = m_hexWidth / (m_charWidth * 3);
-    m_posHex = m_addressWidth;
-    m_posAscii = m_posHex + m_hexWidth;
+    m_hexWidth      = gridOne * 3;
+    m_asciiWidth    = gridOne;
+    m_bytesPerLine  = m_hexWidth / (m_charWidth * 3);
+    m_posHex        = m_addressWidth;
+    m_posAscii      = m_posHex + m_hexWidth;
 }
 
 void QHexView::setData(DataStorage *pData) {
@@ -48,8 +49,6 @@ void QHexView::setData(DataStorage *pData) {
     m_addressWidth = (maxAddressLength + 1) * m_charWidth;
 
     recalcView();
-
-    //int
 
     m_posHex    = m_addressWidth;
     m_posAscii  = m_addressWidth + m_hexWidth;
@@ -126,13 +125,15 @@ void QHexView::paintEvent(QPaintEvent *event) {
     QByteArray data = m_pdata->getData(uint64_t(firstLineIdx * m_bytesPerLine), uint64_t((lastLineIdx - firstLineIdx) * m_bytesPerLine));
 
     for (int lineIdx = firstLineIdx, yPos = yPosStart;  lineIdx < lastLineIdx; lineIdx += 1, yPos += m_charHeight) {
+        if(!(m_config->getViewShowAddress() || m_config->getViewShowHex() || m_config->getViewShowAscii())) break;
+
         QString address = QString("%1").arg(lineIdx * 16, maxAddressLength, 16, QChar('0'));
         painter.setPen(QColor(COLOR_ADDRESS));
         painter.drawText(0, yPos, address);
 
         for(int i = 0; (i < m_bytesPerLine) && ((lineIdx - firstLineIdx) * m_bytesPerLine + i) < data.size(); i++) {
             // Render HEX
-            {
+            if(m_config->getViewShowHex()) {
                 int xPos = m_posHex + i * m_charWidth * 3;
 
                 uint64_t pos = uint64_t((lineIdx * m_bytesPerLine + i) * 2);
@@ -164,8 +165,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
 
             }
             // Render ASCII
-            {
-
+            if(m_config->getViewShowAscii()) {
                 int xPosAscii = m_posAscii + i * m_charWidth;
                 uint64_t pos = uint64_t((lineIdx * m_bytesPerLine + i));
 

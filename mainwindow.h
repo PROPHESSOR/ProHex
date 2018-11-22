@@ -37,6 +37,9 @@ class MainWindow : public QMainWindow {
     void about_about();
     void about_aboutqt();
     void doesntimplemented();
+    void view_toolbars_toggleAddress();
+    void view_toolbars_toggleHex();
+    void view_toolbars_toggleAscii();
 
   private:
     Ui::MainWindow *ui      = nullptr;

@@ -16,6 +16,16 @@ class Config {
     bool saveToJson(QJsonObject &);
 
     static QString getConfigFilePath();
+
+    // Getters
+    bool getViewShowAddress();
+    bool getViewShowHex();
+    bool getViewShowAscii();
+
+    // Setters
+    void setViewShowAddress(bool);
+    void setViewShowHex(bool);
+    void setViewShowAscii(bool);
   private:
     bool v_show_address;
     bool v_show_hex;

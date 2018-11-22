@@ -139,18 +139,16 @@ void MainWindow::file_close() {
 void MainWindow::file_exit() {
     qDebug() << "File->Exit";
     // TODO: Save confirm
+    config->save();
     exit(0);
-    doesntimplemented();
 }
 
 void MainWindow::edit_gotooffset() {
     qDebug() << "Edit->Goto offset";
     bool confirmed = false;
-    std::size_t offset = QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed);
+    uint64_t offset = uint64_t(QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed));
 
-    if(confirmed) {
-        hexview->showFromOffset(offset);
-    }
+    if(confirmed) hexview->showFromOffset(offset);
 }
 
 void MainWindow::tools_converter() {

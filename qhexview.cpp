@@ -127,9 +127,11 @@ void QHexView::paintEvent(QPaintEvent *event) {
     for (int lineIdx = firstLineIdx, yPos = yPosStart;  lineIdx < lastLineIdx; lineIdx += 1, yPos += m_charHeight) {
         if(!(m_config->getViewShowAddress() || m_config->getViewShowHex() || m_config->getViewShowAscii())) break;
 
-        QString address = QString("%1").arg(lineIdx * 16, maxAddressLength, 16, QChar('0'));
-        painter.setPen(QColor(COLOR_ADDRESS));
-        painter.drawText(0, yPos, address);
+        if(m_config->getViewShowAddress()) {
+            QString address = QString("%1").arg(lineIdx * 16, maxAddressLength, 16, QChar('0'));
+            painter.setPen(QColor(COLOR_ADDRESS));
+            painter.drawText(0, yPos, address);
+        }
 
         for(int i = 0; (i < m_bytesPerLine) && ((lineIdx - firstLineIdx) * m_bytesPerLine + i) < data.size(); i++) {
             // Render HEX

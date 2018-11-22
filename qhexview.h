@@ -25,6 +25,8 @@ class QHexView: public QAbstractScrollArea {
     QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr);
     ~QHexView();
 
+    void recalcView();
+
   public slots:
     void setData(DataStorage *pData);
     void clear();
@@ -61,6 +63,5 @@ class QHexView: public QAbstractScrollArea {
     void setSelection(int pos);
     void ensureVisible();
     void setCursorPos(uint64_t pos);
-    void recalcView();
     uint64_t cursorPos(const QPoint &position);
 };

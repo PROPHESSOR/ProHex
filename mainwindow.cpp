@@ -176,13 +176,19 @@ void MainWindow::doesntimplemented() {
 }
 
 void MainWindow::view_toolbars_toggleAddress() {
-    QMessageBox::information(this, "Not implemented", "Hey! This feature doesn't implemented yet!");
+    config->setViewShowAddress(!config->getViewShowAddress());
+    hexview->recalcView();
+    hexview->repaint();
 };
 
 void MainWindow::view_toolbars_toggleHex() {
-    QMessageBox::information(this, "Not implemented", "Hey! This feature doesn't implemented yet!");
+    config->setViewShowHex(!config->getViewShowHex());
+    hexview->recalcView();
+    hexview->repaint();
 };
 
 void MainWindow::view_toolbars_toggleAscii() {
-    QMessageBox::information(this, "Not implemented", "Hey! This feature doesn't implemented yet!");
+    config->setViewShowAscii(!config->getViewShowAscii());
+    hexview->recalcView();
+    hexview->repaint();
 };

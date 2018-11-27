@@ -125,7 +125,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>9</number>
+    <number>18</number>
    </property>
   </widget>
   <widget class="QLineEdit" name="HexInput">
@@ -144,7 +144,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>8</number>
+    <number>16</number>
    </property>
   </widget>
   <widget class="QLineEdit" name="BinInput">
@@ -160,7 +160,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>32</number>
+    <number>64</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -205,6 +205,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -318,6 +321,9 @@
     <property name="text">
      <string>0.0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Int64LEInput">
     <property name="geometry">
@@ -330,6 +336,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="Int32LEInput">
@@ -344,6 +353,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Int16LEInput">
     <property name="geometry">
@@ -356,6 +368,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
@@ -389,6 +404,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Uint16LEInput">
     <property name="geometry">
@@ -401,6 +419,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="Uint32LEInput">
@@ -415,6 +436,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Uint64LEInput">
     <property name="geometry">
@@ -428,6 +452,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Float64LEInput">
     <property name="geometry">
@@ -440,6 +467,9 @@
     </property>
     <property name="text">
      <string>0.0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_16">
@@ -531,6 +561,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
@@ -608,6 +641,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label_13">
     <property name="geometry">
@@ -637,6 +673,9 @@
     <property name="text">
      <string>0.0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Int8BEInput">
     <property name="geometry">
@@ -649,6 +688,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="Int32BEInput">
@@ -663,6 +705,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Uint64BEInput">
     <property name="geometry">
@@ -675,6 +720,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_20">
@@ -737,6 +785,9 @@
     <property name="text">
      <string>0.0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Uint8BEInput">
     <property name="geometry">
@@ -749,6 +800,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_23">
@@ -779,6 +833,9 @@
     <property name="text">
      <string>0</string>
     </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLineEdit" name="Uint16BEInput">
     <property name="geometry">
@@ -791,6 +848,9 @@
     </property>
     <property name="text">
      <string>0</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="label_24">

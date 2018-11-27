@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QtEndian>
 
 namespace Ui {
 class converter;

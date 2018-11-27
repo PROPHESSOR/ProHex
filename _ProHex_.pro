@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+# CONFIG += static
+
 TARGET = _ProHex_
 TEMPLATE = app
 
@@ -29,7 +31,7 @@ SOURCES += \
         datastorage.cpp \
         qhexview.cpp \
         converter.cpp \
-    config.cpp
+        config.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,7 +39,7 @@ HEADERS += \
         qhexview.h \
         constants.h \
         converter.h \
-    config.h
+        config.h
 
 FORMS += \
         mainwindow.ui \

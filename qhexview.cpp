@@ -6,9 +6,9 @@
 
 #include "qhexview.h"
 
-QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config):
+QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar):
     QAbstractScrollArea(parent),
-    m_pdata(data), m_config(config) {
+    m_pdata(data), m_config(config), m_statusBar(statusBar) {
     setFont(QFont("Monospace", 14));
 
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
@@ -377,7 +377,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
 }
 
 void QHexView::mouseMoveEvent(QMouseEvent * event) {
-    int actPos = cursorPos(event->pos());
+    int actPos = getCursorPos(event->pos());
     setCursorPos(actPos);
     setSelection(actPos);
 
@@ -385,7 +385,7 @@ void QHexView::mouseMoveEvent(QMouseEvent * event) {
 }
 
 void QHexView::mousePressEvent(QMouseEvent * event) {
-    uint64_t cPos = cursorPos(event->pos());
+    uint64_t cPos = getCursorPos(event->pos());
 
     if((QApplication::keyboardModifiers() & Qt::ShiftModifier) && event->button() == Qt::LeftButton)
         setSelection(int(cPos));
@@ -398,7 +398,7 @@ void QHexView::mousePressEvent(QMouseEvent * event) {
 }
 
 
-uint64_t QHexView::cursorPos(const QPoint &position) {
+uint64_t QHexView::getCursorPos(const QPoint &position) {
     uint64_t pos = 0;
 
     if ((position.x() >= m_posHex) && (position.x() < m_posAscii - m_charWidth)) {
@@ -447,13 +447,17 @@ void QHexView::setSelection(int pos) {
         m_selectBegin = uint16_t(pos);
         m_selectEnd = m_selectInit;
     }
+
+    m_statusBar->showMessage("Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
 }
 
 
-void QHexView::setCursorPos(uint64_t position = 0) {
+void QHexView::setCursorPos(int64_t position = 0) {
+    if(position < 0) position = 0;
+
     uint64_t maxPos = 0;
     if(m_pdata) {
-        maxPos = m_pdata->size() * 2;
+        maxPos = m_pdata->size() * 2 - 2;
         if(m_pdata->size() % m_bytesPerLine)
             maxPos++;
     }
@@ -462,6 +466,7 @@ void QHexView::setCursorPos(uint64_t position = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
+    m_statusBar->showMessage("Offset: " + QString::number(position));
 }
 
 void QHexView::ensureVisible() {

@@ -22,6 +22,8 @@ class MainWindow : public QMainWindow {
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void statusBarMessage(const QString &);
+
   private slots:
     void file_new();
     void file_open();

@@ -16,13 +16,14 @@
 #include <QByteArray>
 #include <QFile>
 #include <QDebug>
+#include <QStatusBar>
 #include "config.h"
 
 #include <stdexcept>
 
 class QHexView: public QAbstractScrollArea {
   public:
-    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr);
+    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr, QStatusBar *statusBar = nullptr);
     ~QHexView();
 
     void recalcView();
@@ -38,7 +39,6 @@ class QHexView: public QAbstractScrollArea {
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
   private:
-    DataStorage          *m_pdata;
     uint16_t              m_posHex;
     uint16_t              m_hexWidth;
     uint16_t              m_addressWidth;
@@ -54,7 +54,9 @@ class QHexView: public QAbstractScrollArea {
     uint64_t              m_selectInit;
     uint64_t              m_cursorPos;
 
+    DataStorage          *m_pdata;
     Config               *m_config;
+    QStatusBar           *m_statusBar;
 
 
     QSize fullSize() const;
@@ -62,6 +64,6 @@ class QHexView: public QAbstractScrollArea {
     void resetSelection(int pos);
     void setSelection(int pos);
     void ensureVisible();
-    void setCursorPos(uint64_t pos);
-    uint64_t cursorPos(const QPoint &position);
+    void setCursorPos(int64_t pos);
+    uint64_t getCursorPos(const QPoint &position);
 };

@@ -81,7 +81,7 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::initHexView() {
-    hexview = new QHexView(this, m_data, config);
+    hexview = new QHexView(this, m_data, config, statusBar());
     setCentralWidget(hexview);
 }
 
@@ -190,3 +190,7 @@ void MainWindow::view_toolbars_toggleAscii() {
     hexview->recalcView();
     hexview->repaint();
 };
+
+void MainWindow::statusBarMessage(const QString &message) {
+    statusBar()->showMessage(message);
+}

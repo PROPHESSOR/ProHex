@@ -2,6 +2,7 @@
 
 // TODO:
 // Сделать возможность скрытия окон через ~width=0~ через config
+// Сделать передачу информации из QHexView и DataStorage в Converter
 // FIXME: Адрес не изменяется при масштабировании окна
 
 #include "qhexview.h"
@@ -35,6 +36,10 @@ void QHexView::recalcView() {
     m_bytesPerLine  = m_hexWidth / (m_charWidth * 3);
     m_posHex        = m_addressWidth;
     m_posAscii      = m_posHex + m_hexWidth;
+}
+
+uint64_t QHexView::getCursorPosition() {
+    return m_cursorPos;
 }
 
 void QHexView::setData(DataStorage *pData) {

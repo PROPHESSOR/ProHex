@@ -26,7 +26,8 @@ class QHexView: public QAbstractScrollArea {
     QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr, QStatusBar *statusBar = nullptr);
     ~QHexView();
 
-    void recalcView();
+    void        recalcView();
+    uint64_t    getCursorPosition();
 
   public slots:
     void setData(DataStorage *pData);

@@ -12,8 +12,11 @@ class Converter : public QWidget {
     Q_OBJECT
 
   public:
-    explicit Converter(QWidget *parent = 0);
+    explicit Converter(QWidget *parent = nullptr);
     ~Converter();
+
+    void calculate();
+    void calculate(int64_t value);
 
   private slots:
     void on_DecInput_textEdited(const QString &arg1);
@@ -30,6 +33,4 @@ class Converter : public QWidget {
     Ui::converter *ui;
 
     QString input; // Decimal value
-
-    void calculate();
 };

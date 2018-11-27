@@ -4,8 +4,7 @@
 #include <QDebug>
 
 Converter::Converter(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::converter) {
+    QWidget(parent), ui(new Ui::converter) {
     ui->setupUi(this);
 }
 
@@ -42,6 +41,11 @@ void Converter::calculate() {
     ui->Uint64BEInput->setText(QString::number(uint64_t(ipt)));
     ui->Float32BEInput->setText(QString::number(double_t(float_t(ipt))));
     ui->Float64BEInput->setText(QString::number(double_t(ipt)));
+}
+
+void Converter::calculate(int64_t value) {
+    input = QString::number(value);
+    calculate();
 }
 
 void Converter::on_DecInput_textEdited(const QString &value) {

@@ -27,6 +27,9 @@ QHexView::~QHexView() {
 }
 
 void QHexView::recalcView() {
+    m_maxAddressLength = uint16_t(QString::number(m_pdata->size() * m_bytesPerLine * 2, 16).length() - 1);
+    m_addressWidth = (m_maxAddressLength + 1) * m_charWidth;
+
     uint16_t hexAsciiWidth = uint16_t(viewport()->size().width() - m_addressWidth);
 
     uint16_t gridOne = hexAsciiWidth / 4;
@@ -48,10 +51,6 @@ void QHexView::setData(DataStorage *pData) {
     m_pdata = pData;
     m_cursorPos = 0;
     resetSelection(0);
-
-    uint16_t maxAddressLength = uint16_t(QString::number(m_pdata->size() * 16, 16).length());
-
-    m_addressWidth = (maxAddressLength + 1) * m_charWidth;
 
     recalcView();
 
@@ -104,15 +103,13 @@ void QHexView::paintEvent(QPaintEvent *event) {
     uint16_t firstLineIdx = uint16_t(verticalScrollBar()->value());
 
     int lastLineIdx = firstLineIdx + areaSize.height() / m_charHeight;
-    if(lastLineIdx >  linesInFile) {
+    if(lastLineIdx > linesInFile) {
         lastLineIdx = linesInFile;
         if(m_pdata->size() % m_bytesPerLine)
             lastLineIdx++;
     }
 
     painter.fillRect(event->rect(), this->palette().color(QPalette::Base));
-
-    int maxAddressLength = QString::number(m_pdata->size() * 16, 16).length();
 
     QColor addressAreaColor = QColor(BG_COLOR_ADDRESS_AREA);
     painter.fillRect(QRect(0, event->rect().top(), m_posHex - m_charWidth / 2, height()), addressAreaColor);
@@ -133,7 +130,8 @@ void QHexView::paintEvent(QPaintEvent *event) {
         if(!(m_config->getViewShowAddress() || m_config->getViewShowHex() || m_config->getViewShowAscii())) break;
 
         if(m_config->getViewShowAddress()) {
-            QString address = QString("%1").arg(lineIdx * 16, maxAddressLength, 16, QChar('0'));
+            QString address = QString("%1").arg(lineIdx * m_bytesPerLine * 2, m_maxAddressLength, 16, QChar('0'));
+
             painter.setPen(QColor(COLOR_ADDRESS));
             painter.drawText(0, yPos, address);
         }
@@ -393,21 +391,21 @@ void QHexView::statusBarUpdate() {
     }
 }
 
-void QHexView::mouseMoveEvent(QMouseEvent * event) {
-    int actPos = getCursorPos(event->pos());
+void QHexView::mouseMoveEvent(QMouseEvent *event) {
+    int actPos = int32_t(getCursorPos(event->pos()));
     setCursorPos(actPos);
     setSelection(actPos);
 
     viewport() -> update();
 }
 
-void QHexView::mousePressEvent(QMouseEvent * event) {
-    uint64_t cPos = getCursorPos(event->pos());
+void QHexView::mousePressEvent(QMouseEvent *event) {
+    int cPos = int(getCursorPos(event->pos()));
 
     if((QApplication::keyboardModifiers() & Qt::ShiftModifier) && event->button() == Qt::LeftButton)
-        setSelection(int(cPos));
+        setSelection(cPos);
     else
-        resetSelection(int(cPos));
+        resetSelection(cPos);
 
     setCursorPos(cPos);
 

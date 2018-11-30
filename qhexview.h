@@ -44,6 +44,7 @@ class QHexView: public QAbstractScrollArea {
     uint16_t              m_posHex;
     uint16_t              m_hexWidth;
     uint16_t              m_addressWidth;
+    uint16_t              m_maxAddressLength;
     uint16_t              m_asciiWidth;
     uint16_t              m_bytesPerLine;
     uint16_t              m_posAscii;

@@ -37,6 +37,7 @@ class QHexView: public QAbstractScrollArea {
   protected:
     void paintEvent(QPaintEvent *event);
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
   private:
@@ -67,4 +68,5 @@ class QHexView: public QAbstractScrollArea {
     void ensureVisible();
     void setCursorPos(int64_t pos);
     uint64_t getCursorPos(const QPoint &position);
+    void statusBarUpdate();
 };

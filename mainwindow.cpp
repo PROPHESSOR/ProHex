@@ -191,6 +191,17 @@ void MainWindow::view_toolbars_toggleAscii() {
     hexview->repaint();
 };
 
-void MainWindow::statusBarMessage(const QString &message) {
+void MainWindow::statusBarMessage(const QString &message) { // TODO: Remove
     statusBar()->showMessage(message);
+}
+
+void MainWindow::update(int8_t mode) {
+    switch(mode) {
+        case 1: // QHexView updated
+            qDebug() << "MainWindow::update called by QHexView";
+            break;
+        default:
+            qDebug() << "Undefined mode " << mode << "in MainWindow::update";
+            break;
+    }
 }

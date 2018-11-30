@@ -23,6 +23,7 @@ class MainWindow : public QMainWindow {
     ~MainWindow();
 
     void statusBarMessage(const QString &);
+    void update(int8_t mode);
 
   private slots:
     void file_new();
@@ -44,15 +45,16 @@ class MainWindow : public QMainWindow {
     void view_toolbars_toggleAscii();
 
   private:
-    Ui::MainWindow *ui      = nullptr;
-    QHexView *hexview       = nullptr;
-    Converter *converter    = nullptr;
-    Config *config          = nullptr;
+    Ui::MainWindow  *ui         = nullptr;
+    QHexView        *hexview    = nullptr;
+    Converter       *converter  = nullptr;
+    Config          *config     = nullptr;
 
 
     void initToolBar();
     void initHexView();
     void openFile(QString path);
+
   protected:
     DataStorage *m_data = nullptr;
 };

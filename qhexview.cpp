@@ -7,7 +7,7 @@
 
 #include "qhexview.h"
 
-QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar):
+QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar) :
     QAbstractScrollArea(parent),
     m_pdata(data), m_config(config), m_statusBar(statusBar) {
     setFont(QFont("Monospace", 14));
@@ -381,6 +381,18 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
     viewport() -> update();
 }
 
+void QHexView::keyReleaseEvent(QKeyEvent *event) {
+    statusBarUpdate();
+}
+
+void QHexView::statusBarUpdate() {
+    if(m_selectBegin == m_selectEnd) {
+        m_statusBar->showMessage("Offset: " + QString::number(m_cursorPos));
+    } else {
+        m_statusBar->showMessage("Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
+    }
+}
+
 void QHexView::mouseMoveEvent(QMouseEvent * event) {
     int actPos = getCursorPos(event->pos());
     setCursorPos(actPos);
@@ -452,13 +464,11 @@ void QHexView::setSelection(int pos) {
         m_selectBegin = uint16_t(pos);
         m_selectEnd = m_selectInit;
     }
-
-    m_statusBar->showMessage("Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
 }
 
 
-void QHexView::setCursorPos(int64_t position = 0) {
-    if(position < 0) position = 0;
+void QHexView::setCursorPos(int64_t tmpposition = 0) {
+    uint64_t position = uint64_t(tmpposition < 0 ? 0 : tmpposition);
 
     uint64_t maxPos = 0;
     if(m_pdata) {
@@ -471,7 +481,7 @@ void QHexView::setCursorPos(int64_t position = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
-    m_statusBar->showMessage("Offset: " + QString::number(position));
+
 }
 
 void QHexView::ensureVisible() {

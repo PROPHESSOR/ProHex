@@ -66,7 +66,7 @@ void MainWindow::initToolBar() {
     tools->addAction("File ripper", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+R"));
     tools->addSection("Useful utilities");
     tools->addAction("Converter", this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
-    tools->addAction("ASCII Table", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+A"));
+    tools->addAction("ASCII Table", this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
     tools->addAction("Assembler commands", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
 
     // About
@@ -157,6 +157,14 @@ void MainWindow::tools_converter() {
         converter = new Converter();
     }
     converter->show();
+}
+
+void MainWindow::tools_asciiTable() {
+    qDebug() << "Tools->ASCII Table";
+    if(asciitable == nullptr) {
+        asciitable = new AsciiTable();
+    }
+    asciitable->show();
 }
 
 void MainWindow::about_about() {

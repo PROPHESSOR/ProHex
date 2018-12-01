@@ -9,6 +9,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # CONFIG += static
+QMAKE_CXXFLAGS_WARN_OFF = -Wunused-parameter
 
 TARGET = _ProHex_
 TEMPLATE = app
@@ -24,14 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
         datastorage.cpp \
         qhexview.cpp \
         converter.cpp \
-        config.cpp
+        config.cpp \
+        asciitable.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,8 +40,10 @@ HEADERS += \
         qhexview.h \
         constants.h \
         converter.h \
-        config.h
+        config.h \
+        asciitable.h
 
 FORMS += \
         mainwindow.ui \
-        converter.ui
+        converter.ui \
+        asciitable.ui

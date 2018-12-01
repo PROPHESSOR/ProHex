@@ -9,6 +9,7 @@
 #include "datastorage.h"
 #include "constants.h"
 #include "converter.h"
+#include "asciitable.h"
 #include "config.h"
 
 namespace Ui {
@@ -36,6 +37,7 @@ class MainWindow : public QMainWindow {
     void edit_gotooffset();
 
     void tools_converter();
+    void tools_asciiTable();
 
     void about_about();
     void about_aboutqt();
@@ -48,6 +50,7 @@ class MainWindow : public QMainWindow {
     Ui::MainWindow  *ui         = nullptr;
     QHexView        *hexview    = nullptr;
     Converter       *converter  = nullptr;
+    AsciiTable      *asciitable = nullptr;
     Config          *config     = nullptr;
 
 

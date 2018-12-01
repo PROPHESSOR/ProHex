@@ -3,6 +3,7 @@
 // TODO:
 // Сделать возможность скрытия окон через ~width=0~ через config
 // Сделать передачу информации из QHexView и DataStorage в Converter
+// Size increment
 // FIXME: Адрес не изменяется при масштабировании окна
 
 #include "qhexview.h"
@@ -65,7 +66,7 @@ void QHexView::showFromOffset(uint64_t offset) {
 
         int cursorY = m_cursorPos / (2 * m_bytesPerLine);
 
-        verticalScrollBar() -> setValue(cursorY);
+        verticalScrollBar()->setValue(cursorY);
     }
 }
 
@@ -370,13 +371,13 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
                     res += "\n";
             }
             QClipboard *clipboard = QApplication::clipboard();
-            clipboard -> setText(res);
+            clipboard->setText(res);
         }
     }
 
     if(setVisible)
         ensureVisible();
-    viewport() -> update();
+    viewport()->update();
 }
 
 void QHexView::keyReleaseEvent(QKeyEvent *event) {
@@ -384,6 +385,7 @@ void QHexView::keyReleaseEvent(QKeyEvent *event) {
 }
 
 void QHexView::statusBarUpdate() {
+    if(!m_pdata) return;
     if(m_selectBegin == m_selectEnd) {
         m_statusBar->showMessage("Offset: " + QString::number(m_cursorPos));
     } else {
@@ -396,7 +398,7 @@ void QHexView::mouseMoveEvent(QMouseEvent *event) {
     setCursorPos(actPos);
     setSelection(actPos);
 
-    viewport() -> update();
+    viewport()->update();
 }
 
 void QHexView::mousePressEvent(QMouseEvent *event) {
@@ -409,11 +411,12 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
 
     setCursorPos(cPos);
 
-    viewport() -> update();
+    viewport()->update();
 }
 
 
 uint64_t QHexView::getCursorPos(const QPoint &position) {
+    if(!m_pdata) return 0;
     uint64_t pos = 0;
 
     if ((position.x() >= m_posHex) && (position.x() < m_posAscii - m_charWidth)) {
@@ -423,13 +426,13 @@ uint64_t QHexView::getCursorPos(const QPoint &position) {
         else
             x = ((x / 3) * 2) + 1;
 
-        int firstLineIdx = verticalScrollBar() -> value();
+        int firstLineIdx = verticalScrollBar()->value();
         int y = (position.y() / m_charHeight) * 2 * m_bytesPerLine;
         pos = uint64_t(x + y + firstLineIdx * m_bytesPerLine * 2);
     } else if(position.x() > m_posAscii) {
         int x = (position.x() - m_posAscii) / m_charWidth;
 
-        int firstLineIdx = verticalScrollBar() -> value();
+        int firstLineIdx = verticalScrollBar()->value();
         int y = (position.y() / m_charHeight) * 2 * m_bytesPerLine;
         pos = uint64_t(x * 2 + 1 + y + firstLineIdx * m_bytesPerLine * 2);
     }
@@ -479,19 +482,19 @@ void QHexView::setCursorPos(int64_t tmpposition = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
-
 }
 
 void QHexView::ensureVisible() {
+    if(!m_pdata) return;
     QSize areaSize = viewport()->size();
 
-    int firstLineIdx = verticalScrollBar() -> value();
+    int firstLineIdx = verticalScrollBar()->value();
     int lastLineIdx = firstLineIdx + areaSize.height() / m_charHeight;
 
     int cursorY = int(m_cursorPos / (2 * m_bytesPerLine));
 
     if(cursorY < firstLineIdx)
-        verticalScrollBar() -> setValue(cursorY);
+        verticalScrollBar()->setValue(cursorY);
     else if(cursorY >= lastLineIdx)
-        verticalScrollBar() -> setValue(cursorY - areaSize.height() / m_charHeight + 1);
+        verticalScrollBar()->setValue(cursorY - areaSize.height() / m_charHeight + 1);
 }

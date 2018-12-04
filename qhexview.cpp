@@ -4,6 +4,8 @@
 // Сделать возможность скрытия окон через ~width=0~ через config
 // Сделать передачу информации из QHexView и DataStorage в Converter
 // Size increment
+// Переключение окон в MouseClick
+// Подсвечивание бортиков активного окна
 // FIXME: Адрес не изменяется при масштабировании окна
 
 #include "qhexview.h"
@@ -57,6 +59,7 @@ void QHexView::setData(DataStorage *pData) {
 
     m_posHex    = m_addressWidth;
     m_posAscii  = m_addressWidth + m_hexWidth;
+    m_mode      = false;
     viewport()->repaint();
 }
 
@@ -144,6 +147,11 @@ void QHexView::paintEvent(QPaintEvent *event) {
 
                 uint64_t pos = uint64_t((lineIdx * m_bytesPerLine + i) * 2);
 
+                if(m_mode != 1 && pos == m_cursorPos) {
+                    painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
+                    painter.setBackgroundMode(Qt::OpaqueMode);
+                }
+
                 if(pos >= m_selectBegin && pos < m_selectEnd) {
                     painter.setBackground(selected);
                     painter.setBackgroundMode(Qt::OpaqueMode);
@@ -161,6 +169,11 @@ void QHexView::paintEvent(QPaintEvent *event) {
                     painter.setBackground(def);
                 }
                 painter.setBackgroundMode(Qt::OpaqueMode);
+
+                if(m_mode != 1 && pos == m_cursorPos - 1) {
+                    painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
+                    painter.setBackgroundMode(Qt::OpaqueMode);
+                }
 
                 val = QString::number((data.at((lineIdx - firstLineIdx) * m_bytesPerLine + i) & 0xF), 16).toUpper();
                 painter.setPen(QColor(COLOR_HEX));
@@ -201,7 +214,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
 
         }
 
-        if (hasFocus()) {
+        if (m_mode == 1) { // If write (insert) mode
             uint16_t x = (m_cursorPos % (2 * m_bytesPerLine));
             uint16_t y = uint16_t(m_cursorPos / (2 * m_bytesPerLine));
             y -= firstLineIdx;

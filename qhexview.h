@@ -50,6 +50,8 @@ class QHexView: public QAbstractScrollArea {
     uint16_t              m_posAscii;
     uint16_t              m_charWidth;
     uint16_t              m_charHeight;
+    uint8_t               m_mode;       // 0 - read-only;   1 - write (insert); 2 - write (replace)
+    uint8_t               m_window;     // 0 - hex;         1 - ascii
 
 
     uint64_t              m_selectBegin;

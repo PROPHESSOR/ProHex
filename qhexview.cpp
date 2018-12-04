@@ -419,6 +419,13 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         if(m_mode) m_mode = 3 - m_mode; // 2 <-> 1
     }
 
+    if(!event->text().isEmpty()) {
+        if(event->text() == "\r")       return;  // Enter
+        else if(event->text() == "\t")  return;  // Tab
+
+        qDebug() << "Letter:" << event->text();
+    }
+
     if(setVisible)
         ensureVisible();
     viewport()->update();

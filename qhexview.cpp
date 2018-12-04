@@ -1,12 +1,9 @@
 //https://github.com/virinext/QHexView
 
 // TODO:
-// Сделать возможность скрытия окон через ~width=0~ через config
-// Сделать передачу информации из QHexView и DataStorage в Converter
-// Size increment
-// Переключение окон в MouseClick
-// Подсвечивание бортиков активного окна
-// FIXME: Адрес не изменяется при масштабировании окна
+//   Исправить возможность скрытия окон через config
+//   Сделать передачу информации из QHexView и DataStorage в Converter
+//   Size increment
 
 #include "qhexview.h"
 

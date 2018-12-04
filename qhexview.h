@@ -17,6 +17,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QStatusBar>
+#include <QKeySequence>
 #include "config.h"
 
 #include <stdexcept>

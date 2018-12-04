@@ -18,6 +18,9 @@ QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBa
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
     m_charHeight    = uint16_t(fontMetrics().height());
 
+    m_window        = 0;
+    m_mode          = 0;
+
     setMinimumWidth(m_charWidth * 14);
 
     setFocusPolicy(Qt::StrongFocus);
@@ -52,6 +55,9 @@ void QHexView::setData(DataStorage *pData) {
     verticalScrollBar()->setValue(0);
     if(m_pdata) delete m_pdata;
     m_pdata = pData;
+
+    m_window    = 0;
+    m_mode      = 0;
     m_cursorPos = 0;
     resetSelection(0);
 
@@ -118,9 +124,20 @@ void QHexView::paintEvent(QPaintEvent *event) {
     QColor addressAreaColor = QColor(BG_COLOR_ADDRESS_AREA);
     painter.fillRect(QRect(0, event->rect().top(), m_posHex - m_charWidth / 2, height()), addressAreaColor);
 
+    if(m_window == 0) { // If HEX or ASCII window is activeare
+        painter.setPen(QColor(COLOR_ACTIVE_WINDOW));
+    } else {
+        painter.setPen(Qt::gray);
+    }
+    painter.drawLine(m_posHex - m_charWidth / 2, event->rect().top(), m_posHex - m_charWidth / 2, height());
+
     int linePos = m_posAscii - (GAP_HEX_ASCII / 2);
 
-    painter.setPen(Qt::gray);
+    if(m_window == 0 || m_window == 1) { // If HEX or ASCII window is activeare
+        painter.setPen(QColor(COLOR_ACTIVE_WINDOW));
+    } else {
+        painter.setPen(Qt::gray);
+    }
     painter.drawLine(linePos, event->rect().top(), linePos, height());
     painter.setPen(Qt::black);
 
@@ -232,12 +249,18 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
     /* Cursor movements */
     /*****************************************************************************/
     if(event->matches(QKeySequence::MoveToNextChar)) {
-        setCursorPos(m_cursorPos + 1);
+        if(m_window == 0) // HEX window
+            setCursorPos(m_cursorPos + 1);
+        else
+            setCursorPos(m_cursorPos + 2);
         resetSelection(m_cursorPos);
         setVisible = true;
     }
     if(event->matches(QKeySequence::MoveToPreviousChar)) {
-        if(m_cursorPos > 0) setCursorPos(m_cursorPos - 1);
+        if(m_window == 0) // HEX window
+            setCursorPos(m_cursorPos - 1);
+        else
+            setCursorPos(m_cursorPos - 2);
         resetSelection(m_cursorPos);
         setVisible = true;
     }
@@ -432,7 +455,9 @@ uint64_t QHexView::getCursorPos(const QPoint &position) {
     if(!m_pdata) return 0;
     uint64_t pos = 0;
 
-    if ((position.x() >= m_posHex) && (position.x() < m_posAscii - m_charWidth)) {
+    if ((position.x() >= m_posHex) && (position.x() < m_posAscii - m_charWidth)) { // HEX window
+        m_window = 0;
+
         int x = (position.x() - m_posHex) / m_charWidth;
         if ((x % 3) == 0)
             x = (x / 3) * 2;
@@ -442,7 +467,9 @@ uint64_t QHexView::getCursorPos(const QPoint &position) {
         int firstLineIdx = verticalScrollBar()->value();
         int y = (position.y() / m_charHeight) * 2 * m_bytesPerLine;
         pos = uint64_t(x + y + firstLineIdx * m_bytesPerLine * 2);
-    } else if(position.x() > m_posAscii) {
+    } else if(position.x() > m_posAscii) { // ASCII window
+        m_window = 1;
+
         int x = (position.x() - m_posAscii) / m_charWidth;
 
         int firstLineIdx = verticalScrollBar()->value();

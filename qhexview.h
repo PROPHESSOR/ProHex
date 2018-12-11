@@ -1,6 +1,6 @@
 #pragma once
 
-// https://github.com/virinext/QHexView
+// Based on: https://github.com/virinext/QHexView
 
 #include "constants.h"
 #include "datastorage.h"
@@ -51,9 +51,6 @@ class QHexView: public QAbstractScrollArea {
     uint16_t              m_posAscii;
     uint16_t              m_charWidth;
     uint16_t              m_charHeight;
-    uint8_t               m_mode;       // 0 - read-only;   1 - write (insert); 2 - write (replace)
-    uint8_t               m_window;     // 0 - hex;         1 - ascii
-
 
     uint64_t              m_selectBegin;
     uint64_t              m_selectEnd;
@@ -64,6 +61,17 @@ class QHexView: public QAbstractScrollArea {
     Config               *m_config;
     QStatusBar           *m_statusBar;
 
+    enum ENUM_MODE   {
+        MODE_READONLY       = 0,
+        MODE_WRITE_INSERT   = 1,
+        MODE_WRITE_REPLACE  = 2
+    } m_mode;
+
+    enum ENUM_WINDOW {
+        WINDOW_HEX          = 0,
+        WINDOW_ASCII        = 1
+    } m_window;
+
 
     QSize fullSize() const;
     void resetSelection();
@@ -71,6 +79,7 @@ class QHexView: public QAbstractScrollArea {
     void setSelection(int pos);
     void ensureVisible();
     void setCursorPos(int64_t pos);
-    uint64_t getCursorPos(const QPoint &position);
     void statusBarUpdate();
+    void inputSymbol(QChar symbol);
+    uint64_t getCursorPos(const QPoint &position);
 };

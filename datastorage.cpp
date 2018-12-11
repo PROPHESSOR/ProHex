@@ -1,31 +1,31 @@
 #include "datastorage.h"
 
-DataStorageArray::DataStorageArray(const QByteArray &arr) {
+// TODO: Добавить setData
+
+DataStorage::DataStorage(const QByteArray &arr) {
     m_data = arr;
 }
 
-QByteArray DataStorageArray::getData(std::size_t position, std::size_t length) {
+QByteArray DataStorage::getData(int32_t position, int32_t length) {
     return m_data.mid(position, length);
 }
 
+void DataStorage::replace(int32_t position, char data) {
+    char tdata[] = {data};
 
-std::size_t DataStorageArray::size() {
+    m_data.replace(position, 1, tdata);
+}
+
+void DataStorage::insert(int32_t position, char data) {
+    char tdata[] = {data};
+
+    m_data.insert(position, tdata, 1);
+}
+
+void DataStorage::remove(int32_t position) {
+    m_data.remove(position, 1);
+}
+
+int64_t DataStorage::size() {
     return m_data.count();
-}
-
-
-DataStorageFile::DataStorageFile(const QString &fileName): m_file(fileName) {
-    m_file.open(QIODevice::ReadOnly);
-    if(!m_file.isOpen())
-        throw std::runtime_error(std::string("Failed to open file `") + fileName.toStdString() + "`");
-}
-
-QByteArray DataStorageFile::getData(std::size_t position, std::size_t length) {
-    m_file.seek(position);
-    return m_file.read(length);
-}
-
-
-std::size_t DataStorageFile::size() {
-    return m_file.size();
 }

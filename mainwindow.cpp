@@ -97,7 +97,7 @@ void MainWindow::openFile(QString path) {
     hexview->clear();
 
     QByteArray array = file.readAll();
-    hexview->setData(new DataStorageArray(array));
+    hexview->setData(new DataStorage(array));
     hexview->update();
 }
 

@@ -15,8 +15,8 @@ QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBa
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
     m_charHeight    = uint16_t(fontMetrics().height());
 
-    m_window        = 0;
-    m_mode          = 0;
+    m_window        = WINDOW_HEX;
+    m_mode          = MODE_READONLY;
 
     setMinimumWidth(m_charWidth * 14);
 
@@ -53,8 +53,8 @@ void QHexView::setData(DataStorage *pData) {
     if(m_pdata) delete m_pdata;
     m_pdata = pData;
 
-    m_window    = 0;
-    m_mode      = 2;
+    m_window    = WINDOW_HEX;
+    m_mode      = MODE_WRITE_REPLACE; // FIXME: To READONLY
     m_cursorPos = 0;
     resetSelection(0);
 
@@ -415,15 +415,20 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         }
     }
 
-    if(event->key() == 16777222) { // FIXME: It's a crutch
-        if(m_mode) m_mode = 3 - m_mode; // 2 <-> 1
+    if(event->key() == 16777222) { // Insert key // FIXME: It's a crutch
+        if(m_mode == MODE_WRITE_INSERT) m_mode = MODE_WRITE_REPLACE;
+        else if(m_mode == MODE_WRITE_REPLACE) m_mode = MODE_WRITE_INSERT;
     }
 
     if(!event->text().isEmpty()) {
-        if(event->text() == "\r")       return;  // Enter
-        else if(event->text() == "\t")  return;  // Tab
+        if(event->text() == "\r")           return; // Enter
+        else if(event->text() == "\t")      return; // Tab
+        else if(event->text() == "\x1b")    return; // Esc
+        else if(event->text() == "")       return; // Del
+        else if(event->text() == "\b")      return; // Backspace
 
         qDebug() << "Letter:" << event->text();
+        inputSymbol(QChar(event->text()[0]));
     }
 
     if(setVisible)
@@ -442,6 +447,35 @@ void QHexView::statusBarUpdate() {
     } else {
         m_statusBar->showMessage("Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
     }
+}
+
+void QHexView::inputSymbol(QChar symbol) {
+    if(m_mode == MODE_READONLY) return;
+
+    qDebug() << "inputSymbol(" << symbol << ")";
+
+    int32_t value = 0;
+
+    if(m_window == WINDOW_HEX) { // Hex
+        bool ok;
+        value = QString(symbol).toInt(&ok, 16);
+    } else if(m_window == WINDOW_ASCII) { // ASCII
+        switch(m_mode) {
+            case MODE_READONLY:
+                qDebug() << "MODE_READONLY";
+                return;
+            case MODE_WRITE_INSERT:
+                qDebug() << "MODE_INSERTED";
+                m_pdata->insert(int32_t(m_cursorPos), symbol.toLatin1());
+                break;
+            case MODE_WRITE_REPLACE:
+                qDebug() << "MODE_REPLACED";
+                m_pdata->replace(int32_t(m_cursorPos), symbol.toLatin1());
+                break;
+        }
+    }
+
+    qDebug() << "Value =" << value;
 }
 
 void QHexView::mouseMoveEvent(QMouseEvent *event) {
@@ -470,7 +504,7 @@ uint64_t QHexView::getCursorPos(const QPoint &position) {
     uint64_t pos = 0;
 
     if((position.x() >= m_posHex) && (position.x() < m_posAscii - m_charWidth)) { // HEX window
-        m_window = 0;
+        m_window = WINDOW_HEX;
 
         int x = (position.x() - m_posHex) / m_charWidth;
         if((x % 3) == 0)
@@ -482,7 +516,7 @@ uint64_t QHexView::getCursorPos(const QPoint &position) {
         int y = (position.y() / m_charHeight) * 2 * m_bytesPerLine;
         pos = uint64_t(x + y + firstLineIdx * m_bytesPerLine * 2);
     } else if(position.x() > m_posAscii) { // ASCII window
-        m_window = 1;
+        m_window = WINDOW_ASCII;
 
         int x = (position.x() - m_posAscii) / m_charWidth;
 

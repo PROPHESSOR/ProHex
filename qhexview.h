@@ -33,7 +33,7 @@ class QHexView: public QAbstractScrollArea {
   public slots:
     void setData(DataStorage *pData);
     void clear();
-    void showFromOffset(uint64_t offset);
+    void showFromOffset(int64_t offset);
 
   protected:
     void paintEvent(QPaintEvent *event);

@@ -54,7 +54,7 @@ void QHexView::setData(DataStorage *pData) {
     m_pdata = pData;
 
     m_window    = WINDOW_HEX;
-    m_mode      = MODE_WRITE_REPLACE; // FIXME: To READONLY
+    m_mode      = MODE_WRITE_REPLACE;
     m_cursorPos = 0;
     resetSelection(0);
 
@@ -65,11 +65,11 @@ void QHexView::setData(DataStorage *pData) {
     viewport()->repaint();
 }
 
-void QHexView::showFromOffset(uint64_t offset) {
+void QHexView::showFromOffset(int64_t offset) {
     if(m_pdata && offset < m_pdata->size()) {
-        setCursorPos(offset * 2);
+        setCursorPos(offset);
 
-        int cursorY = m_cursorPos / (2 * m_bytesPerLine);
+        int32_t cursorY = int32_t((m_cursorPos / 2) / (2 * m_bytesPerLine));
 
         verticalScrollBar()->setValue(cursorY);
     }
@@ -415,9 +415,28 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         }
     }
 
-    if(event->key() == 16777222) { // Insert key // FIXME: It's a crutch
-        if(m_mode == MODE_WRITE_INSERT) m_mode = MODE_WRITE_REPLACE;
-        else if(m_mode == MODE_WRITE_REPLACE) m_mode = MODE_WRITE_INSERT;
+    if(event->key() == Qt::Key_Tab) { // Toggle window
+        switch(m_window) {
+            case WINDOW_HEX:
+                m_window = WINDOW_ASCII;
+                break;
+            case WINDOW_ASCII:
+                m_window = WINDOW_HEX;
+                break;
+        }
+    }
+
+    if(event->key() == Qt::Key_Insert) {
+        switch(m_mode) {
+            case MODE_READONLY:
+                break;
+            case MODE_WRITE_INSERT:
+                m_mode = MODE_WRITE_REPLACE;
+                break;
+            case MODE_WRITE_REPLACE:
+                m_mode = MODE_WRITE_INSERT;
+                break;
+        }
     }
 
     if(!event->text().isEmpty()) {
@@ -442,15 +461,31 @@ void QHexView::keyReleaseEvent(QKeyEvent *event) {
 
 void QHexView::statusBarUpdate() {
     if(!m_pdata) return;
+
+    QString mode;
+
+    switch(m_mode) {
+        case MODE_READONLY:
+            mode = "[READONLY] ";
+            break;
+        case MODE_WRITE_INSERT:
+            mode = "[INSERT] ";
+            break;
+        case MODE_WRITE_REPLACE:
+            mode = "[REPLACE] ";
+            break;
+    }
+
     if(m_selectBegin == m_selectEnd) {
-        m_statusBar->showMessage("Offset: " + QString::number(m_cursorPos));
+        m_statusBar->showMessage(mode + "Offset: " + QString::number(m_cursorPos));
     } else {
-        m_statusBar->showMessage("Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
+        m_statusBar->showMessage(mode + "Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
     }
 }
 
 void QHexView::inputSymbol(QChar symbol) {
     if(m_mode == MODE_READONLY) return;
+    if(!symbol.toLatin1()) return;
 
     qDebug() << "inputSymbol(" << symbol << ")";
 
@@ -470,7 +505,7 @@ void QHexView::inputSymbol(QChar symbol) {
                 break;
             case MODE_WRITE_REPLACE:
                 qDebug() << "MODE_REPLACED";
-                m_pdata->replace(int32_t(m_cursorPos), symbol.toLatin1());
+                m_pdata->replace(int32_t(m_cursorPos / 2), symbol.toLatin1());
                 break;
         }
     }

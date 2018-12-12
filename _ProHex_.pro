@@ -32,7 +32,8 @@ SOURCES += \
         qhexview.cpp \
         converter.cpp \
         config.cpp \
-        asciitable.cpp
+        asciitable.cpp \
+    preferences.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,9 +42,11 @@ HEADERS += \
         constants.h \
         converter.h \
         config.h \
-        asciitable.h
+        asciitable.h \
+    preferences.h
 
 FORMS += \
         mainwindow.ui \
         converter.ui \
-        asciitable.ui
+        asciitable.ui \
+    preferences.ui

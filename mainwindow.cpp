@@ -57,8 +57,8 @@ void MainWindow::initToolBar() {
     view->addAction("Save selection preset", this, SLOT(doesntimplemented()));
     view->addAction("Load selection preset", this, SLOT(doesntimplemented()));
     view->addSection("Settings");
-    view->addAction("Preferences", this, SLOT(doesntimplemented()), QKeySequence::Preferences);
-    view->addAction("Key bindings", this, SLOT(doesntimplemented()));
+    view->addAction("Preferences", this, SLOT(view_preferences()), QKeySequence::Preferences);
+    view->addAction("Key bindings", this, SLOT(view_keybindings()));
 
     // Tools
     QMenu *tools = ui->MenuBar->addMenu("&Tools");
@@ -151,11 +151,51 @@ void MainWindow::edit_gotooffset() {
     if(confirmed) hexview->showFromOffset(offset);
 }
 
+void MainWindow::view_toolbars_toggleAddress() {
+    config->setViewShowAddress(!config->getViewShowAddress());
+    hexview->recalcView();
+    hexview->repaint();
+};
+
+void MainWindow::view_toolbars_toggleHex() {
+    config->setViewShowHex(!config->getViewShowHex());
+    hexview->recalcView();
+    hexview->repaint();
+};
+
+void MainWindow::view_toolbars_toggleAscii() {
+    config->setViewShowAscii(!config->getViewShowAscii());
+    hexview->recalcView();
+    hexview->repaint();
+};
+
+void MainWindow::view_preferences() {
+    qDebug() << "View->Preferences";
+
+    if(preferences == nullptr) {
+        preferences = new Preferences();
+    }
+
+    preferences->show();
+}
+
+void MainWindow::view_keybindings() {
+    qDebug() << "View->Key bindings";
+
+    if(preferences == nullptr) {
+        preferences = new Preferences();
+    }
+
+    preferences->showTab(1);
+}
+
 void MainWindow::tools_converter() {
     qDebug() << "Tools->Converter";
+
     if(converter == nullptr) {
         converter = new Converter();
     }
+
     converter->show();
 }
 
@@ -180,24 +220,6 @@ void MainWindow::about_aboutqt() {
 void MainWindow::doesntimplemented() {
     QMessageBox::information(this, "Not implemented", "Hey! This feature doesn't implemented yet!");
 }
-
-void MainWindow::view_toolbars_toggleAddress() {
-    config->setViewShowAddress(!config->getViewShowAddress());
-    hexview->recalcView();
-    hexview->repaint();
-};
-
-void MainWindow::view_toolbars_toggleHex() {
-    config->setViewShowHex(!config->getViewShowHex());
-    hexview->recalcView();
-    hexview->repaint();
-};
-
-void MainWindow::view_toolbars_toggleAscii() {
-    config->setViewShowAscii(!config->getViewShowAscii());
-    hexview->recalcView();
-    hexview->repaint();
-};
 
 void MainWindow::statusBarMessage(const QString &message) { // TODO: Remove
     statusBar()->showMessage(message);

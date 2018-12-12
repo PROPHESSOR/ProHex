@@ -5,11 +5,16 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QDebug>
-#include "qhexview.h"
 #include "datastorage.h"
 #include "constants.h"
+
+// Windows
+#include "qhexview.h"
 #include "converter.h"
 #include "asciitable.h"
+#include "preferences.h"
+//\\ Windows
+
 #include "config.h"
 
 namespace Ui {
@@ -36,22 +41,27 @@ class MainWindow : public QMainWindow {
 
     void edit_gotooffset();
 
+    void view_toolbars_toggleAddress();
+    void view_toolbars_toggleHex();
+    void view_toolbars_toggleAscii();
+    void view_preferences();
+    void view_keybindings();
+
     void tools_converter();
     void tools_asciiTable();
 
     void about_about();
     void about_aboutqt();
     void doesntimplemented();
-    void view_toolbars_toggleAddress();
-    void view_toolbars_toggleHex();
-    void view_toolbars_toggleAscii();
 
   private:
-    Ui::MainWindow  *ui         = nullptr;
-    QHexView        *hexview    = nullptr;
-    Converter       *converter  = nullptr;
-    AsciiTable      *asciitable = nullptr;
-    Config          *config     = nullptr;
+    Ui::MainWindow  *ui             = nullptr;
+    Config          *config         = nullptr;
+
+    QHexView        *hexview        = nullptr;
+    Converter       *converter      = nullptr;
+    AsciiTable      *asciitable     = nullptr;
+    Preferences     *preferences    = nullptr;
 
 
     void initToolBar();

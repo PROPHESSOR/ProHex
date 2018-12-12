@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Preferences</class>
+ <widget class="QWidget" name="Preferences">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Preferences</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>361</width>
+         <height>271</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Interface</string>
+       </property>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>71</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Language</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="languageCombo">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>30</y>
+          <width>101</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>English</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Русский</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Key bindings</string>
+      </attribute>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>761</width>
+         <height>531</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Main menu hotkeys</string>
+          </property>
+          <widget class="QKeySequenceEdit" name="seqOpenFile">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>60</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqSaveFile">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>90</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqSaveAs">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>120</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqAnalyze">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>150</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_6">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>150</y>
+             <width>101</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Analyze file</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_4">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>120</y>
+             <width>101</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Save file as...</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_3">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>90</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Save file</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>60</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Open file</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>30</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>New file</string>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqExit">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>180</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqUndo">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>210</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqRedo">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>240</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqFind">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>270</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqReplace">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>300</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqOffset">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>330</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="keySequenceEdit_10">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>360</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_7">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>180</y>
+             <width>101</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Exit</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_8">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>210</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Undo</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_9">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>240</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Redo</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_10">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>270</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Find</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_5">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>300</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Replace</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_11">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>330</y>
+             <width>101</width>
+             <height>21</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Go to offset</string>
+           </property>
+          </widget>
+          <widget class="QKeySequenceEdit" name="seqNewFile">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>30</y>
+             <width>71</width>
+             <height>25</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Navigation and editing</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
+       <string>Apperance</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

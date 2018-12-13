@@ -128,7 +128,11 @@ void MainWindow::file_new() {
     qDebug() << "File->New";
     hexview->clear();
     setWindowTitle(PROHEX);
-    m_data->setAssociatedFile("");
+
+    QByteArray array(1, 0x0);
+    m_data = new DataStorage(array, "");
+    hexview->setData(m_data);
+    hexview->update();
 }
 
 void MainWindow::file_open() {

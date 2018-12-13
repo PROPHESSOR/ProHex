@@ -23,6 +23,16 @@ void Preferences::load() {
     qDebug() << "Preferences::load()";
 
     ui->languageCombo->setCurrentText(m_config->getLanguage());
+
+    // Generate table
+
+    //ui->tableWidget->setColumnCount(4);
+    ui->listWidget->addItem("Address area color");
+    ui->listWidget->addItem("Selection color");
+    ui->listWidget->addItem("Rectangle cursor color");
+    ui->listWidget->addItem("HEX color");
+    ui->listWidget->addItem("Address color");
+    ui->listWidget->addItem("ASCII color");
 }
 
 void Preferences::save() {
@@ -31,6 +41,8 @@ void Preferences::save() {
     m_config->setLanguage(ui->languageCombo->currentText());
     m_config->save();
 }
+
+// void Preferences::updateColorScheme() {}
 
 void Preferences::closeEvent(QCloseEvent *event) {
     qDebug() << "onPreferencesClose" << event;
@@ -49,4 +61,12 @@ void Preferences::closeEvent(QCloseEvent *event) {
             qDebug() << "Unknown result";
             break;
     }
+}
+
+void Preferences::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
+    QString itemName    = item->text().split("-")[0];
+    QColor tmp          = QColorDialog::getColor();
+    item->setTextColor(tmp);
+
+    // item->setText(itemName + " - " + tmp);
 }

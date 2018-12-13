@@ -75,6 +75,8 @@ bool Config::saveToJson(QJsonObject &json) {
 
     json["application"]     = application;
 
+    QJsonObject colorscheme; // TODO:
+
     return true;
 }
 

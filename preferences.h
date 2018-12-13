@@ -3,6 +3,10 @@
 #include <QWidget>
 #include <QDebug>
 #include <QMessageBox>
+#include <QListWidgetItem>
+#include <QColor>
+#include <QInputDialog>
+#include <QColorDialog>
 #include "config.h"
 
 namespace Ui {
@@ -23,6 +27,11 @@ class Preferences : public QWidget {
     Ui::Preferences *ui;
     Config          *m_config = nullptr;
 
+    // void updateColorScheme();
+
   protected:
     virtual void closeEvent(QCloseEvent *);
+
+  private slots:
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *);
 };

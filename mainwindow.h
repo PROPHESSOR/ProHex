@@ -35,7 +35,6 @@ class MainWindow : public QMainWindow {
     void file_open();
     void file_save();
     void file_saveas();
-    void file_close();
     void file_exit();
 
     void edit_gotooffset();

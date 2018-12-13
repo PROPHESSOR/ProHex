@@ -9,7 +9,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # CONFIG += static
-QMAKE_CXXFLAGS_WARN_OFF = -Wunused-parameter
+QMAKE_CXXFLAGS_WARN_OFF = -Wunused-parameter -Wmissing-noreturn
 
 TARGET = _ProHex_
 TEMPLATE = app
@@ -33,7 +33,7 @@ SOURCES += \
         converter.cpp \
         config.cpp \
         asciitable.cpp \
-    preferences.cpp
+        preferences.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,10 +43,10 @@ HEADERS += \
         converter.h \
         config.h \
         asciitable.h \
-    preferences.h
+        preferences.h
 
 FORMS += \
         mainwindow.ui \
         converter.ui \
         asciitable.ui \
-    preferences.ui
+        preferences.ui

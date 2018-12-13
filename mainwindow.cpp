@@ -1,3 +1,8 @@
+/*
+  TODO:
+  Добавить поиск и замену
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -25,7 +30,6 @@ void MainWindow::initToolBar() {
     file->addAction("Open", this, SLOT(file_open()), QKeySequence::Open);
     file->addAction("Save", this, SLOT(file_save()), QKeySequence::Save);
     file->addAction("Save as...", this, SLOT(file_saveas()), QKeySequence::SaveAs);
-    file->addAction("Close", this, SLOT(file_close()), QKeySequence::Close);
     file->addSection("Analyze");
     file->addAction("About the file", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
     file->addSeparator();
@@ -168,14 +172,18 @@ void MainWindow::file_saveas() {
     }
 }
 
-void MainWindow::file_close() {
-    qDebug() << "File->Close";
-    return file_new();
-}
-
 void MainWindow::file_exit() {
     qDebug() << "File->Exit";
-    // TODO: Save confirm
+    QMessageBox::StandardButton confirm = QMessageBox::question(this, "Save", "Save changes?", QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+
+    switch(confirm) {
+        case QMessageBox::Yes:
+            file_save();
+            break;
+        default:
+            break;
+    }
+
     config->save();
     exit(0);
 }

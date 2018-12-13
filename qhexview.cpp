@@ -4,6 +4,8 @@
 //   Исправить возможность скрытия окон через config
 //   Сделать передачу информации из QHexView и DataStorage в Converter
 //   Size increment
+//   Исправить позицию вставки символов в MODE_WRITE_INSERT
+//   Исправить Ctrl+... комбинации в режиме MODE_WRITE_...
 
 #include "qhexview.h"
 

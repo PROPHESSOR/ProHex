@@ -66,6 +66,7 @@ void QHexView::setData(DataStorage *pData) {
 }
 
 void QHexView::showFromOffset(int64_t offset) {
+    if(!m_pdata) return;
     if(m_pdata && offset < m_pdata->size()) {
         setCursorPos(offset);
 

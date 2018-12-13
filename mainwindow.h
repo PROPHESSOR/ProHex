@@ -65,7 +65,10 @@ class MainWindow : public QMainWindow {
 
     void initToolBar();
     void initHexView();
+
     void openFile(QString path);
+    void saveFile();
+    void saveFileAs(QString path);
 
   protected:
     DataStorage *m_data = nullptr;

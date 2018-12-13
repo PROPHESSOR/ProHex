@@ -99,13 +99,36 @@ void MainWindow::openFile(QString path) {
     hexview->clear();
 
     QByteArray array = file.readAll();
-    hexview->setData(new DataStorage(array));
+    m_data = new DataStorage(array, path);
+    hexview->setData(m_data);
     hexview->update();
+}
+
+void MainWindow::saveFile() {
+    qDebug() << "MainWindow::saveFile()";
+    if(!m_data->isFileAssociated()) return file_saveas();
+
+    saveFileAs(m_data->getAssociatedFile());
+}
+
+void MainWindow::saveFileAs(QString path) {
+    qDebug() << "MainWindow::saveFileAs(" << path << ")";
+
+    QFile file(path);
+
+    if(!file.open(QIODevice::WriteOnly)) {
+        QMessageBox::critical(this, "Can't open the file", "Can't open the file \"" + path + "\" for writing!");
+        return;
+    }
+
+    file.write(m_data->getAllData());
 }
 
 void MainWindow::file_new() {
     qDebug() << "File->New";
-    doesntimplemented();
+    hexview->clear();
+    setWindowTitle(PROHEX);
+    m_data->setAssociatedFile("");
 }
 
 void MainWindow::file_open() {
@@ -123,19 +146,27 @@ void MainWindow::file_open() {
 
 void MainWindow::file_save() {
     qDebug() << "File->Save";
-    doesntimplemented();
+    if(m_data->isFileAssociated()) saveFile();
+    else file_saveas();
 }
 
 void MainWindow::file_saveas() {
     qDebug() << "File->Save as...";
-    doesntimplemented();
+    QString dir = QDir::currentPath();
+
+    QString filename = QFileDialog::getSaveFileName(this, "Select file to save", dir);
+    if(!filename.isEmpty()) {
+        saveFileAs(filename);
+        m_data->setAssociatedFile(filename);
+
+        QFileInfo info(filename);
+        setWindowTitle(info.fileName() + " - " + PROHEX);
+    }
 }
 
 void MainWindow::file_close() {
     qDebug() << "File->Close";
-    hexview->clear();
-    hexview->close();
-    setWindowTitle(PROHEX);
+    return file_new();
 }
 
 void MainWindow::file_exit() {

@@ -1,11 +1,7 @@
 #include "config.h"
 
 Config::Config() {
-    v_show_address  = true;
-    v_show_hex      = true;
-    v_show_ascii    = true;
-    a_language      = 0;
-    // reset();
+    reset();
 }
 
 bool Config::load() {
@@ -37,7 +33,7 @@ bool Config::loadFromJson(QJsonObject json) {
 
     QJsonObject application = json["application"].toObject();
 
-    if(application.contains("language") && application["language"].isBool())    a_language      = application["language"].toBool();
+    if(application.contains("language") && application["language"].isString())  a_language      = application["language"].toString();
 
     return true;
 }
@@ -77,7 +73,7 @@ bool Config::saveToJson(QJsonObject &json) {
 
     application["language"] = a_language;
 
-    json["application"]     = view;
+    json["application"]     = application;
 
     return true;
 }
@@ -86,7 +82,7 @@ void Config::reset() {
     v_show_address  = true;
     v_show_hex      = true;
     v_show_ascii    = true;
-    a_language      = 0;
+    a_language      = "English";
 }
 
 QString Config::getConfigFilePath() {
@@ -107,10 +103,8 @@ bool Config::getViewShowAscii() {
     return v_show_ascii;
 }
 
-uint8_t Config::getLanguage() {
-    return 0; // FIXME:
-    qDebug() << "Config::getLanguage() =" << a_language;
-    return 0;
+QString Config::getLanguage() {
+    return a_language;
 }
 
 // Setters
@@ -127,12 +121,8 @@ void Config::setViewShowAscii(bool val) {
     v_show_ascii = val;
 }
 
-void Config::setLanguage(uint8_t lang) {
-    a_language = 0;
-    return;
-
-    if(lang < TMPLANGS)
+void Config::setLanguage(QString lang) {
+    if(lang == "English" || lang == "Русский") {
         a_language = lang;
-    else
-        qDebug() << "[WARNING]: Unknown language to Config::setLanguage(" << lang << ");";
+    } else qDebug() << "Config::setLanguage ERROR: Unknown language " << lang;
 }

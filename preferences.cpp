@@ -5,9 +5,7 @@ Preferences::Preferences(QWidget *parent, Config *config) :
     QWidget(parent), ui(new Ui::Preferences), m_config(config) {
     ui->setupUi(this);
 
-    qDebug() << "Language: " << m_config->getLanguage();
-
-    //load();
+    load();
 }
 
 Preferences::~Preferences() {
@@ -24,13 +22,14 @@ void Preferences::showTab(uint8_t tab) {
 void Preferences::load() {
     qDebug() << "Preferences::load()";
 
-    ui->languageCombo->setCurrentIndex(m_config->getLanguage());
+    ui->languageCombo->setCurrentText(m_config->getLanguage());
 }
 
 void Preferences::save() {
     qDebug() << "Preferences::save()";
 
-    m_config->setLanguage(uint8_t(ui->languageCombo->currentIndex()));
+    m_config->setLanguage(ui->languageCombo->currentText());
+    m_config->save();
 }
 
 void Preferences::closeEvent(QCloseEvent *event) {

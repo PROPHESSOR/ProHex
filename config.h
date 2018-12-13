@@ -23,19 +23,20 @@ class Config {
     bool    getViewShowHex();
     bool    getViewShowAscii();
 
-    uint8_t getLanguage();
+    QString getLanguage();
 
     // Setters
     void    setViewShowAddress(bool);
     void    setViewShowHex(bool);
     void    setViewShowAscii(bool);
 
-    void    setLanguage(uint8_t);
+    void    setLanguage(QString);
 
     static QString getConfigFilePath();
   private:
     bool    v_show_address;
     bool    v_show_hex;
     bool    v_show_ascii;
-    uint8_t a_language;
+
+    QString a_language;
 };

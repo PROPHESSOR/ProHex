@@ -2,8 +2,10 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow), config(new Config) {
+    QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
+
+    config = new Config();
 
     initToolBar();
     initHexView();
@@ -173,7 +175,7 @@ void MainWindow::view_preferences() {
     qDebug() << "View->Preferences";
 
     if(preferences == nullptr) {
-        preferences = new Preferences();
+        preferences = new Preferences(nullptr, config);
     }
 
     preferences->show();
@@ -183,7 +185,7 @@ void MainWindow::view_keybindings() {
     qDebug() << "View->Key bindings";
 
     if(preferences == nullptr) {
-        preferences = new Preferences();
+        preferences = new Preferences(nullptr, config);
     }
 
     preferences->showTab(1);

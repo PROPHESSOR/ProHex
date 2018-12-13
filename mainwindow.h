@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "datastorage.h"
 #include "constants.h"
+#include "config.h"
 
 // Windows
 #include "qhexview.h"
@@ -14,8 +15,6 @@
 #include "asciitable.h"
 #include "preferences.h"
 //\\ Windows
-
-#include "config.h"
 
 namespace Ui {
 class MainWindow;

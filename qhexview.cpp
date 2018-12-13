@@ -120,11 +120,11 @@ void QHexView::paintEvent(QPaintEvent *event) {
 
     painter.fillRect(event->rect(), this->palette().color(QPalette::Base));
 
-    QColor addressAreaColor = QColor(BG_COLOR_ADDRESS_AREA);
+    QColor addressAreaColor = m_config->getColorAddressArea();
     painter.fillRect(QRect(0, event->rect().top(), m_posHex - m_charWidth / 2, height()), addressAreaColor);
 
     if(m_window == 0) { // If HEX or ASCII window is activeare
-        painter.setPen(QColor(COLOR_ACTIVE_WINDOW));
+        painter.setPen(m_config->getColorActiveWindow());
     } else {
         painter.setPen(Qt::gray);
     }
@@ -133,7 +133,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
     int linePos = m_posAscii - (GAP_HEX_ASCII / 2);
 
     if(m_window == 0 || m_window == 1) { // If HEX or ASCII window is activeare
-        painter.setPen(QColor(COLOR_ACTIVE_WINDOW));
+        painter.setPen(m_config->getColorActiveWindow());
     } else {
         painter.setPen(Qt::gray);
     }
@@ -143,7 +143,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
     int yPosStart = m_charHeight;
 
     QBrush def = painter.brush();
-    QBrush selected = QBrush(QColor(BG_COLOR_SELECTION));
+    QBrush selected = QBrush(m_config->getColorSelection());
     QByteArray data = m_pdata->getData(uint64_t(firstLineIdx * m_bytesPerLine), uint64_t((lastLineIdx - firstLineIdx) * m_bytesPerLine));
 
     for (int lineIdx = firstLineIdx, yPos = yPosStart;  lineIdx < lastLineIdx; lineIdx += 1, yPos += m_charHeight) {
@@ -152,7 +152,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
         if(m_config->getViewShowAddress()) {
             QString address = QString("%1").arg(lineIdx * m_bytesPerLine * 2, m_maxAddressLength, 16, QChar('0'));
 
-            painter.setPen(QColor(COLOR_ADDRESS));
+            painter.setPen(m_config->getColorAddress());
             painter.drawText(0, yPos, address);
         }
 
@@ -164,7 +164,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
                 uint64_t pos = uint64_t((lineIdx * m_bytesPerLine + i) * 2);
 
                 if(m_mode != 1 && pos == m_cursorPos) {
-                    painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
+                    painter.setBackground(QBrush(m_config->getColorCursor()));
                     painter.setBackgroundMode(Qt::OpaqueMode);
                 }
 
@@ -174,7 +174,7 @@ void QHexView::paintEvent(QPaintEvent *event) {
                 }
 
                 QString val = QString::number((data.at((lineIdx - firstLineIdx) * m_bytesPerLine + i) & 0xF0) >> 4, 16).toUpper();
-                painter.setPen(QColor(COLOR_HEX));
+                painter.setPen(m_config->getColorHex());
                 painter.drawText(xPos, yPos, val);
 
 
@@ -187,12 +187,12 @@ void QHexView::paintEvent(QPaintEvent *event) {
                 painter.setBackgroundMode(Qt::OpaqueMode);
 
                 if(m_mode != 1 && pos == m_cursorPos - 1) {
-                    painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
+                    painter.setBackground(QBrush(m_config->getColorCursor()));
                     painter.setBackgroundMode(Qt::OpaqueMode);
                 }
 
                 val = QString::number((data.at((lineIdx - firstLineIdx) * m_bytesPerLine + i) & 0xF), 16).toUpper();
-                painter.setPen(QColor(COLOR_HEX));
+                painter.setPen(m_config->getColorHex());
                 painter.drawText(xPos + m_charWidth, yPos, val); // TODO: Перевести в сетку
 
                 painter.setBackground(def);
@@ -207,11 +207,11 @@ void QHexView::paintEvent(QPaintEvent *event) {
                 char ch = data[(lineIdx - firstLineIdx) * m_bytesPerLine + i];
                 if((ch < 0x20) || (ch > 0x7e)) ch = '.';
 
-                painter.setPen(QColor(COLOR_ASCII));
+                painter.setPen(m_config->getColorAscii());
 
 
                 if(m_mode != 1 && pos == m_cursorPos / 2) {
-                    painter.setBackground(QBrush(QColor(BG_COLOR_CURSOR)));
+                    painter.setBackground(QBrush(m_config->getColorCursor()));
                 } else {
                     painter.setBackground(painter.brush());
                 }

@@ -82,7 +82,18 @@ void Config::reset() {
     v_show_address  = true;
     v_show_hex      = true;
     v_show_ascii    = true;
+
     a_language      = "English";
+
+    c_address_area  = QColor(0xd4, 0xd4, 0xd4, 0xff);
+    c_selection     = QColor(0x6d, 0x9e, 0xff, 0xff);
+    c_cursor        = QColor(0xcc, 0xcc, 0xcc, 0xff);
+
+    c_hex           = QColor(0x00, 0x00, 0x00, 0xff);
+    c_address       = QColor(0x00, 0x00, 0x00, 0xff);
+    c_ascii         = QColor(0x00, 0x00, 0x00, 0xff);
+
+    c_active_window = QColor(0x00, 0x00, 0xff, 0xff);
 }
 
 QString Config::getConfigFilePath() {
@@ -101,6 +112,34 @@ bool Config::getViewShowHex() {
 
 bool Config::getViewShowAscii() {
     return v_show_ascii;
+}
+
+QColor Config::getColorAddressArea() {
+    return c_address_area;
+}
+
+QColor Config::getColorSelection() {
+    return c_selection;
+}
+
+QColor Config::getColorCursor() {
+    return c_cursor;
+}
+
+QColor Config::getColorHex() {
+    return c_hex;
+}
+
+QColor Config::getColorAddress() {
+    return c_address;
+}
+
+QColor Config::getColorAscii() {
+    return c_ascii;
+}
+
+QColor Config::getColorActiveWindow() {
+    return c_active_window;
 }
 
 QString Config::getLanguage() {

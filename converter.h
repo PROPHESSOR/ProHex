@@ -5,7 +5,7 @@
 #include <QtEndian>
 
 namespace Ui {
-class converter;
+class Converter;
 }
 
 class Converter : public QWidget {
@@ -23,14 +23,12 @@ class Converter : public QWidget {
 
     void on_HexInput_textEdited(const QString &arg1);
 
-    void on_HexInput_textChanged(const QString &arg1);
-
     void on_BinInput_textEdited(const QString &arg1);
 
     void on_CharInput_textEdited(const QString &arg1);
 
   private:
-    Ui::converter *ui;
+    Ui::Converter *ui;
 
     QString input; // Decimal value
 };

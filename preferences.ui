@@ -62,12 +62,17 @@
         </property>
         <item>
          <property name="text">
-          <string>English</string>
+          <string>en</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Русский</string>
+          <string>ru</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>uk</string>
          </property>
         </item>
        </widget>

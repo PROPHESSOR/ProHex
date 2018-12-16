@@ -27,12 +27,12 @@ void Preferences::load() {
     // Generate table
 
     //ui->tableWidget->setColumnCount(4);
-    ui->listWidget->addItem("Address area color");
-    ui->listWidget->addItem("Selection color");
-    ui->listWidget->addItem("Rectangle cursor color");
-    ui->listWidget->addItem("HEX color");
-    ui->listWidget->addItem("Address color");
-    ui->listWidget->addItem("ASCII color");
+    ui->listWidget->addItem(tr("Address area color"));
+    ui->listWidget->addItem(tr("Selection color"));
+    ui->listWidget->addItem(tr("Rectangle cursor color"));
+    ui->listWidget->addItem(tr("HEX color"));
+    ui->listWidget->addItem(tr("Address color"));
+    ui->listWidget->addItem(tr("ASCII color"));
 }
 
 void Preferences::save() {
@@ -47,18 +47,13 @@ void Preferences::save() {
 void Preferences::closeEvent(QCloseEvent *event) {
     qDebug() << "onPreferencesClose" << event;
 
-    QMessageBox::StandardButton confirm = QMessageBox::question(this, "Save", "Save preferences?", QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+    QMessageBox::StandardButton confirm = QMessageBox::question(this, tr("Save"), tr("Save preferences?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
 
     switch(confirm) {
         case QMessageBox::Yes:
-            qDebug() << "Yes";
             save();
             break;
-        case QMessageBox::No:
-            qDebug() << "No";
-            break;
         default:
-            qDebug() << "Unknown result";
             break;
     }
 }

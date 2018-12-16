@@ -85,7 +85,9 @@ void Config::reset() {
     v_show_hex      = true;
     v_show_ascii    = true;
 
-    a_language      = "English";
+    QString locale = QLocale::system().name();
+    locale.truncate(locale.lastIndexOf('_'));
+    a_language      = locale;
 
     c_address_area  = QColor(0xd4, 0xd4, 0xd4, 0xff);
     c_selection     = QColor(0x6d, 0x9e, 0xff, 0xff);
@@ -163,7 +165,7 @@ void Config::setViewShowAscii(bool val) {
 }
 
 void Config::setLanguage(QString lang) {
-    if(lang == "English" || lang == "Русский") {
+    if(lang == "en" || lang == "ru" || lang == "uk") {
         a_language = lang;
     } else qDebug() << "Config::setLanguage ERROR: Unknown language " << lang;
 }

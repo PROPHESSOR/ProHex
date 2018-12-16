@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QDebug>
+#include <QTranslator>
+
 #include "datastorage.h"
 #include "constants.h"
 #include "config.h"
@@ -64,7 +66,6 @@ class MainWindow : public QMainWindow {
     Preferences     *preferences    = nullptr;
     Strings         *strings        = nullptr;
 
-
     void initToolBar();
     void initHexView();
 
@@ -74,4 +75,5 @@ class MainWindow : public QMainWindow {
 
   protected:
     DataStorage *m_data = nullptr;
+    QTranslator     *translator     = nullptr;
 };

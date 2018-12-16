@@ -6,6 +6,7 @@
 //   Size increment
 //   Исправить позицию вставки символов в MODE_WRITE_INSERT
 //   Исправить Ctrl+... комбинации в режиме MODE_WRITE_...
+//   delete & backspace
 
 #include "qhexview.h"
 
@@ -469,20 +470,20 @@ void QHexView::statusBarUpdate() {
 
     switch(m_mode) {
         case MODE_READONLY:
-            mode = "[READONLY] ";
+            mode = tr("[READONLY] ");
             break;
         case MODE_WRITE_INSERT:
-            mode = "[INSERT] ";
+            mode = tr("[INSERT] ");
             break;
         case MODE_WRITE_REPLACE:
-            mode = "[REPLACE] ";
+            mode = tr("[REPLACE] ");
             break;
     }
 
     if(m_selectBegin == m_selectEnd) {
-        m_statusBar->showMessage(mode + "Offset: " + QString::number(m_cursorPos));
+        m_statusBar->showMessage(mode + tr("Offset: ") + QString::number(m_cursorPos));
     } else {
-        m_statusBar->showMessage(mode + "Selection: from " + QString::number(m_selectBegin) + " to " + QString::number(m_selectEnd) + " total: " + QString::number(m_selectEnd - m_selectBegin));
+        m_statusBar->showMessage(mode + tr("Selection: from ") + QString::number(m_selectBegin) + tr(" to ") + QString::number(m_selectEnd) + tr(" total: ") + QString::number(m_selectEnd - m_selectBegin));
     }
 }
 

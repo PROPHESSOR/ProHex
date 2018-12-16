@@ -4,7 +4,7 @@
 #include <QDebug>
 
 Converter::Converter(QWidget *parent) :
-    QWidget(parent), ui(new Ui::converter) {
+    QWidget(parent), ui(new Ui::Converter) {
     ui->setupUi(this);
 }
 
@@ -59,10 +59,6 @@ void Converter::on_HexInput_textEdited(const QString &value) {
     bool ok;
     input = QString::number(value.toLongLong(&ok, 16), 10);
     calculate();
-}
-
-void Converter::on_HexInput_textChanged(const QString &arg1) {
-    // FIXME: Remove
 }
 
 void Converter::on_BinInput_textEdited(const QString &value) {

@@ -8,14 +8,23 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
-    ui->setupUi(this);
-
     config = new Config();
+
+    qDebug() << "System language:" << QLocale::system().name();
+
+    config->load();
+
+    translator = new QTranslator();
+    translator->load(":locale/locale_" + config->getLanguage());
+
+    qApp->installTranslator(translator);
+
+    //ui->retranslateUi(this);
+    ui->setupUi(this);
 
     initToolBar();
     initHexView();
 
-    config->load();
 }
 
 MainWindow::~MainWindow() {
@@ -24,66 +33,66 @@ MainWindow::~MainWindow() {
 
 void MainWindow::initToolBar() {
     // File
-    QMenu *file = ui->MenuBar->addMenu("&File");
-    file->addSection("File");
-    file->addAction("New", this, SLOT(file_new()), QKeySequence::New);
-    file->addAction("Open", this, SLOT(file_open()), QKeySequence::Open);
-    file->addAction("Save", this, SLOT(file_save()), QKeySequence::Save);
-    file->addAction("Save as...", this, SLOT(file_saveas()), QKeySequence::SaveAs);
+    QMenu *file = ui->MenuBar->addMenu(tr("&File"));
+    file->addSection(tr("File"));
+    file->addAction(tr("New"), this, SLOT(file_new()), QKeySequence::New);
+    file->addAction(tr("Open"), this, SLOT(file_open()), QKeySequence::Open);
+    file->addAction(tr("Save"), this, SLOT(file_save()), QKeySequence::Save);
+    file->addAction(tr("Save as..."), this, SLOT(file_saveas()), QKeySequence::SaveAs);
     file->addSeparator();
-    file->addAction("Exit", this, SLOT(file_exit()), QKeySequence::Quit);
+    file->addAction(tr("Exit"), this, SLOT(file_exit()), QKeySequence::Quit);
 
     // Edit
-    QMenu *edit = ui->MenuBar->addMenu("&Edit");
-    edit->addSection("History");
-    edit->addAction("Undo", this, SLOT(doesntimplemented()), QKeySequence::Undo);
-    edit->addAction("Redo", this, SLOT(doesntimplemented()), QKeySequence::Redo);
-    edit->addAction("Open history", this, SLOT(doesntimplemented()));
-    edit->addSection("Search");
-    edit->addAction("Find", this, SLOT(doesntimplemented()), QKeySequence::Find);
-    edit->addAction("Replace", this, SLOT(doesntimplemented()), QKeySequence::Replace);
-    edit->addSection("Navigation");
-    edit->addAction("Goto offset", this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
+    QMenu *edit = ui->MenuBar->addMenu(tr("&Edit"));
+    edit->addSection(tr("History"));
+    edit->addAction(tr("Undo"), this, SLOT(doesntimplemented()), QKeySequence::Undo);
+    edit->addAction(tr("Redo"), this, SLOT(doesntimplemented()), QKeySequence::Redo);
+    edit->addAction(tr("Open history"), this, SLOT(doesntimplemented()));
+    edit->addSection(tr("Search"));
+    edit->addAction(tr("Find"), this, SLOT(doesntimplemented()), QKeySequence::Find);
+    edit->addAction(tr("Replace"), this, SLOT(doesntimplemented()), QKeySequence::Replace);
+    edit->addSection(tr("Navigation"));
+    edit->addAction(tr("Goto offset"), this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
 
     // View
-    QMenu *view = ui->MenuBar->addMenu("&View");
-    view->addSection("File view");
-    view->addAction("Hex", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+1"));
-    view->addAction("Assembler", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+2"));
-    view->addAction("Strings", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+3"));
-    view->addAction("Raw", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+4"));
+    QMenu *view = ui->MenuBar->addMenu(tr("&View"));
+    view->addSection(tr("File view"));
+    view->addAction(tr("Hex"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+1"));
+    view->addAction(tr("Assembler"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+2"));
+    view->addAction(tr("Strings"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+3"));
+    view->addAction(tr("Raw"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+4"));
     view->addSeparator();
-    QMenu *toolbars = view->addMenu("&Toolbars");
-    toolbars->addAction("Address section", this, SLOT(view_toolbars_toggleAddress()));
-    toolbars->addAction("Hexdecimal section", this, SLOT(view_toolbars_toggleHex()));
-    toolbars->addAction("Ascii section", this, SLOT(view_toolbars_toggleAscii()));
+    QMenu *toolbars = view->addMenu(tr("&Toolbars"));
+    toolbars->addAction(tr("Address section"), this, SLOT(view_toolbars_toggleAddress()));
+    toolbars->addAction(tr("Hexdecimal section"), this, SLOT(view_toolbars_toggleHex()));
+    toolbars->addAction(tr("Ascii section"), this, SLOT(view_toolbars_toggleAscii()));
     view->addSeparator();
-    view->addAction("Save selection preset", this, SLOT(doesntimplemented()));
-    view->addAction("Load selection preset", this, SLOT(doesntimplemented()));
-    view->addSection("Settings");
-    view->addAction("Preferences", this, SLOT(view_preferences()), QKeySequence::Preferences);
-    view->addAction("Key bindings", this, SLOT(view_keybindings()));
+    view->addAction(tr("Save selection preset"), this, SLOT(doesntimplemented()));
+    view->addAction(tr("Load selection preset"), this, SLOT(doesntimplemented()));
+    view->addSection(tr("Settings"));
+    view->addAction(tr("Preferences"), this, SLOT(view_preferences()), QKeySequence::Preferences);
+    view->addAction(tr("Key bindings"), this, SLOT(view_keybindings()));
 
     // Tools
-    QMenu *tools = ui->MenuBar->addMenu("&Tools");
-    tools->addSection("About the file");
-    tools->addAction("File analyzer", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
-    tools->addAction("File ripper", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+R"));
-    tools->addSection("Useful utilities");
-    tools->addAction("Converter", this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
-    tools->addAction("Strings", this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
-    tools->addAction("ASCII Table", this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
-    tools->addAction("Assembler commands", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
+    QMenu *tools = ui->MenuBar->addMenu(tr("&Tools"));
+    tools->addSection(tr("About the file"));
+    tools->addAction(tr("File analyzer"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
+    tools->addAction(tr("File ripper"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+R"));
+    tools->addSection(tr("Useful utilities"));
+    tools->addAction(tr("Converter"), this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
+    tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
+    tools->addAction(tr("ASCII Table"), this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
+    tools->addAction(tr("Assembler commands"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
 
     // About
-    QMenu *about = ui->MenuBar->addMenu("&About");
-    about->addSection("Help");
-    about->addAction("User manual (offline)", this, SLOT(doesntimplemented()), QKeySequence::HelpContents);
-    about->addAction("Online forum", this, SLOT(doesntimplemented()));
-    about->addSection("About");
-    about->addAction("About the program", this, SLOT(about_about()));
-    about->addAction("About Qt", this, SLOT(about_aboutqt()));
-    about->addAction("License", this, SLOT(doesntimplemented()));
+    QMenu *about = ui->MenuBar->addMenu(tr("&About"));
+    about->addSection(tr("Help"));
+    about->addAction(tr("User manual (offline)"), this, SLOT(doesntimplemented()), QKeySequence::HelpContents);
+    about->addAction(tr("Online forum"), this, SLOT(doesntimplemented()));
+    about->addSection(tr("About"));
+    about->addAction(tr("About the program"), this, SLOT(about_about()));
+    about->addAction(tr("About Qt"), this, SLOT(about_aboutqt()));
+    about->addAction(tr("License"), this, SLOT(doesntimplemented()));
 }
 
 void MainWindow::initHexView() {
@@ -96,7 +105,7 @@ void MainWindow::openFile(QString path) {
     QFile file(path);
 
     if(!file.open(QIODevice::ReadOnly)) {
-        QMessageBox::critical(this, "Can't open the file", "Can't open the file \"" + path + "\" for reading!");
+        QMessageBox::critical(this, tr("Can't open the file"), tr("Can't open the file \"") + path + tr("\" for reading!"));
         return;
     }
 
@@ -121,7 +130,7 @@ void MainWindow::saveFileAs(QString path) {
     QFile file(path);
 
     if(!file.open(QIODevice::WriteOnly)) {
-        QMessageBox::critical(this, "Can't open the file", "Can't open the file \"" + path + "\" for writing!");
+        QMessageBox::critical(this, tr("Can't open the file"), tr("Can't open the file \"") + path + tr("\" for writing!"));
         return;
     }
 
@@ -143,7 +152,7 @@ void MainWindow::file_open() {
     qDebug() << "File->Open";
     QString dir = QDir::currentPath();
 
-    QString filename = QFileDialog::getOpenFileName(this, "Select file", dir);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Select file"), dir);
     if(!filename.isEmpty()) {
         openFile(filename);
 
@@ -162,7 +171,7 @@ void MainWindow::file_saveas() {
     qDebug() << "File->Save as...";
     QString dir = QDir::currentPath();
 
-    QString filename = QFileDialog::getSaveFileName(this, "Select file to save", dir);
+    QString filename = QFileDialog::getSaveFileName(this, tr("Select file to save"), dir);
     if(!filename.isEmpty()) {
         saveFileAs(filename);
         m_data->setAssociatedFile(filename);
@@ -174,7 +183,7 @@ void MainWindow::file_saveas() {
 
 void MainWindow::file_exit() {
     qDebug() << "File->Exit";
-    QMessageBox::StandardButton confirm = QMessageBox::question(this, "Save", "Save changes?", QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+    QMessageBox::StandardButton confirm = QMessageBox::question(this, tr("Save"), tr("Save changes?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
 
     switch(confirm) {
         case QMessageBox::Yes:
@@ -191,7 +200,7 @@ void MainWindow::file_exit() {
 void MainWindow::edit_gotooffset() {
     qDebug() << "Edit->Goto offset";
     bool confirmed = false;
-    int64_t offset = int64_t(QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed));
+    int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
 
     if(confirmed) hexview->showFromOffset(offset);
 }
@@ -252,10 +261,10 @@ void MainWindow::tools_strings() {
     }
 
     this->setCursor(Qt::WaitCursor);
-    statusBarMessage("Searching for readable strings...");
+    statusBarMessage(tr("Searching for readable strings..."));
     strings->generateList(m_data);
     strings->show();
-    statusBarMessage("OK");
+    statusBarMessage(tr("OK"));
     this->setCursor(Qt::ArrowCursor);
 }
 
@@ -269,23 +278,23 @@ void MainWindow::tools_asciiTable() {
 
 void MainWindow::about_about() {
     qDebug() << "About->About the program";
-    QMessageBox::about(this, "About the program", PROHEX + " v." + PROHEX_VERSION + " <br/>Copyright (c) PROPHESSOR 2018");
+    QMessageBox::about(this, tr("About the program"), PROHEX + " v." + PROHEX_VERSION + " <br/>Copyright (c) PROPHESSOR 2018");
 }
 
 void MainWindow::about_aboutqt() {
     qDebug() << "About->About Qt";
-    QMessageBox::aboutQt(this, "About Qt");
+    QMessageBox::aboutQt(this, tr("About Qt"));
 }
 
 void MainWindow::doesntimplemented() {
-    QMessageBox::information(this, "Not implemented", "Hey! This feature doesn't implemented yet!");
+    QMessageBox::information(this, tr("Not implemented"), tr("Hey! This feature doesn't implemented yet!"));
 }
 
 void MainWindow::statusBarMessage(const QString &message) { // TODO: Remove
     statusBar()->showMessage(message);
 }
 
-void MainWindow::update(int8_t mode) {
+void MainWindow::update(int8_t mode) { // TODO:
     switch(mode) {
         case 1: // QHexView updated
             qDebug() << "MainWindow::update called by QHexView";

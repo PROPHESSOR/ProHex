@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/locale">
+        <file alias="locale_ru.qm">locale/locale_ru.qm</file>
+        <file alias="locale_uk.qm">locale/locale_uk.qm</file>
+    </qresource>
+</RCC>

@@ -30,8 +30,6 @@ void MainWindow::initToolBar() {
     file->addAction("Open", this, SLOT(file_open()), QKeySequence::Open);
     file->addAction("Save", this, SLOT(file_save()), QKeySequence::Save);
     file->addAction("Save as...", this, SLOT(file_saveas()), QKeySequence::SaveAs);
-    file->addSection("Analyze");
-    file->addAction("About the file", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
     file->addSeparator();
     file->addAction("Exit", this, SLOT(file_exit()), QKeySequence::Quit);
 
@@ -69,9 +67,11 @@ void MainWindow::initToolBar() {
     // Tools
     QMenu *tools = ui->MenuBar->addMenu("&Tools");
     tools->addSection("About the file");
+    tools->addAction("File analyzer", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
     tools->addAction("File ripper", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+R"));
     tools->addSection("Useful utilities");
     tools->addAction("Converter", this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
+    tools->addAction("Strings", this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
     tools->addAction("ASCII Table", this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
     tools->addAction("Assembler commands", this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
 
@@ -191,7 +191,7 @@ void MainWindow::file_exit() {
 void MainWindow::edit_gotooffset() {
     qDebug() << "Edit->Goto offset";
     bool confirmed = false;
-    uint64_t offset = uint64_t(QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed));
+    int64_t offset = int64_t(QInputDialog::getInt(this, "Offset", "Enter the offset", 0, 0, 2147483647, 1, &confirmed));
 
     if(confirmed) hexview->showFromOffset(offset);
 }
@@ -242,6 +242,19 @@ void MainWindow::tools_converter() {
     }
 
     converter->show();
+}
+
+void MainWindow::tools_strings() {
+    qDebug() << "Tools->Strings";
+
+    if(strings == nullptr) {
+        strings = new Strings();
+    }
+
+    statusBarMessage("Searching for readable strings...");
+    strings->generateList(m_data);
+    strings->show();
+    statusBarMessage("OK");
 }
 
 void MainWindow::tools_asciiTable() {

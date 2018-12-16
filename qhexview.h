@@ -57,7 +57,7 @@ class QHexView: public QAbstractScrollArea {
     uint64_t              m_selectInit;
     uint64_t              m_cursorPos;
 
-    DataStorage          *m_pdata;
+    DataStorage          *m_data;
     Config               *m_config;
     QStatusBar           *m_statusBar;
 

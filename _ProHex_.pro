@@ -33,7 +33,8 @@ SOURCES += \
         converter.cpp \
         config.cpp \
         asciitable.cpp \
-        preferences.cpp
+        preferences.cpp \
+    strings.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,10 +44,12 @@ HEADERS += \
         converter.h \
         config.h \
         asciitable.h \
-        preferences.h
+        preferences.h \
+    strings.h
 
 FORMS += \
         mainwindow.ui \
         converter.ui \
         asciitable.ui \
-        preferences.ui
+        preferences.ui \
+    strings.ui

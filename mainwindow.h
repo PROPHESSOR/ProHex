@@ -14,6 +14,7 @@
 #include "converter.h"
 #include "asciitable.h"
 #include "preferences.h"
+#include "strings.h"
 //\\ Windows
 
 namespace Ui {
@@ -46,6 +47,7 @@ class MainWindow : public QMainWindow {
     void view_keybindings();
 
     void tools_converter();
+    void tools_strings();
     void tools_asciiTable();
 
     void about_about();
@@ -60,6 +62,7 @@ class MainWindow : public QMainWindow {
     Converter       *converter      = nullptr;
     AsciiTable      *asciitable     = nullptr;
     Preferences     *preferences    = nullptr;
+    Strings         *strings        = nullptr;
 
 
     void initToolBar();

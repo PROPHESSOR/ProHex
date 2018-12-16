@@ -251,10 +251,12 @@ void MainWindow::tools_strings() {
         strings = new Strings();
     }
 
+    this->setCursor(Qt::WaitCursor);
     statusBarMessage("Searching for readable strings...");
     strings->generateList(m_data);
     strings->show();
     statusBarMessage("OK");
+    this->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::tools_asciiTable() {

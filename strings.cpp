@@ -40,4 +40,57 @@ void Strings::generateList(DataStorage *storage) {
         }
         i++;
     }
+
+    if(ui->listWidget->count() < LARGELIST) {
+        ui->searchInput->setStyleSheet("background-color: none;");
+    } else {
+        ui->searchInput->setStyleSheet("background-color: #afafaf;");
+    }
+}
+
+void Strings::on_searchInput_textEdited(const QString &str) {
+    m_searchChanged = true;
+    if(ui->listWidget->count() < LARGELIST) search(str);
+}
+
+void Strings::clearSelection() {
+    ui->listWidget->clearSelection();
+}
+
+void Strings::search(const QString &str) {
+    m_searchChanged = false;
+    clearSelection();
+
+    if(str.isEmpty()) return;
+
+    this->setCursor(Qt::WaitCursor);
+
+    m_searchlist = ui->listWidget->findItems(str, Qt::MatchCaseSensitive | Qt::MatchContains);
+
+    if(m_searchlist.length()) {
+        m_selectedIndex = 0;
+
+        for(QListWidgetItem *tmp : m_searchlist) {
+            tmp->setSelected(true);
+        }
+
+        goToItem(-1);
+    }
+
+    this->setCursor(Qt::ArrowCursor);
+}
+
+void Strings::goToItem(int32_t idx) {
+    if(idx < 0) idx = m_selectedIndex;
+    if(idx >= ui->listWidget->selectedItems().length()) idx %= ui->listWidget->selectedItems().length();
+
+    ui->listWidget->scrollToItem(ui->listWidget->selectedItems().at(idx));
+    ui->listWidget->setCurrentItem(ui->listWidget->selectedItems().at(idx));
+}
+
+void Strings::on_searchInput_returnPressed() {
+    if(m_searchChanged)
+        search(ui->searchInput->text());
+    else
+        goToItem(m_selectedIndex++);
 }

@@ -14,7 +14,9 @@ QMAKE_CXXFLAGS_WARN_OFF = -Wunused-parameter -Wmissing-noreturn
 TARGET = _ProHex_
 TEMPLATE = app
 
-TRANSLATIONS = locale/locale_ru.ts locale/locale_uk.ts
+TRANSLATIONS += \
+        locale/locale_ru.ts \
+        locale/locale_uk.ts
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -36,7 +38,8 @@ SOURCES += \
         config.cpp \
         asciitable.cpp \
         preferences.cpp \
-        strings.cpp
+        strings.cpp \
+    finder.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,14 +50,16 @@ HEADERS += \
         config.h \
         asciitable.h \
         preferences.h \
-        strings.h
+        strings.h \
+    finder.h
 
 FORMS += \
         mainwindow.ui \
         converter.ui \
         asciitable.ui \
         preferences.ui \
-        strings.ui
+        strings.ui \
+    finder.ui
 
 STATECHARTS +=
 

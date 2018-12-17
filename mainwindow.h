@@ -17,6 +17,7 @@
 #include "asciitable.h"
 #include "preferences.h"
 #include "strings.h"
+#include "finder.h"
 //\\ Windows
 
 namespace Ui {
@@ -40,6 +41,10 @@ class MainWindow : public QMainWindow {
     void file_saveas();
     void file_exit();
 
+    void edit_search(); // TODO:
+    void edit_replace(); // TODO:
+    void edit_searchnext(); // TODO:
+    void edit_searchprev(); // TODO:
     void edit_gotooffset();
 
     void view_toolbars_toggleAddress();
@@ -57,14 +62,18 @@ class MainWindow : public QMainWindow {
     void doesntimplemented();
 
   private:
-    Ui::MainWindow  *ui             = nullptr;
-    Config          *config         = nullptr;
+    Ui::MainWindow  *ui               = nullptr;
+    Config          *m_config         = nullptr;
 
-    QHexView        *hexview        = nullptr;
-    Converter       *converter      = nullptr;
-    AsciiTable      *asciitable     = nullptr;
-    Preferences     *preferences    = nullptr;
-    Strings         *strings        = nullptr;
+    QHexView        *m_hexview        = nullptr;
+    Converter       *m_converter      = nullptr;
+    AsciiTable      *m_asciitable     = nullptr;
+    Preferences     *m_preferences    = nullptr;
+    Strings         *m_strings        = nullptr;
+    Finder          *m_finder         = nullptr;
+
+    QByteArray       m_searchArray;
+    uint16_t         m_searchIndex    = 0;
 
     void initToolBar();
     void initHexView();

@@ -8,14 +8,14 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
-    config = new Config();
+    m_config = new Config();
 
     qDebug() << "System language:" << QLocale::system().name();
 
-    config->load();
+    m_config->load();
 
     translator = new QTranslator();
-    translator->load(":locale/locale_" + config->getLanguage());
+    translator->load(":locale/locale_" + m_config->getLanguage());
 
     qApp->installTranslator(translator);
 
@@ -49,8 +49,10 @@ void MainWindow::initToolBar() {
     edit->addAction(tr("Redo"), this, SLOT(doesntimplemented()), QKeySequence::Redo);
     edit->addAction(tr("Open history"), this, SLOT(doesntimplemented()));
     edit->addSection(tr("Search"));
-    edit->addAction(tr("Find"), this, SLOT(doesntimplemented()), QKeySequence::Find);
-    edit->addAction(tr("Replace"), this, SLOT(doesntimplemented()), QKeySequence::Replace);
+    edit->addAction(tr("Find"), this, SLOT(edit_search()), QKeySequence::Find);
+    edit->addAction(tr("Replace"), this, SLOT(edit_replace()), QKeySequence::Replace);
+    edit->addAction(tr("Find next"), this, SLOT(edit_searchnext()), QKeySequence::FindNext);
+    edit->addAction(tr("Find previous"), this, SLOT(edit_searchprev()), QKeySequence::FindPrevious);
     edit->addSection(tr("Navigation"));
     edit->addAction(tr("Goto offset"), this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
 
@@ -96,8 +98,8 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::initHexView() {
-    hexview = new QHexView(this, m_data, config, statusBar());
-    setCentralWidget(hexview);
+    m_hexview = new QHexView(this, m_data, m_config, statusBar());
+    setCentralWidget(m_hexview);
 }
 
 void MainWindow::openFile(QString path) {
@@ -109,12 +111,12 @@ void MainWindow::openFile(QString path) {
         return;
     }
 
-    hexview->clear();
+    m_hexview->clear();
 
     QByteArray array = file.readAll();
     m_data = new DataStorage(array, path);
-    hexview->setData(m_data);
-    hexview->update();
+    m_hexview->setData(m_data);
+    m_hexview->update();
 }
 
 void MainWindow::saveFile() {
@@ -139,13 +141,13 @@ void MainWindow::saveFileAs(QString path) {
 
 void MainWindow::file_new() {
     qDebug() << "File->New";
-    hexview->clear();
+    m_hexview->clear();
     setWindowTitle(PROHEX);
 
     QByteArray array(1, 0x0);
     m_data = new DataStorage(array, "");
-    hexview->setData(m_data);
-    hexview->update();
+    m_hexview->setData(m_data);
+    m_hexview->update();
 }
 
 void MainWindow::file_open() {
@@ -193,8 +195,40 @@ void MainWindow::file_exit() {
             break;
     }
 
-    config->save();
+    m_config->save();
     exit(0);
+}
+
+void MainWindow::edit_search() {
+    if(m_finder == nullptr) m_finder = new Finder();
+
+    m_finder->show();
+    /*bool confirmed = false;
+    QString search = QInputDialog::getText(this, tr("Search"), tr("Enter text to search"), QLineEdit::Normal, "", &confirmed);
+    qDebug() << "search text" << search;
+    m_searchArray = QByteArray();
+
+    for(short i = 0; i < search.length(); i++) {
+        //
+    }
+
+    m_searchArray.push_back();
+
+    if(confirmed) {
+        m_searchIndex   = 0;
+    };*/
+}
+
+void MainWindow::edit_replace() {
+
+}
+
+void MainWindow::edit_searchnext() {
+
+}
+
+void MainWindow::edit_searchprev() {
+
 }
 
 void MainWindow::edit_gotooffset() {
@@ -202,78 +236,78 @@ void MainWindow::edit_gotooffset() {
     bool confirmed = false;
     int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
 
-    if(confirmed) hexview->showFromOffset(offset);
+    if(confirmed) m_hexview->showFromOffset(offset);
 }
 
 void MainWindow::view_toolbars_toggleAddress() {
-    config->setViewShowAddress(!config->getViewShowAddress());
-    hexview->recalcView();
-    hexview->repaint();
+    m_config->setViewShowAddress(!m_config->getViewShowAddress());
+    m_hexview->recalcView();
+    m_hexview->repaint();
 };
 
 void MainWindow::view_toolbars_toggleHex() {
-    config->setViewShowHex(!config->getViewShowHex());
-    hexview->recalcView();
-    hexview->repaint();
+    m_config->setViewShowHex(!m_config->getViewShowHex());
+    m_hexview->recalcView();
+    m_hexview->repaint();
 };
 
 void MainWindow::view_toolbars_toggleAscii() {
-    config->setViewShowAscii(!config->getViewShowAscii());
-    hexview->recalcView();
-    hexview->repaint();
+    m_config->setViewShowAscii(!m_config->getViewShowAscii());
+    m_hexview->recalcView();
+    m_hexview->repaint();
 };
 
 void MainWindow::view_preferences() {
     qDebug() << "View->Preferences";
 
-    if(preferences == nullptr) {
-        preferences = new Preferences(nullptr, config);
+    if(m_preferences == nullptr) {
+        m_preferences = new Preferences(nullptr, m_config);
     }
 
-    preferences->show();
+    m_preferences->show();
 }
 
 void MainWindow::view_keybindings() {
     qDebug() << "View->Key bindings";
 
-    if(preferences == nullptr) {
-        preferences = new Preferences(nullptr, config);
+    if(m_preferences == nullptr) {
+        m_preferences = new Preferences(nullptr, m_config);
     }
 
-    preferences->showTab(1);
+    m_preferences->showTab(1);
 }
 
 void MainWindow::tools_converter() {
     qDebug() << "Tools->Converter";
 
-    if(converter == nullptr) {
-        converter = new Converter();
+    if(m_converter == nullptr) {
+        m_converter = new Converter();
     }
 
-    converter->show();
+    m_converter->show();
 }
 
 void MainWindow::tools_strings() {
     qDebug() << "Tools->Strings";
 
-    if(strings == nullptr) {
-        strings = new Strings();
+    if(m_strings == nullptr) {
+        m_strings = new Strings();
     }
 
     this->setCursor(Qt::WaitCursor);
     statusBarMessage(tr("Searching for readable strings..."));
-    strings->generateList(m_data);
-    strings->show();
+    m_strings->generateList(m_data);
+    m_strings->show();
     statusBarMessage(tr("OK"));
     this->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::tools_asciiTable() {
     qDebug() << "Tools->ASCII Table";
-    if(asciitable == nullptr) {
-        asciitable = new AsciiTable();
+    if(m_asciitable == nullptr) {
+        m_asciitable = new AsciiTable();
     }
-    asciitable->show();
+    m_asciitable->show();
 }
 
 void MainWindow::about_about() {

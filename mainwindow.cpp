@@ -49,10 +49,10 @@ void MainWindow::initToolBar() {
     edit->addAction(tr("Redo"), this, SLOT(doesntimplemented()), QKeySequence::Redo);
     edit->addAction(tr("Open history"), this, SLOT(doesntimplemented()));
     edit->addSection(tr("Search"));
-    edit->addAction(tr("Find"), this, SLOT(edit_search()), QKeySequence::Find);
+    edit->addAction(tr("Find"), this, SLOT(edit_find()), QKeySequence::Find);
     edit->addAction(tr("Replace"), this, SLOT(edit_replace()), QKeySequence::Replace);
-    edit->addAction(tr("Find next"), this, SLOT(edit_searchnext()), QKeySequence::FindNext);
-    edit->addAction(tr("Find previous"), this, SLOT(edit_searchprev()), QKeySequence::FindPrevious);
+    edit->addAction(tr("Find next"), this, SLOT(edit_findnext()), QKeySequence::FindNext);
+    edit->addAction(tr("Find previous"), this, SLOT(edit_findprev()), QKeySequence::FindPrevious);
     edit->addSection(tr("Navigation"));
     edit->addAction(tr("Goto offset"), this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
 
@@ -199,36 +199,28 @@ void MainWindow::file_exit() {
     exit(0);
 }
 
-void MainWindow::edit_search() {
-    if(m_finder == nullptr) m_finder = new Finder();
-
-    m_finder->show();
-    /*bool confirmed = false;
-    QString search = QInputDialog::getText(this, tr("Search"), tr("Enter text to search"), QLineEdit::Normal, "", &confirmed);
-    qDebug() << "search text" << search;
-    m_searchArray = QByteArray();
-
-    for(short i = 0; i < search.length(); i++) {
-        //
+void MainWindow::edit_find() {
+    if(m_finder == nullptr) {
+        m_finder = new Finder();
+        connect(m_finder->ui->asciiFindNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
+        connect(m_finder->ui->asciiFindPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
+        connect(m_finder->ui->hexFindNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
+        connect(m_finder->ui->hexFindPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
     }
 
-    m_searchArray.push_back();
-
-    if(confirmed) {
-        m_searchIndex   = 0;
-    };*/
+    m_finder->show();
 }
 
 void MainWindow::edit_replace() {
 
 }
 
-void MainWindow::edit_searchnext() {
-
+void MainWindow::edit_findnext() {
+    qDebug() << "MainWindow::edit_findnext()"; // TODO:
 }
 
-void MainWindow::edit_searchprev() {
-
+void MainWindow::edit_findprev() {
+    qDebug() << "MainWindow::edit_findprev()"; // TODO:
 }
 
 void MainWindow::edit_gotooffset() {

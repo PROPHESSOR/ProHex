@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>228</height>
+    <width>337</width>
+    <height>259</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,14 +26,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="asciiFindPrev">
           <property name="text">
            <string>Find previous</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="asciiFindNext">
           <property name="text">
            <string>Find next</string>
           </property>
@@ -67,16 +67,23 @@
        </widget>
       </item>
       <item>
+       <widget class="QLineEdit" name="hexReadLabel">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="hexFindPrev">
           <property name="text">
            <string>Find previous</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="hexFindNext">
           <property name="text">
            <string>Find next</string>
           </property>

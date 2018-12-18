@@ -34,6 +34,10 @@ class MainWindow : public QMainWindow {
     void statusBarMessage(const QString &);
     void update(int8_t mode);
 
+  public slots:
+    void edit_findnext(); // TODO:
+    void edit_findprev(); // TODO:
+
   private slots:
     void file_new();
     void file_open();
@@ -41,10 +45,8 @@ class MainWindow : public QMainWindow {
     void file_saveas();
     void file_exit();
 
-    void edit_search(); // TODO:
+    void edit_find(); // TODO:
     void edit_replace(); // TODO:
-    void edit_searchnext(); // TODO:
-    void edit_searchprev(); // TODO:
     void edit_gotooffset();
 
     void view_toolbars_toggleAddress();

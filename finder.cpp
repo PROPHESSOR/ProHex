@@ -6,17 +6,19 @@
 
 #include "finder.h"
 
-Finder::Finder(QWidget *parent) :
+Finder::Finder(QWidget *parent, QByteArray *searchArray) :
     QWidget(parent),
     ui(new Ui::Finder) {
     ui->setupUi(this);
+
+    m_searchArray = searchArray;
 }
 
 Finder::~Finder() {
     delete ui;
 }
 
-void Finder::on_lineEdit_2_textEdited(const QString &string) {
+void Finder::on_hexSearch_textEdited(const QString &string) {
     QRegExp rx("([0-9A-Fa-f][0-9A-Fa-f])\\s?");
     QStringList list;
 
@@ -39,11 +41,22 @@ void Finder::on_lineEdit_2_textEdited(const QString &string) {
         searchArray.push_back(char(str.toInt()));
     }
 
+    m_searchArray->clear();
+    m_searchArray->insert(0, searchArray);
+
     ui->hexReadLabel->setText(tmp);
-
-
 }
 
-void Finder::on_hexFindNext_clicked() {
+void Finder::on_asciiSearch_textEdited(const QString &string) {
+    m_searchArray->clear();
+    m_searchArray->insert(0, QByteArray::fromStdString(string.toStdString()));
 
+    QString output = "";
+
+    for(QChar chr : string) {
+        output += QString::number(chr.toLatin1(), 16);
+        output += ' ';
+    }
+
+    ui->hexReadLabel->setText(output);
 }

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>337</width>
-    <height>259</height>
+    <width>480</width>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Search</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -21,25 +21,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="asciiFindPrev">
-          <property name="text">
-           <string>Find previous</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="asciiFindNext">
-          <property name="text">
-           <string>Find next</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QLineEdit" name="asciiSearch"/>
       </item>
      </layout>
     </widget>
@@ -51,7 +33,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QLineEdit" name="lineEdit_2">
+       <widget class="QLineEdit" name="hexSearch">
         <property name="inputMask">
          <string/>
         </property>
@@ -66,6 +48,15 @@
         </property>
        </widget>
       </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Bytes to search (readonly)</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QLineEdit" name="hexReadLabel">
         <property name="readOnly">
@@ -73,26 +64,32 @@
         </property>
        </widget>
       </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="hexFindPrev">
-          <property name="text">
-           <string>Find previous</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="hexFindNext">
-          <property name="text">
-           <string>Find next</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <item>
+      <widget class="QPushButton" name="findPrev">
+       <property name="text">
+        <string>Find previous</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="findNext">
+       <property name="text">
+        <string>Find next</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

@@ -14,17 +14,14 @@ class Finder : public QWidget {
     Q_OBJECT
 
   public:
-    explicit Finder(QWidget *parent = nullptr);
+    explicit Finder(QWidget *parent = nullptr, QByteArray * = nullptr);
     ~Finder();
     Ui::Finder *ui;
 
-  signals:
-    void do_findnext();
-
   private slots:
-    void on_lineEdit_2_textEdited(const QString &);
-
-    void on_hexFindNext_clicked();
+    void on_asciiSearch_textEdited(const QString &);
+    void on_hexSearch_textEdited(const QString &);
 
   private:
+    QByteArray *m_searchArray;
 };

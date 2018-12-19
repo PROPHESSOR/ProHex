@@ -201,11 +201,10 @@ void MainWindow::file_exit() {
 
 void MainWindow::edit_find() {
     if(m_finder == nullptr) {
-        m_finder = new Finder();
-        connect(m_finder->ui->asciiFindNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
-        connect(m_finder->ui->asciiFindPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
-        connect(m_finder->ui->hexFindNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
-        connect(m_finder->ui->hexFindPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
+        m_searchArray = new QByteArray;
+        m_finder = new Finder(nullptr, m_searchArray);
+        connect(m_finder->ui->findNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
+        connect(m_finder->ui->findPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
     }
 
     m_finder->show();
@@ -216,11 +215,11 @@ void MainWindow::edit_replace() {
 }
 
 void MainWindow::edit_findnext() {
-    qDebug() << "MainWindow::edit_findnext()"; // TODO:
+    qDebug() << "MainWindow::edit_findnext()" << *m_searchArray; // TODO:
 }
 
 void MainWindow::edit_findprev() {
-    qDebug() << "MainWindow::edit_findprev()"; // TODO:
+    qDebug() << "MainWindow::edit_findprev()" << *m_searchArray; // TODO:
 }
 
 void MainWindow::edit_gotooffset() {

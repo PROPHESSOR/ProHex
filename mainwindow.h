@@ -74,7 +74,7 @@ class MainWindow : public QMainWindow {
     Strings         *m_strings        = nullptr;
     Finder          *m_finder         = nullptr;
 
-    QByteArray       m_searchArray;
+    QByteArray      *m_searchArray;
     uint16_t         m_searchIndex    = 0;
 
     void initToolBar();
@@ -85,6 +85,6 @@ class MainWindow : public QMainWindow {
     void saveFileAs(QString path);
 
   protected:
-    DataStorage *m_data = nullptr;
+    DataStorage     *m_data = nullptr;
     QTranslator     *translator     = nullptr;
 };

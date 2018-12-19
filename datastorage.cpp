@@ -39,6 +39,38 @@ QByteArray DataStorage::getAllData() {
     return m_data;
 }
 
+int64_t DataStorage::find(const QByteArray *array, int64_t position, bool incremental) {
+    if(m_data == nullptr) return -1;
+    if(position > (m_data.size() - array->size())) return -1; // FIXME: Can it be removed?
+
+    for(int64_t i = position; (incremental && i < m_data.size() - array->size()) || (!incremental && i >= 0); incremental ? i++ : i--) {
+        bool found = true;
+
+        for(int32_t j = 0; j < array->size(); j++) {
+            if(array->at(j) != m_data.at(i + j)) {
+                found = false;
+                break;
+            }
+        }
+
+        if(found) {
+            qDebug() << "Found at position:" << i * 2;
+
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+char DataStorage::at(int64_t index) {
+    return m_data.at(index);
+}
+
+char DataStorage::operator[](int64_t index) const {
+    return m_data.at(index);
+}
+
 bool DataStorage::isFileAssociated() {
     return !m_file.isEmpty();
 }

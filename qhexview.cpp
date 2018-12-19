@@ -7,6 +7,7 @@
 //   Исправить позицию вставки символов в MODE_WRITE_INSERT
 //   Исправить Ctrl+... комбинации в режиме MODE_WRITE_...
 //   delete & backspace
+//   Обновление статусбара при onMouseDown
 
 #include "qhexview.h"
 
@@ -76,7 +77,21 @@ void QHexView::showFromOffset(int64_t offset) {
         int32_t cursorY = int32_t((m_cursorPos / 2) / (2 * m_bytesPerLine));
 
         verticalScrollBar()->setValue(cursorY);
+        update();
     }
+}
+
+void QHexView::select(int64_t start, int64_t end) {
+    if(start > end || start < 0 || start >= m_data->size() || end < 0 || end >= m_data->size()) {
+        qDebug() << "QHexView::select [ERROR]: Invalid start/end position:" << start << end;
+        return;
+    }
+    m_selectBegin   = start;
+    m_selectEnd     = end;
+}
+
+void QHexView::update() {
+    viewport()->update();
 }
 
 void QHexView::clear() {
@@ -536,6 +551,7 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
     setCursorPos(cPos);
 
     viewport()->update();
+    statusBarUpdate();
 }
 
 uint64_t QHexView::getCursorPos(const QPoint &position) {

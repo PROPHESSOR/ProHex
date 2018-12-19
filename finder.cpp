@@ -38,7 +38,7 @@ void Finder::on_hexSearch_textEdited(const QString &string) {
     for(QString str : list) {
         tmp += str;
         tmp += " ";
-        searchArray.push_back(char(str.toInt()));
+        searchArray.push_back(str.toInt(nullptr, 16));
     }
 
     m_searchArray->clear();

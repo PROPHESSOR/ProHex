@@ -115,6 +115,7 @@ void MainWindow::openFile(QString path) {
 
     QByteArray array = file.readAll();
     m_data = new DataStorage(array, path);
+    m_searchIndex = 0;
     m_hexview->setData(m_data);
     m_hexview->update();
 }
@@ -215,15 +216,52 @@ void MainWindow::edit_replace() {
 }
 
 void MainWindow::edit_findnext() {
-    qDebug() << "MainWindow::edit_findnext()" << *m_searchArray; // TODO:
+    if(m_data == nullptr || m_searchArray == nullptr) return;
+    qDebug() << "MainWindow::edit_findnext()"; // TODO:
+    int64_t index = m_data->find(m_searchArray, m_searchIndex, true);
+
+    if(index == -1) {
+        if(m_searchIndex) {
+            statusBarMessage(tr("Out of file! Search position reset to begin"));
+            m_searchIndex = 0;
+            edit_findnext();
+        } else {
+            statusBarMessage(tr("Not found"));
+        }
+        return;
+    }
+
+    m_hexview->showFromOffset(index * 2);
+    m_hexview->select(index * 2, (index + m_searchArray->size()) * 2);
+    m_hexview->update();
+    m_searchIndex = index + 1;
 }
 
 void MainWindow::edit_findprev() {
-    qDebug() << "MainWindow::edit_findprev()" << *m_searchArray; // TODO:
+    if(m_data == nullptr || m_searchArray == nullptr) return;
+    qDebug() << "MainWindow::edit_findprev()"; // TODO:
+    int64_t index = m_data->find(m_searchArray, m_searchIndex, false);
+
+    if(index == -1) {
+        if(m_searchIndex) {
+            statusBarMessage(tr("Out of file! Search position reset to end"));
+            m_searchIndex = m_data->size() - 1;
+            edit_findprev();
+        } else {
+            statusBarMessage(tr("Not found"));
+        }
+        return;
+    }
+
+    m_hexview->showFromOffset(index * 2);
+    m_hexview->select(index * 2, (index + m_searchArray->size()) * 2);
+    m_hexview->update();
+    m_searchIndex = index - 1;
 }
 
 void MainWindow::edit_gotooffset() {
     qDebug() << "Edit->Goto offset";
+    if(m_data == nullptr) return;
     bool confirmed = false;
     int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
 
@@ -234,19 +272,19 @@ void MainWindow::view_toolbars_toggleAddress() {
     m_config->setViewShowAddress(!m_config->getViewShowAddress());
     m_hexview->recalcView();
     m_hexview->repaint();
-};
+}
 
 void MainWindow::view_toolbars_toggleHex() {
     m_config->setViewShowHex(!m_config->getViewShowHex());
     m_hexview->recalcView();
     m_hexview->repaint();
-};
+}
 
 void MainWindow::view_toolbars_toggleAscii() {
     m_config->setViewShowAscii(!m_config->getViewShowAscii());
     m_hexview->recalcView();
     m_hexview->repaint();
-};
+}
 
 void MainWindow::view_preferences() {
     qDebug() << "View->Preferences";

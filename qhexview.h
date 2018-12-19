@@ -29,11 +29,13 @@ class QHexView: public QAbstractScrollArea {
 
     void        recalcView();
     uint64_t    getCursorPosition();
+    void setData(DataStorage *pData);
+    void showFromOffset(int64_t offset);
+    void select(int64_t start, int64_t end);
+    void update();
 
   public slots:
-    void setData(DataStorage *pData);
     void clear();
-    void showFromOffset(int64_t offset);
 
   protected:
     void paintEvent(QPaintEvent *event);

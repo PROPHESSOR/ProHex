@@ -2,9 +2,7 @@
 
 // Based on: https://github.com/virinext/QHexView
 
-#include "constants.h"
-#include "../DataStorage/datastorage.h"
-
+#include <stdexcept>
 #include <QAbstractScrollArea>
 #include <QScrollBar>
 #include <QPainter>
@@ -18,13 +16,17 @@
 #include <QDebug>
 #include <QStatusBar>
 #include <QKeySequence>
-#include "../Config/config.h"
+#include <QUndoStack>
+#include <QUndoCommand>
 
-#include <stdexcept>
+#include "constants.h"
+#include "../DataStorage/datastorage.h"
+#include "../Config/config.h"
+#include "../UndoCommands/undocommands.h"
 
 class QHexView: public QAbstractScrollArea {
   public:
-    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr, QStatusBar *statusBar = nullptr);
+    QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr, QStatusBar *statusBar = nullptr, QUndoStack *undoStack = nullptr);
     ~QHexView();
 
     void        recalcView();
@@ -62,6 +64,7 @@ class QHexView: public QAbstractScrollArea {
     DataStorage          *m_data;
     Config               *m_config;
     QStatusBar           *m_statusBar;
+    QUndoStack           *m_undoStack;
 
     enum ENUM_MODE   {
         MODE_READONLY       = 0,

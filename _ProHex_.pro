@@ -39,7 +39,8 @@ SOURCES += \
         AsciiTable/asciitable.cpp \
         Preferences/preferences.cpp \
         Strings/strings.cpp \
-        Finder/finder.cpp
+        Finder/finder.cpp \
+        UndoCommands/undodelete.cpp
 
 HEADERS += \
         constants.h \
@@ -51,7 +52,9 @@ HEADERS += \
         AsciiTable/asciitable.h \
         Preferences/preferences.h \
         Strings/strings.h \
-        Finder/finder.h
+        Finder/finder.h \
+        UndoCommands/undodelete.h \
+    undocommands.h
 
 FORMS += \
         MainWindow/mainwindow.ui \

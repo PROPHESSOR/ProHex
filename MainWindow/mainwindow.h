@@ -6,9 +6,11 @@
 #include <QInputDialog>
 #include <QDebug>
 #include <QTranslator>
+#include <QUndoStack>
+#include <QUndoView>
 
-#include "../DataStorage/datastorage.h"
 #include "constants.h"
+#include "../DataStorage/datastorage.h"
 #include "../Config/config.h"
 
 // Windows
@@ -35,8 +37,10 @@ class MainWindow : public QMainWindow {
     void update(int8_t mode);
 
   public slots:
-    void edit_findnext(); // TODO:
-    void edit_findprev(); // TODO:
+    void edit_findnext();
+    void edit_findprev();
+
+    void historyindexchanged();
 
   private slots:
     void file_new();
@@ -45,7 +49,10 @@ class MainWindow : public QMainWindow {
     void file_saveas();
     void file_exit();
 
-    void edit_find(); // TODO:
+    void edit_undo();
+    void edit_redo();
+    void edit_openhistory();
+    void edit_find();
     void edit_replace(); // TODO:
     void edit_gotooffset();
 
@@ -63,6 +70,7 @@ class MainWindow : public QMainWindow {
     void about_aboutqt();
     void doesntimplemented();
 
+
   private:
     Ui::MainWindow  *ui               = nullptr;
     Config          *m_config         = nullptr;
@@ -74,8 +82,11 @@ class MainWindow : public QMainWindow {
     Strings         *m_strings        = nullptr;
     Finder          *m_finder         = nullptr;
 
-    QByteArray      *m_searchArray;
+    QByteArray      *m_searchArray    = nullptr;
     uint16_t         m_searchIndex    = 0;
+
+    QUndoStack      *m_undostack      = nullptr;
+    QUndoView       *m_undoview       = nullptr;
 
     void initToolBar();
     void initHexView();

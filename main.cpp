@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "MainWindow/mainwindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
             qDebug() << "" + PROHEX + " v." + PROHEX_VERSION;
             qDebug() << "Copyright (c) PROPHESSOR 2018";
             qDebug() << "=============================";
-            qDebug() << "You can get help using F1 key in program!";
+            qDebug() << "You can get help using F1 key in the program!";
             return 0;
         }
     }

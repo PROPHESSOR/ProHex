@@ -8,6 +8,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow) {
+    m_undostack = new QUndoStack(this);
+    connect(m_undostack, SIGNAL(indexChanged(int)), this, SLOT(historyindexchanged()));
     m_config = new Config();
 
     qDebug() << "System language:" << QLocale::system().name();
@@ -24,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     initToolBar();
     initHexView();
-
 }
 
 MainWindow::~MainWindow() {
@@ -45,9 +46,9 @@ void MainWindow::initToolBar() {
     // Edit
     QMenu *edit = ui->MenuBar->addMenu(tr("&Edit"));
     edit->addSection(tr("History"));
-    edit->addAction(tr("Undo"), this, SLOT(doesntimplemented()), QKeySequence::Undo);
-    edit->addAction(tr("Redo"), this, SLOT(doesntimplemented()), QKeySequence::Redo);
-    edit->addAction(tr("Open history"), this, SLOT(doesntimplemented()));
+    edit->addAction(tr("Undo"), this, SLOT(edit_undo()), QKeySequence::Undo);
+    edit->addAction(tr("Redo"), this, SLOT(edit_redo()), QKeySequence::Redo);
+    edit->addAction(tr("Open history"), this, SLOT(edit_openhistory()), QKeySequence("Ctrl+H"));
     edit->addSection(tr("Search"));
     edit->addAction(tr("Find"), this, SLOT(edit_find()), QKeySequence::Find);
     edit->addAction(tr("Replace"), this, SLOT(edit_replace()), QKeySequence::Replace);
@@ -98,7 +99,7 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::initHexView() {
-    m_hexview = new QHexView(this, m_data, m_config, statusBar());
+    m_hexview = new QHexView(this, m_data, m_config, statusBar(), m_undostack);
     setCentralWidget(m_hexview);
 }
 
@@ -198,6 +199,25 @@ void MainWindow::file_exit() {
 
     m_config->save();
     exit(0);
+}
+
+void MainWindow::edit_undo() {
+    qDebug() << "Edit->Undo";
+    m_undostack->undo();
+}
+
+void MainWindow::edit_redo() {
+    qDebug() << "Edit->Redo";
+    m_undostack->redo();
+}
+
+void MainWindow::edit_openhistory() {
+    if(m_undoview == nullptr) {
+        m_undoview = new QUndoView(m_undostack);
+        m_undoview->setWindowTitle(tr("History"));
+    }
+
+    m_undoview->show();
 }
 
 void MainWindow::edit_find() {
@@ -351,6 +371,11 @@ void MainWindow::about_aboutqt() {
 
 void MainWindow::doesntimplemented() {
     QMessageBox::information(this, tr("Not implemented"), tr("Hey! This feature doesn't implemented yet!"));
+}
+
+void MainWindow::historyindexchanged() {
+    qDebug() << "MainWindow::historyindexchanged";
+    m_hexview->update();
 }
 
 void MainWindow::statusBarMessage(const QString &message) { // TODO: Remove

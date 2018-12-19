@@ -10,9 +10,9 @@
 
 #include "qhexview.h"
 
-QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar) :
+QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar, QUndoStack *undoStack) :
     QAbstractScrollArea(parent),
-    m_data(data), m_config(config), m_statusBar(statusBar) {
+    m_data(data), m_config(config), m_statusBar(statusBar), m_undoStack(undoStack) {
     setFont(QFont("Monospace", 14));
 
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
@@ -465,11 +465,15 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         else if(event->text() == "\t")      return; // Tab
         else if(event->text() == "\x1b")    return; // Esc
         else if(event->text() == "") { // Del
-            if(m_mode != MODE_READONLY) m_data->remove(m_cursorPos / 2);
+            if(m_mode != MODE_READONLY) {
+                m_undoStack->push(new UndoDelete(m_data, m_data->at(m_cursorPos / 2), m_cursorPos / 2));
+                m_data->remove(m_cursorPos / 2);
+            }
             update();
             return;
         } else if(event->text() == "\b") {
             if(m_mode != MODE_READONLY && m_cursorPos / 2) {
+                m_undoStack->push(new UndoDelete(m_data, m_data->at(m_cursorPos / 2 - 1), m_cursorPos / 2 - 1));
                 m_data->remove(m_cursorPos / 2 - 1);
                 setCursorPos(m_cursorPos - 2);
             }

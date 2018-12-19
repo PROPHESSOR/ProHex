@@ -7,17 +7,17 @@
 #include <QDebug>
 #include <QTranslator>
 
-#include "datastorage.h"
+#include "../DataStorage/datastorage.h"
 #include "constants.h"
-#include "config.h"
+#include "../Config/config.h"
 
 // Windows
-#include "qhexview.h"
-#include "converter.h"
-#include "asciitable.h"
-#include "preferences.h"
-#include "strings.h"
-#include "finder.h"
+#include "../QHexView/qhexview.h"
+#include "../Converter/converter.h"
+#include "../AsciiTable/asciitable.h"
+#include "../Preferences/preferences.h"
+#include "../Strings/strings.h"
+#include "../Finder/finder.h"
 //\\ Windows
 
 namespace Ui {

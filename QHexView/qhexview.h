@@ -3,7 +3,7 @@
 // Based on: https://github.com/virinext/QHexView
 
 #include "constants.h"
-#include "datastorage.h"
+#include "../DataStorage/datastorage.h"
 
 #include <QAbstractScrollArea>
 #include <QScrollBar>
@@ -18,7 +18,7 @@
 #include <QDebug>
 #include <QStatusBar>
 #include <QKeySequence>
-#include "config.h"
+#include "../Config/config.h"
 
 #include <stdexcept>
 

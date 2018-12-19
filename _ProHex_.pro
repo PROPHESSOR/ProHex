@@ -31,35 +31,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-        datastorage.cpp \
-        qhexview.cpp \
-        converter.cpp \
-        config.cpp \
-        asciitable.cpp \
-        preferences.cpp \
-        strings.cpp \
-    finder.cpp
+        MainWindow/mainwindow.cpp \
+        DataStorage/datastorage.cpp \
+        QHexView/qhexview.cpp \
+        Converter/converter.cpp \
+        Config/config.cpp \
+        AsciiTable/asciitable.cpp \
+        Preferences/preferences.cpp \
+        Strings/strings.cpp \
+        Finder/finder.cpp
 
 HEADERS += \
-        mainwindow.h \
-        datastorage.h \
-        qhexview.h \
         constants.h \
-        converter.h \
-        config.h \
-        asciitable.h \
-        preferences.h \
-        strings.h \
-    finder.h
+        MainWindow/mainwindow.h \
+        DataStorage/datastorage.h \
+        QHexView/qhexview.h \
+        Converter/converter.h \
+        Config/config.h \
+        AsciiTable/asciitable.h \
+        Preferences/preferences.h \
+        Strings/strings.h \
+        Finder/finder.h
 
 FORMS += \
-        mainwindow.ui \
-        converter.ui \
-        asciitable.ui \
-        preferences.ui \
-        strings.ui \
-    finder.ui
+        MainWindow/mainwindow.ui \
+        Converter/converter.ui \
+        AsciiTable/asciitable.ui \
+        Preferences/preferences.ui \
+        Strings/strings.ui \
+        Finder/finder.ui
 
 STATECHARTS +=
 

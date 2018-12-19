@@ -7,7 +7,7 @@
 #include <QColor>
 #include <QInputDialog>
 #include <QColorDialog>
-#include "config.h"
+#include "../Config/config.h"
 
 namespace Ui {
 class Preferences;

@@ -5,7 +5,7 @@
 #include <QList>
 #include <QListWidgetItem>
 
-#include "datastorage.h"
+#include "../DataStorage/datastorage.h"
 
 #define LARGELIST 100
 

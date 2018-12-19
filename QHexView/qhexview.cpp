@@ -467,19 +467,20 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         else if(event->text() == "") { // Del
             if(m_mode != MODE_READONLY) {
                 m_undoStack->push(new UndoDelete(m_data, m_data->at(m_cursorPos / 2), m_cursorPos / 2));
-                m_data->remove(m_cursorPos / 2);
+                //m_data->remove(m_cursorPos / 2);
             }
             update();
             return;
         } else if(event->text() == "\b") {
             if(m_mode != MODE_READONLY && m_cursorPos / 2) {
                 m_undoStack->push(new UndoDelete(m_data, m_data->at(m_cursorPos / 2 - 1), m_cursorPos / 2 - 1));
-                m_data->remove(m_cursorPos / 2 - 1);
+                //m_data->remove(m_cursorPos / 2 - 1);
                 setCursorPos(m_cursorPos - 2);
             }
             update();
             return;
         } // Backspace
+        if(QApplication::keyboardModifiers() & Qt::ControlModifier) return;
 
         qDebug() << "Letter:" << event->text();
         inputSymbol(QChar(event->text()[0]));
@@ -536,12 +537,14 @@ void QHexView::inputSymbol(QChar symbol) {
                 return;
             case MODE_WRITE_INSERT:
                 qDebug() << "MODE_INSERTED";
-                m_data->insert(int32_t(m_cursorPos / 2), symbol.toLatin1());
+                m_undoStack->push(new UndoInsert(m_data, symbol.toLatin1(), m_cursorPos / 2));
+                //m_data->insert(int32_t(m_cursorPos / 2), symbol.toLatin1());
                 setCursorPos(m_cursorPos + 2);
                 break;
             case MODE_WRITE_REPLACE:
                 qDebug() << "MODE_REPLACED";
-                m_data->replace(int32_t(m_cursorPos / 2), symbol.toLatin1());
+                m_undoStack->push(new UndoReplace(m_data, m_data->at(m_cursorPos / 2), symbol.toLatin1(), m_cursorPos / 2));
+                //m_data->replace(int32_t(m_cursorPos / 2), symbol.toLatin1());
                 break;
         }
     }

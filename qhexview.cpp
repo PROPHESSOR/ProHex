@@ -7,7 +7,6 @@
 //   Исправить позицию вставки символов в MODE_WRITE_INSERT
 //   Исправить Ctrl+... комбинации в режиме MODE_WRITE_...
 //   delete & backspace
-//   Обновление статусбара при onMouseDown
 
 #include "qhexview.h"
 
@@ -67,6 +66,7 @@ void QHexView::setData(DataStorage *pData) {
     m_posHex    = m_addressWidth;
     m_posAscii  = m_addressWidth + m_hexWidth;
     viewport()->repaint();
+    statusBarUpdate();
 }
 
 void QHexView::showFromOffset(int64_t offset) {
@@ -511,8 +511,7 @@ void QHexView::inputSymbol(QChar symbol) {
     int32_t value = 0;
 
     if(m_window == WINDOW_HEX) { // Hex
-        bool ok;
-        value = QString(symbol).toInt(&ok, 16);
+        value = QString(symbol).toInt(nullptr, 16);
     } else if(m_window == WINDOW_ASCII) { // ASCII
         switch(m_mode) {
             case MODE_READONLY:

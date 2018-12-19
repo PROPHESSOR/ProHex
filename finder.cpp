@@ -1,9 +1,3 @@
-/* TODO
- * Добавление массива поиска (лучше QByteArray) в поле MainWindow
- * Реализовать ASCII поиск
- * Реализовать HEX поиск
- */
-
 #include "finder.h"
 
 Finder::Finder(QWidget *parent, QByteArray *searchArray) :

@@ -56,15 +56,13 @@ void Converter::on_DecInput_textEdited(const QString &value) {
 
 void Converter::on_HexInput_textEdited(const QString &value) {
     qDebug() << "Converter::on_HexInput_textEdited(" << value << ")";
-    bool ok;
-    input = QString::number(value.toLongLong(&ok, 16), 10);
+    input = QString::number(value.toLongLong(nullptr, 16), 10);
     calculate();
 }
 
 void Converter::on_BinInput_textEdited(const QString &value) {
     qDebug() << "Converter::on_BinInput_textEdited(" << value << ")";
-    bool ok;
-    input = QString::number(value.toLongLong(&ok, 2), 10);
+    input = QString::number(value.toLongLong(nullptr, 2), 10);
     calculate();
 }
 

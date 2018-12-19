@@ -445,6 +445,8 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         }
     }
 
+    if(m_data != nullptr && m_cursorPos >= m_data->size() * 2) m_cursorPos = m_data->size() * 2 - 2; // FIXME: Crutch
+
     if(event->key() == Qt::Key_Insert) {
         switch(m_mode) {
             case MODE_READONLY:
@@ -462,8 +464,18 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         if(event->text() == "\r")           return; // Enter
         else if(event->text() == "\t")      return; // Tab
         else if(event->text() == "\x1b")    return; // Esc
-        else if(event->text() == "")       return; // Del
-        else if(event->text() == "\b")      return; // Backspace
+        else if(event->text() == "") { // Del
+            if(m_mode != MODE_READONLY) m_data->remove(m_cursorPos / 2);
+            update();
+            return;
+        } else if(event->text() == "\b") {
+            if(m_mode != MODE_READONLY && m_cursorPos / 2) {
+                m_data->remove(m_cursorPos / 2 - 1);
+                setCursorPos(m_cursorPos - 2);
+            }
+            update();
+            return;
+        } // Backspace
 
         qDebug() << "Letter:" << event->text();
         inputSymbol(QChar(event->text()[0]));
@@ -471,7 +483,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
 
     if(setVisible)
         ensureVisible();
-    viewport()->update();
+    update();
 }
 
 void QHexView::keyReleaseEvent(QKeyEvent *event) {
@@ -505,6 +517,7 @@ void QHexView::statusBarUpdate() {
 void QHexView::inputSymbol(QChar symbol) {
     if(m_mode == MODE_READONLY) return;
     if(!symbol.toLatin1()) return;
+    if(!m_data->size()) m_cursorPos = 0; // FIXME: Crutch
 
     qDebug() << "inputSymbol(" << symbol << ")";
 
@@ -519,7 +532,8 @@ void QHexView::inputSymbol(QChar symbol) {
                 return;
             case MODE_WRITE_INSERT:
                 qDebug() << "MODE_INSERTED";
-                m_data->insert(int32_t(m_cursorPos), symbol.toLatin1());
+                m_data->insert(int32_t(m_cursorPos / 2), symbol.toLatin1());
+                setCursorPos(m_cursorPos + 2);
                 break;
             case MODE_WRITE_REPLACE:
                 qDebug() << "MODE_REPLACED";

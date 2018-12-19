@@ -21,11 +21,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qApp->installTranslator(translator);
 
-    //ui->retranslateUi(this);
     ui->setupUi(this);
 
     initToolBar();
     initHexView();
+
+    /*
+    uint16_t charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
+    uint16_t charHeight    = uint16_t(fontMetrics().height());
+
+    setSizeIncrement(charWidth * 5, charHeight * 1.15);
+    */
 }
 
 MainWindow::~MainWindow() {
@@ -48,12 +54,12 @@ void MainWindow::initToolBar() {
     edit->addSection(tr("History"));
     edit->addAction(tr("Undo"), this, SLOT(edit_undo()), QKeySequence::Undo);
     edit->addAction(tr("Redo"), this, SLOT(edit_redo()), QKeySequence::Redo);
-    edit->addAction(tr("Open history"), this, SLOT(edit_openhistory()), QKeySequence("Ctrl+H"));
+    edit->addAction(tr("Open history"), this, SLOT(edit_openhistory()), QKeySequence("Ctrl+Shift+H"));
     edit->addSection(tr("Search"));
     edit->addAction(tr("Find"), this, SLOT(edit_find()), QKeySequence::Find);
     edit->addAction(tr("Replace"), this, SLOT(edit_replace()), QKeySequence::Replace);
-    edit->addAction(tr("Find next"), this, SLOT(edit_findnext()), QKeySequence::FindNext);
-    edit->addAction(tr("Find previous"), this, SLOT(edit_findprev()), QKeySequence::FindPrevious);
+    edit->addAction(tr("Find next"), this, SLOT(edit_findnext()), QKeySequence("Ctrl+Shift+N"));
+    edit->addAction(tr("Find previous"), this, SLOT(edit_findprev()), QKeySequence("Ctrl+Shift+P"));
     edit->addSection(tr("Navigation"));
     edit->addAction(tr("Goto offset"), this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
 
@@ -73,7 +79,7 @@ void MainWindow::initToolBar() {
     view->addAction(tr("Save selection preset"), this, SLOT(doesntimplemented()));
     view->addAction(tr("Load selection preset"), this, SLOT(doesntimplemented()));
     view->addSection(tr("Settings"));
-    view->addAction(tr("Preferences"), this, SLOT(view_preferences()), QKeySequence::Preferences);
+    view->addAction(tr("Preferences"), this, SLOT(view_preferences()), QKeySequence("Ctrl+P"));
     view->addAction(tr("Key bindings"), this, SLOT(view_keybindings()));
 
     // Tools

@@ -50,7 +50,7 @@
     <cursorShape>WhatsThisCursor</cursorShape>
    </property>
    <property name="toolTip">
-    <string comment="Decimal number"/>
+    <string comment="Decimal number">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Decimal value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="toolTipDuration">
     <number>1</number>
@@ -84,7 +84,7 @@
     <cursorShape>WhatsThisCursor</cursorShape>
    </property>
    <property name="toolTip">
-    <string comment="Hexadecimal number"/>
+    <string comment="Hexadecimal number">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Hexadecimal value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Hex</string>
@@ -103,7 +103,7 @@
     <cursorShape>WhatsThisCursor</cursorShape>
    </property>
    <property name="toolTip">
-    <string comment="Binary number"/>
+    <string comment="Binary number">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Binary value&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Bin</string>
@@ -176,7 +176,7 @@
     <cursorShape>WhatsThisCursor</cursorShape>
    </property>
    <property name="toolTip">
-    <string comment="ASCII character"/>
+    <string comment="ASCII character">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ASCII Character&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="text">
     <string>Char</string>
@@ -230,7 +230,7 @@
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int8&lt;/p&gt;&lt;p&gt;C: char, signed char&lt;/p&gt;&lt;p&gt;C#: sbyte&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int8&lt;/p&gt;&lt;p&gt;C: char, signed char&lt;/p&gt;&lt;p&gt;C#: sbyte&lt;/p&gt;&lt;p&gt;8 bits (1 byte): -128 ... 127&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int8</string>
@@ -249,7 +249,7 @@
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int16&lt;/p&gt;&lt;p&gt;C: short, signed short&lt;/p&gt;&lt;p&gt;C#: short, char&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int16&lt;/p&gt;&lt;p&gt;C: short, signed short&lt;/p&gt;&lt;p&gt;C#: short, char&lt;/p&gt;&lt;p&gt;16 bits (2 bytes): -32.768 ... 32.767&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int16</string>
@@ -268,7 +268,7 @@
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int32&lt;/p&gt;&lt;p&gt;C: int, signed int&lt;/p&gt;&lt;p&gt;C#: int&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int32&lt;/p&gt;&lt;p&gt;C: int, signed int&lt;/p&gt;&lt;p&gt;C#: int&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): -2,147,483,648 ... 2,147,483,647&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int32</string>
@@ -287,7 +287,7 @@
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int64&lt;/p&gt;&lt;p&gt;C: long, signed long&lt;/p&gt;&lt;p&gt;C#: long&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int64&lt;/p&gt;&lt;p&gt;C: long long, signed long long&lt;/p&gt;&lt;p&gt;C#: long&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): -9,223,372,036,854,775,808 ... 9,223,372,036,854,775,807&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int64</string>
@@ -304,6 +304,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;float32&lt;/p&gt;&lt;p&gt;C: float&lt;/p&gt;&lt;p&gt;C#: float&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): 1.2E-38 ... 3.4E+38&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>float32</string>
@@ -386,7 +389,7 @@
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int8&lt;/p&gt;&lt;p&gt;C: char, unsigned char&lt;/p&gt;&lt;p&gt;C#: byte&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int8&lt;/p&gt;&lt;p&gt;C: char, unsigned char&lt;/p&gt;&lt;p&gt;C#: byte&lt;/p&gt;&lt;p&gt;8 bits (1 byte): 0 ... 255&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>uint8</string>
@@ -484,6 +487,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;float64&lt;/p&gt;&lt;p&gt;C: double&lt;/p&gt;&lt;p&gt;C#: double&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): 2.3E-308 ... 1.7E+308&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>float64</string>
     </property>
@@ -499,6 +505,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int16&lt;/p&gt;&lt;p&gt;C: unsigned short&lt;/p&gt;&lt;p&gt;C#: ushort, uchar&lt;/p&gt;&lt;p&gt;16 bits (2 bytes): 0 ... 65535&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>uint16</string>
@@ -516,6 +525,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int32&lt;/p&gt;&lt;p&gt;C: unsigned int&lt;/p&gt;&lt;p&gt;C#: uint&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): 0 ... 4,294,967,295&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>uint32</string>
     </property>
@@ -531,6 +543,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int64&lt;/p&gt;&lt;p&gt;C: unsigned long long&lt;/p&gt;&lt;p&gt;C#: ulong&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): 0 ... 18,446,744,073,709,551,615&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>uint64</string>
@@ -577,6 +592,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int32&lt;/p&gt;&lt;p&gt;C: int, signed int&lt;/p&gt;&lt;p&gt;C#: int&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): -2,147,483,648 ... 2,147,483,647&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>int32</string>
     </property>
@@ -592,6 +610,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;float32&lt;/p&gt;&lt;p&gt;C: float&lt;/p&gt;&lt;p&gt;C#: float&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): 1.2E-38 ... 3.4E+38&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>float32</string>
@@ -609,6 +630,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int16&lt;/p&gt;&lt;p&gt;C: short, signed short&lt;/p&gt;&lt;p&gt;C#: short, char&lt;/p&gt;&lt;p&gt;16 bits (2 bytes): -32.768 ... 32.767&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>int16</string>
     </property>
@@ -624,6 +648,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int8&lt;/p&gt;&lt;p&gt;C: char, signed char&lt;/p&gt;&lt;p&gt;C#: sbyte&lt;/p&gt;&lt;p&gt;8 bits (1 byte): -128 ... 127&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int8</string>
@@ -656,6 +683,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;signed int64&lt;/p&gt;&lt;p&gt;C: long long, signed long long&lt;/p&gt;&lt;p&gt;C#: long&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): -9,223,372,036,854,775,808 ... 9,223,372,036,854,775,807&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>int64</string>
@@ -737,6 +767,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int64&lt;/p&gt;&lt;p&gt;C: unsigned long long&lt;/p&gt;&lt;p&gt;C#: ulong&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): 0 ... 18,446,744,073,709,551,615&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>uint64</string>
     </property>
@@ -753,6 +786,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int32&lt;/p&gt;&lt;p&gt;C: unsigned int&lt;/p&gt;&lt;p&gt;C#: uint&lt;/p&gt;&lt;p&gt;32 bits (4 bytes): 0 ... 4,294,967,295&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>uint32</string>
     </property>
@@ -768,6 +804,9 @@
     </property>
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int8&lt;/p&gt;&lt;p&gt;C: char, unsigned char&lt;/p&gt;&lt;p&gt;C#: byte&lt;/p&gt;&lt;p&gt;8 bits (1 byte): 0 ... 255&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
      <string>uint8</string>
@@ -817,6 +856,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;float64&lt;/p&gt;&lt;p&gt;C: double&lt;/p&gt;&lt;p&gt;C#: double&lt;/p&gt;&lt;p&gt;64 bits (8 bytes): 2.3E-308 ... 1.7E+308&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>float64</string>
     </property>
@@ -865,6 +907,9 @@
     <property name="cursor">
      <cursorShape>WhatsThisCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;unsigned int16&lt;/p&gt;&lt;p&gt;C: unsigned short&lt;/p&gt;&lt;p&gt;C#: ushort, uchar&lt;/p&gt;&lt;p&gt;16 bits (2 bytes): 0 ... 65535&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="text">
      <string>uint16</string>
     </property>
@@ -891,6 +936,9 @@
      <width>16</width>
      <height>23</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toggle Hex Mode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="whatsThis">
     <string>Toggle all possible fields to HEX Mode</string>

@@ -30,8 +30,11 @@ class Converter : public QWidget {
 
     void on_CharInput_textEdited(const QString &);
 
+    void on_hexCheckbox_stateChanged(int arg1);
+
   private:
     Ui::Converter *ui;
 
     QString input; // Decimal value
+    bool    hexMode;
 };

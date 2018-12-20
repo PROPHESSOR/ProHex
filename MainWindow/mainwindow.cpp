@@ -354,6 +354,7 @@ void MainWindow::tools_converter() {
     }
 
     m_converter->show();
+    m_converter->calculate();
 }
 
 void MainWindow::tools_strings() {

@@ -883,6 +883,28 @@
     <number>1</number>
    </property>
   </widget>
+  <widget class="QCheckBox" name="hexCheckbox">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>20</y>
+     <width>16</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="whatsThis">
+    <string>Toggle all possible fields to HEX Mode</string>
+   </property>
+   <property name="accessibleName">
+    <string>HEX Mode</string>
+   </property>
+   <property name="accessibleDescription">
+    <string>Toggle all possible fields to HEX Mode</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>LittleEndianGroup</zorder>
   <zorder>DecLabel</zorder>
   <zorder>label_2</zorder>
@@ -893,6 +915,7 @@
   <zorder>label_7</zorder>
   <zorder>BigEndianGroup</zorder>
   <zorder>CharInput</zorder>
+  <zorder>hexCheckbox</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -52,7 +52,7 @@ class MainWindow : public QMainWindow {
     void edit_undo();
     void edit_redo();
     void edit_openhistory();
-    void edit_find();
+    void edit_search();
     void edit_replace(); // TODO:
     void edit_gotooffset();
 
@@ -84,6 +84,7 @@ class MainWindow : public QMainWindow {
 
     QByteArray      *m_searchArray    = nullptr;
     uint16_t         m_searchIndex    = 0;
+    QByteArray      *m_replaceArray   = nullptr;
 
     QUndoStack      *m_undostack      = nullptr;
     QUndoView       *m_undoview       = nullptr;

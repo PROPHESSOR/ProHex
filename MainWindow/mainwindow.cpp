@@ -1,8 +1,3 @@
-/*
-  TODO:
-  Добавить и замену
-*/
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -56,7 +51,7 @@ void MainWindow::initToolBar() {
     edit->addAction(tr("Redo"), this, SLOT(edit_redo()), QKeySequence::Redo);
     edit->addAction(tr("Open history"), this, SLOT(edit_openhistory()), QKeySequence("Ctrl+Shift+H"));
     edit->addSection(tr("Search"));
-    edit->addAction(tr("Find"), this, SLOT(edit_find()), QKeySequence::Find);
+    edit->addAction(tr("Find"), this, SLOT(edit_search()), QKeySequence::Find);
     edit->addAction(tr("Replace"), this, SLOT(edit_replace()), QKeySequence::Replace);
     edit->addAction(tr("Find next"), this, SLOT(edit_findnext()), QKeySequence("Ctrl+Shift+N"));
     edit->addAction(tr("Find previous"), this, SLOT(edit_findprev()), QKeySequence("Ctrl+Shift+P"));
@@ -226,19 +221,22 @@ void MainWindow::edit_openhistory() {
     m_undoview->show();
 }
 
-void MainWindow::edit_find() {
+void MainWindow::edit_search() {
     if(m_finder == nullptr) {
         m_searchArray = new QByteArray;
-        m_finder = new Finder(nullptr, m_searchArray);
+        m_replaceArray = new QByteArray;
+        m_finder = new Finder(nullptr, m_searchArray, m_replaceArray);
         connect(m_finder->ui->findNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
         connect(m_finder->ui->findPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
     }
 
     m_finder->show();
+    m_finder->setMode(Finder::MODE_SEARCH);
 }
 
 void MainWindow::edit_replace() {
-
+    edit_search();
+    m_finder->setMode(Finder::MODE_REPLACE);
 }
 
 void MainWindow::edit_findnext() {

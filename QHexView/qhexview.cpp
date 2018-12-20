@@ -18,7 +18,7 @@ QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBa
     m_window        = WINDOW_HEX;
     m_mode          = MODE_READONLY;
 
-    setMinimumWidth(m_charWidth * 14);
+    setMinimumWidth(m_charWidth * 10);
 
     setFocusPolicy(Qt::StrongFocus);
 }
@@ -42,6 +42,8 @@ void QHexView::recalcView() {
     m_bytesPerLine  = m_hexWidth / (m_charWidth * 3);
     m_posHex        = m_addressWidth;
     m_posAscii      = m_posHex + m_hexWidth;
+
+    if(!m_bytesPerLine) m_bytesPerLine = 1; // Divide by zero
 }
 
 uint64_t QHexView::getCursorPosition() {
@@ -55,7 +57,7 @@ void QHexView::setData(DataStorage *pData) {
 
     m_window    = WINDOW_HEX;
     m_mode      = MODE_WRITE_REPLACE;
-    m_cursorPos = 0;
+    setCursorPos(0);
     resetSelection(0);
 
     recalcView();
@@ -630,7 +632,7 @@ void QHexView::setCursorPos(int64_t tmpposition = 0) {
     uint64_t position = uint64_t(tmpposition < 0 ? 0 : tmpposition);
 
     uint64_t maxPos = 0;
-    if(m_data) {
+    if(m_data && m_data->size() && m_bytesPerLine) {
         maxPos = m_data->size() * 2 - 2;
         if(m_data->size() % m_bytesPerLine)
             maxPos++;
@@ -640,7 +642,7 @@ void QHexView::setCursorPos(int64_t tmpposition = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
-    if(m_data != nullptr && m_data->size()) emit valueChanged(uint8_t(m_data->at(m_cursorPos / 2)));
+    if(m_data && m_data->size()) emit valueChanged(uint8_t(m_data->at(m_cursorPos / 2)));
 }
 
 void QHexView::ensureVisible() {

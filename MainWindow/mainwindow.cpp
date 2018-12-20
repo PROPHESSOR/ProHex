@@ -350,6 +350,7 @@ void MainWindow::tools_converter() {
 
     if(m_converter == nullptr) {
         m_converter = new Converter();
+        connect(m_hexview, SIGNAL(valueChanged(uint8_t)), m_converter, SLOT(on_innerValue(uint8_t)));
     }
 
     m_converter->show();

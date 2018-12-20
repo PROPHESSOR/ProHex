@@ -24,7 +24,9 @@
 #include "../Config/config.h"
 #include "../UndoCommands/undocommands.h"
 
-class QHexView: public QAbstractScrollArea {
+class QHexView : public QAbstractScrollArea {
+    Q_OBJECT
+
   public:
     QHexView(QWidget *parent = nullptr, DataStorage *data = nullptr, Config *config = nullptr, QStatusBar *statusBar = nullptr, QUndoStack *undoStack = nullptr);
     ~QHexView();
@@ -38,6 +40,9 @@ class QHexView: public QAbstractScrollArea {
 
   public slots:
     void clear();
+
+  signals:
+    void valueChanged(uint8_t value);
 
   protected:
     void paintEvent(QPaintEvent *event);

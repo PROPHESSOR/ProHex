@@ -442,7 +442,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
         }
     }
 
-    if(m_data != nullptr && m_cursorPos >= m_data->size() * 2) m_cursorPos = m_data->size() * 2 - 2; // FIXME: Crutch
+    if(m_data != nullptr && int64_t(m_cursorPos) >= m_data->size() * 2) m_cursorPos = m_data->size() * 2 - 2; // FIXME: Crutch
 
     if(event->key() == Qt::Key_Insert) {
         switch(m_mode) {
@@ -640,6 +640,7 @@ void QHexView::setCursorPos(int64_t tmpposition = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
+    if(m_data != nullptr && m_data->size()) emit valueChanged(uint8_t(m_data->at(m_cursorPos / 2)));
 }
 
 void QHexView::ensureVisible() {

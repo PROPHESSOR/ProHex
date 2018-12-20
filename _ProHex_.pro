@@ -56,7 +56,7 @@ HEADERS += \
         Strings/strings.h \
         Finder/finder.h \
         UndoCommands/undodelete.h \
-        undocommands.h \
+        UndoCommands/undocommands.h \
         UndoCommands/undoinsert.h \
         UndoCommands/undoreplace.h
 

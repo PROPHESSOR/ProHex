@@ -31,14 +31,14 @@ void Converter::calculate() {
     ui->Float64LEInput->setText(QString::number(double_t(ipt)));
 
     // TODO: Big endian
-    ui->Int8BEInput->setText( QString::number(int8_t(ipt)));
-    ui->Uint8BEInput->setText(QString::number(uint8_t(ipt)));
-    ui->Int16BEInput->setText( QString::number(int16_t(ipt)));
-    ui->Uint16BEInput->setText(QString::number(uint16_t(ipt)));
-    ui->Int32BEInput->setText( QString::number(int32_t(ipt)));
-    ui->Uint32BEInput->setText(QString::number(uint32_t(ipt)));
-    ui->Int64BEInput->setText( QString::number(int64_t(ipt)));
-    ui->Uint64BEInput->setText(QString::number(uint64_t(ipt)));
+    ui->Int8BEInput->setText(   QString::number(int8_t(ipt)));
+    ui->Uint8BEInput->setText(  QString::number(uint8_t(ipt)));
+    ui->Int16BEInput->setText(  QString::number(int16_t(ipt)));
+    ui->Uint16BEInput->setText( QString::number(uint16_t(ipt)));
+    ui->Int32BEInput->setText(  QString::number(int32_t(ipt)));
+    ui->Uint32BEInput->setText( QString::number(uint32_t(ipt)));
+    ui->Int64BEInput->setText(  QString::number(int64_t(ipt)));
+    ui->Uint64BEInput->setText( QString::number(uint64_t(ipt)));
     ui->Float32BEInput->setText(QString::number(double_t(float_t(ipt))));
     ui->Float64BEInput->setText(QString::number(double_t(ipt)));
 }
@@ -46,6 +46,12 @@ void Converter::calculate() {
 void Converter::calculate(int64_t value) {
     input = QString::number(value);
     calculate();
+}
+
+void Converter::on_innerValue(uint8_t value) {
+    if(isHidden()) return;
+    qDebug() << "Converter::on_innerValue(" << value << ")";
+    on_DecInput_textEdited(QString::number(value));
 }
 
 void Converter::on_DecInput_textEdited(const QString &value) {

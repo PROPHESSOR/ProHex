@@ -60,19 +60,10 @@ void MainWindow::initToolBar() {
 
     // View
     QMenu *view = ui->MenuBar->addMenu(tr("&View"));
-    view->addSection(tr("File view"));
-    view->addAction(tr("Hex"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+1"));
-    view->addAction(tr("Assembler"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+2"));
-    view->addAction(tr("Strings"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+3"));
-    view->addAction(tr("Raw"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+4"));
-    view->addSeparator();
     QMenu *toolbars = view->addMenu(tr("&Toolbars"));
     toolbars->addAction(tr("Address section"), this, SLOT(view_toolbars_toggleAddress()));
     toolbars->addAction(tr("Hexdecimal section"), this, SLOT(view_toolbars_toggleHex()));
     toolbars->addAction(tr("Ascii section"), this, SLOT(view_toolbars_toggleAscii()));
-    view->addSeparator();
-    view->addAction(tr("Save selection preset"), this, SLOT(doesntimplemented()));
-    view->addAction(tr("Load selection preset"), this, SLOT(doesntimplemented()));
     view->addSection(tr("Settings"));
     view->addAction(tr("Preferences"), this, SLOT(view_preferences()), QKeySequence("Ctrl+P"));
     view->addAction(tr("Key bindings"), this, SLOT(view_keybindings()));
@@ -81,7 +72,6 @@ void MainWindow::initToolBar() {
     QMenu *tools = ui->MenuBar->addMenu(tr("&Tools"));
     tools->addSection(tr("About the file"));
     tools->addAction(tr("File analyzer"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
-    tools->addAction(tr("File ripper"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+R"));
     tools->addSection(tr("Useful utilities"));
     tools->addAction(tr("Converter"), this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
     tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));

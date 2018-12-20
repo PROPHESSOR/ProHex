@@ -34,18 +34,6 @@ void Converter::calculate() {
     ui->Uint64LEInput->setText(QString::number(uint64_t(ipt),   base));
     ui->Float32LEInput->setText(QString::number(double_t(float_t(ipt)))); // TODO: Check
     ui->Float64LEInput->setText(QString::number(double_t(ipt)));
-
-    // TODO: Big endian
-    ui->Int8BEInput->setText(   QString::number(int8_t(ipt),    base));
-    ui->Uint8BEInput->setText(  QString::number(uint8_t(ipt),   base));
-    ui->Int16BEInput->setText(  QString::number(int16_t(ipt),   base));
-    ui->Uint16BEInput->setText( QString::number(uint16_t(ipt),  base));
-    ui->Int32BEInput->setText(  QString::number(int32_t(ipt),   base));
-    ui->Uint32BEInput->setText( QString::number(uint32_t(ipt),  base));
-    ui->Int64BEInput->setText(  QString::number(int64_t(ipt),   base));
-    ui->Uint64BEInput->setText( QString::number(uint64_t(ipt),  base));
-    ui->Float32BEInput->setText(QString::number(double_t(float_t(ipt))));
-    ui->Float64BEInput->setText(QString::number(double_t(ipt)));
 }
 
 void Converter::calculate(int64_t value) {

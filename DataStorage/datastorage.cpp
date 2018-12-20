@@ -64,7 +64,7 @@ int64_t DataStorage::find(const QByteArray *array, int64_t position, bool increm
 }
 
 bool DataStorage::findReplace(const QByteArray *arrayToFind, const QByteArray *arrayToReplace, int64_t position) {
-    qDebug() << "DataStorage::findReplace";
+    qDebug() << "DataStorage::findReplace<one>";
     if(!(arrayToFind->length() && arrayToReplace->length())) return false;
     if((position + arrayToFind->length()) >= m_data.count()) return false;
     if(position < 0)                                         return false;
@@ -72,6 +72,15 @@ bool DataStorage::findReplace(const QByteArray *arrayToFind, const QByteArray *a
     if(find(arrayToFind, position, true) != position)        return false;
 
     m_data.replace(position, arrayToFind->length(), *arrayToReplace);
+
+    return true;
+}
+
+bool DataStorage::findReplace(const QByteArray *arrayToFind, const QByteArray *arrayToReplace) {
+    qDebug() << "DataStorage::findReplace<all>";
+    if(!(arrayToFind->length() && arrayToReplace->length())) return false;
+
+    m_data.replace(*arrayToFind, *arrayToReplace);
 
     return true;
 }

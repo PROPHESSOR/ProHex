@@ -229,7 +229,7 @@ void MainWindow::edit_search() {
         connect(m_finder->ui->findNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
         connect(m_finder->ui->findPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
         connect(m_finder->ui->replace, SIGNAL(clicked()), this, SLOT(do_replace()));
-        connect(m_finder->ui->replaceAll, SIGNAL(clicked()), this, SLOT(do_replace()));
+        connect(m_finder->ui->replaceAll, SIGNAL(clicked()), this, SLOT(do_replaceAll()));
     }
 
     m_finder->show();
@@ -290,6 +290,7 @@ void MainWindow::do_replace() {
     bool result = m_data->findReplace(m_searchArray, m_replaceArray, m_searchIndex - 1);
     if(result) {
         m_hexview->update();
+        statusBarMessage(tr("Replaced!"));
     } else {
         statusBarMessage(tr("Can't replace at this search position! Try to Find Next or Find Prev before replace"));
     }
@@ -297,6 +298,14 @@ void MainWindow::do_replace() {
 
 void MainWindow::do_replaceAll() {
     qDebug() << "MainWindow::do_replaceAll";
+
+    bool result = m_data->findReplace(m_searchArray, m_replaceArray);
+    if(result) {
+        m_hexview->update();
+        statusBarMessage(tr("Replaced!"));
+    } else {
+        statusBarMessage(tr("Can't replace!"));
+    }
 }
 
 void MainWindow::edit_gotooffset() {

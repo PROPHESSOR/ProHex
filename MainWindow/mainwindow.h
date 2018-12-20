@@ -40,6 +40,9 @@ class MainWindow : public QMainWindow {
     void edit_findnext();
     void edit_findprev();
 
+    void do_replace();
+    void do_replaceAll();
+
     void historyindexchanged();
 
   private slots:

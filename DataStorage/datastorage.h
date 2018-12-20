@@ -15,6 +15,7 @@ class DataStorage {
     char        at(int64_t position);
     QByteArray  getAllData();
     int64_t     find(const QByteArray *arrayToFind, int64_t startPosition, bool incremental = true);
+    bool        findReplace(const QByteArray *arrayToFind, const QByteArray *arrayToReplace, int64_t position);
 
     char        operator[](int64_t position) const;
 

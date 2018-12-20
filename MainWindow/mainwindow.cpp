@@ -228,6 +228,8 @@ void MainWindow::edit_search() {
         m_finder = new Finder(nullptr, m_searchArray, m_replaceArray);
         connect(m_finder->ui->findNext, SIGNAL(clicked()), this, SLOT(edit_findnext()));
         connect(m_finder->ui->findPrev, SIGNAL(clicked()), this, SLOT(edit_findprev()));
+        connect(m_finder->ui->replace, SIGNAL(clicked()), this, SLOT(do_replace()));
+        connect(m_finder->ui->replaceAll, SIGNAL(clicked()), this, SLOT(do_replace()));
     }
 
     m_finder->show();
@@ -241,7 +243,7 @@ void MainWindow::edit_replace() {
 
 void MainWindow::edit_findnext() {
     if(m_data == nullptr || m_searchArray == nullptr) return;
-    qDebug() << "MainWindow::edit_findnext()"; // TODO:
+    qDebug() << "MainWindow::edit_findnext()";
     int64_t index = m_data->find(m_searchArray, m_searchIndex, true);
 
     if(index == -1) {
@@ -263,7 +265,7 @@ void MainWindow::edit_findnext() {
 
 void MainWindow::edit_findprev() {
     if(m_data == nullptr || m_searchArray == nullptr) return;
-    qDebug() << "MainWindow::edit_findprev()"; // TODO:
+    qDebug() << "MainWindow::edit_findprev()";
     int64_t index = m_data->find(m_searchArray, m_searchIndex, false);
 
     if(index == -1) {
@@ -281,6 +283,20 @@ void MainWindow::edit_findprev() {
     m_hexview->select(index * 2, (index + m_searchArray->size()) * 2);
     m_hexview->update();
     m_searchIndex = index - 1;
+}
+
+void MainWindow::do_replace() {
+    qDebug() << "MainWindow::do_replace";
+    bool result = m_data->findReplace(m_searchArray, m_replaceArray, m_searchIndex - 1);
+    if(result) {
+        m_hexview->update();
+    } else {
+        statusBarMessage(tr("Can't replace at this search position! Try to Find Next or Find Prev before replace"));
+    }
+}
+
+void MainWindow::do_replaceAll() {
+    qDebug() << "MainWindow::do_replaceAll";
 }
 
 void MainWindow::edit_gotooffset() {

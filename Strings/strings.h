@@ -23,7 +23,7 @@ class Strings : public QWidget {
     void generateList(DataStorage *);
 
   private slots:
-    void on_searchInput_textEdited(const QString &arg1);
+    void on_searchInput_textEdited(const QString &);
 
     void on_searchInput_returnPressed();
 

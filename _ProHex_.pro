@@ -41,8 +41,8 @@ SOURCES += \
         Strings/strings.cpp \
         Finder/finder.cpp \
         UndoCommands/undodelete.cpp \
-    UndoCommands/undoinsert.cpp \
-    UndoCommands/undoreplace.cpp
+        UndoCommands/undoinsert.cpp \
+        UndoCommands/undoreplace.cpp
 
 HEADERS += \
         constants.h \
@@ -56,9 +56,9 @@ HEADERS += \
         Strings/strings.h \
         Finder/finder.h \
         UndoCommands/undodelete.h \
-    undocommands.h \
-    UndoCommands/undoinsert.h \
-    UndoCommands/undoreplace.h
+        undocommands.h \
+        UndoCommands/undoinsert.h \
+        UndoCommands/undoreplace.h
 
 FORMS += \
         MainWindow/mainwindow.ui \

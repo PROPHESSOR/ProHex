@@ -5,11 +5,6 @@
 
 #include "../DataStorage/datastorage.h"
 
-/*
- * TODO:
- * Add selection delete support
- */
-
 class UndoReplace : public QUndoCommand {
   public:
     UndoReplace(DataStorage *dataStorageObject, uint8_t oldData, uint8_t newData, int64_t position);

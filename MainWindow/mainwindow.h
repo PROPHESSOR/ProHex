@@ -96,6 +96,6 @@ class MainWindow : public QMainWindow {
     void saveFileAs(QString path);
 
   protected:
-    DataStorage     *m_data = nullptr;
+    DataStorage     *m_data         = nullptr;
     QTranslator     *translator     = nullptr;
 };

@@ -24,15 +24,31 @@ void Preferences::load() {
 
     ui->languageCombo->setCurrentText(m_config->getLanguage());
 
-    // Generate table
+    m_colorscheme[0].listItem = new QListWidgetItem(tr("Address area color"));
+    m_colorscheme[0].configColor = &m_config->c_address_area;
 
-    //ui->tableWidget->setColumnCount(4);
-    ui->listWidget->addItem(tr("Address area color"));
-    ui->listWidget->addItem(tr("Selection color"));
-    ui->listWidget->addItem(tr("Rectangle cursor color"));
-    ui->listWidget->addItem(tr("HEX color"));
-    ui->listWidget->addItem(tr("Address color"));
-    ui->listWidget->addItem(tr("ASCII color"));
+    m_colorscheme[1].listItem = new QListWidgetItem(tr("Selection color"));
+    m_colorscheme[1].configColor = &m_config->c_selection;
+
+    m_colorscheme[2].listItem = new QListWidgetItem(tr("Rectangle cursor color"));
+    m_colorscheme[2].configColor = &m_config->c_cursor;
+
+    m_colorscheme[3].listItem = new QListWidgetItem(tr("HEX color"));
+    m_colorscheme[3].configColor = &m_config->c_hex;
+
+    m_colorscheme[4].listItem = new QListWidgetItem(tr("Address color"));
+    m_colorscheme[4].configColor = &m_config->c_address;
+
+    m_colorscheme[5].listItem = new QListWidgetItem(tr("ASCII color"));
+    m_colorscheme[5].configColor = &m_config->c_ascii;
+
+    for(uint8_t i = 0; i < COLOR_SCHEME_COUNT; i++) {
+        QColor textcolor = QColor(255 - m_colorscheme[i].configColor->red(), 255 - m_colorscheme[i].configColor->green(), 255 - m_colorscheme[i].configColor->blue());
+        m_colorscheme[i].listItem->setBackgroundColor(*m_colorscheme[i].configColor);
+        m_colorscheme[i].listItem->setTextColor(textcolor);
+
+        ui->listWidget->addItem(m_colorscheme[i].listItem);
+    }
 }
 
 void Preferences::save() {
@@ -59,9 +75,15 @@ void Preferences::closeEvent(QCloseEvent *event) {
 }
 
 void Preferences::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
-    QString itemName    = item->text().split("-")[0];
     QColor tmp          = QColorDialog::getColor();
-    item->setTextColor(tmp);
+    QColor textcolor    = QColor(255 - tmp.red(), 255 - tmp.green(), 255 - tmp.blue());
+    uint8_t index       = ui->listWidget->currentRow();
+
+    m_colorscheme[index].configColor->setRed(tmp.red());
+    m_colorscheme[index].configColor->setGreen(tmp.green());
+    m_colorscheme[index].configColor->setBlue(tmp.blue());
+    item->setBackgroundColor(tmp);
+    item->setTextColor(textcolor);
 
     // item->setText(itemName + " - " + tmp);
 }

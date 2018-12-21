@@ -20,20 +20,40 @@ bool Config::load() {
 }
 
 bool Config::loadFromJson(QJsonObject json) {
-    if(!json.contains("view") || !json["view"].isObject()) {
-        qWarning("Config file doesn't contain view settings! Recreating config.json...");
+    if(json.isEmpty()) {
+        qWarning("Config file doesn't contain settings! Recreating config.json...");
         return save();
     }
 
-    QJsonObject view = json["view"].toObject();
+    if(json.contains("view") && json["view"].isObject()) {
+        QJsonObject view = json["view"].toObject();
+        if(view.contains("showAddress") && view["showAddress"].isBool())            v_show_address  = view["showAddress"].toBool();
+        if(view.contains("showHex") && view["showHex"].isBool())                    v_show_hex      = view["showHex"].toBool();
+        if(view.contains("showAscii") && view["showAscii"].isBool())                v_show_ascii    = view["showAscii"].toBool();
+    }
 
-    if(view.contains("showAddress") && view["showAddress"].isBool())            v_show_address  = view["showAddress"].toBool();
-    if(view.contains("showHex") && view["showHex"].isBool())                    v_show_hex      = view["showHex"].toBool();
-    if(view.contains("showAscii") && view["showAscii"].isBool())                v_show_ascii    = view["showAscii"].toBool();
+    if(json.contains("application") && json["application"].isObject()) {
+        QJsonObject application = json["application"].toObject();
+        if(application.contains("language") && application["language"].isString())  a_language      = application["language"].toString();
+    }
 
-    QJsonObject application = json["application"].toObject();
-
-    if(application.contains("language") && application["language"].isString())  a_language      = application["language"].toString();
+    if(json.contains("colorscheme") && json["colorscheme"].isObject()) {
+        QJsonObject colorscheme = json["colorscheme"].toObject();
+        if(colorscheme.contains("addressArea") && colorscheme["addressArea"].isString())
+            c_address_area  = QColor(colorscheme["addressArea"].toString());
+        if(colorscheme.contains("selection") && colorscheme["selection"].isString())
+            c_selection     = QColor(colorscheme["selection"].toString());
+        if(colorscheme.contains("cursor") && colorscheme["cursor"].isString())
+            c_cursor        = QColor(colorscheme["cursor"].toString());
+        if(colorscheme.contains("hex") && colorscheme["hex"].isString())
+            c_hex           = QColor(colorscheme["hex"].toString());
+        if(colorscheme.contains("address") && colorscheme["address"].isString())
+            c_address       = QColor(colorscheme["address"].toString());
+        if(colorscheme.contains("ascii") && colorscheme["ascii"].isString())
+            c_ascii         = QColor(colorscheme["ascii"].toString());
+        if(colorscheme.contains("activeWindow") && colorscheme["activeWindow"].isString())
+            c_active_window = QColor(colorscheme["activeWindow"].toString());
+    }
 
     return true;
 }
@@ -75,7 +95,17 @@ bool Config::saveToJson(QJsonObject &json) {
 
     json["application"]     = application;
 
-    QJsonObject colorscheme; // TODO:
+    QJsonObject colorscheme;
+
+    colorscheme["addressArea"]  = c_address_area.name();
+    colorscheme["selection"]    = c_selection.name();
+    colorscheme["cursor"]       = c_cursor.name();
+    colorscheme["hex"]          = c_hex.name();
+    colorscheme["address"]      = c_address.name();
+    colorscheme["ascii"]        = c_ascii.name();
+    colorscheme["activeWindow"] = c_active_window.name();
+
+    json["colorscheme"] = colorscheme;
 
     return true;
 }

@@ -6,12 +6,25 @@
 #include <QJsonDocument>
 #include <QDebug>
 #include <QColor>
+#include <QRgb>
 
 #define TMPLANGS 1
 
 class Config {
   public:
     Config();
+
+    // TODO: Getter/setter
+    QColor c_address_area;
+    QColor c_selection;
+    QColor c_cursor;
+
+    QColor c_hex;
+    QColor c_address;
+    QColor c_ascii;
+
+    QColor c_active_window;
+
 
     bool    load();
     bool    save();
@@ -46,16 +59,6 @@ class Config {
     bool    v_show_address;
     bool    v_show_hex;
     bool    v_show_ascii;
-
-    QColor c_address_area;
-    QColor c_selection;
-    QColor c_cursor;
-
-    QColor c_hex;
-    QColor c_address;
-    QColor c_ascii;
-
-    QColor c_active_window;
 
     QString a_language;
 };

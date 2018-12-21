@@ -9,6 +9,8 @@
 #include <QColorDialog>
 #include "../Config/config.h"
 
+#define COLOR_SCHEME_COUNT 6
+
 namespace Ui {
 class Preferences;
 }
@@ -23,9 +25,16 @@ class Preferences : public QWidget {
     void load();
     void save();
 
+    typedef struct {
+        QListWidgetItem *listItem;
+        QColor *configColor;
+    } colorscheme_t;
+
   private:
     Ui::Preferences *ui;
     Config          *m_config = nullptr;
+
+    colorscheme_t    m_colorscheme[6];
 
     // void updateColorScheme();
 

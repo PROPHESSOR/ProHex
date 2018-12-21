@@ -25,6 +25,8 @@ void Preferences::load() {
     ui->languageCombo->setCurrentText(m_config->getLanguage());
     ui->themeCombo->setCurrentIndex(m_config->getWindowTheme());
 
+    ui->listWidget->clear();
+
     m_colorscheme[0].listItem = new QListWidgetItem(tr("Address area color"));
     m_colorscheme[0].configColor = &m_config->c_address_area;
 

@@ -32,14 +32,15 @@ void QHexView::recalcView() {
     m_maxAddressLength = uint16_t(QString::number(m_data->size() * m_bytesPerLine * 2, 16).length() - 1);
     m_addressWidth = (m_maxAddressLength + 1) * m_charWidth;
 
-    uint16_t hexAsciiWidth = uint16_t(viewport()->size().width() - m_addressWidth);
+    uint16_t hexAsciiWidth = uint16_t(viewport()->size().width() - (m_config->getViewShowAddress() ? m_addressWidth : 0));
 
     uint16_t gridOne = hexAsciiWidth / 4;
 
-    m_hexWidth      = gridOne * 3;
-    m_asciiWidth    = gridOne;
-    m_bytesPerLine  = m_hexWidth / (m_charWidth * 3);
-    m_posHex        = m_addressWidth;
+    m_posHex = m_config->getViewShowAddress() ? m_addressWidth : 0;
+
+    m_hexWidth      = !m_config->getViewShowHex() ? 0 : m_config->getViewShowAscii() ? gridOne * 3 : hexAsciiWidth;
+    m_asciiWidth    = m_config->getViewShowHex() ? gridOne : hexAsciiWidth;
+    m_bytesPerLine  = m_config->getViewShowHex() ? m_hexWidth / (m_charWidth * 3) : m_asciiWidth / m_charWidth;
     m_posAscii      = m_posHex + m_hexWidth;
 
     if(!m_bytesPerLine) m_bytesPerLine = 1; // Divide by zero

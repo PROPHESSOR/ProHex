@@ -399,6 +399,13 @@
      </widget>
     </widget>
    </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="resetPreferences">
+     <property name="text">
+      <string>Reset preferences</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

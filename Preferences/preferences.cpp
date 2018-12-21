@@ -84,6 +84,18 @@ void Preferences::on_listWidget_itemDoubleClicked(QListWidgetItem *item) {
     m_colorscheme[index].configColor->setBlue(tmp.blue());
     item->setBackgroundColor(tmp);
     item->setTextColor(textcolor);
+}
 
-    // item->setText(itemName + " - " + tmp);
+void Preferences::on_resetPreferences_clicked() {
+    QMessageBox::StandardButton confirm = QMessageBox::question(this, tr("Reset"), tr("Are you sure to reset preferences?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+
+    switch(confirm) {
+        case QMessageBox::Yes:
+            m_config->reset();
+            save();
+            hide();
+            break;
+        default:
+            break;
+    }
 }

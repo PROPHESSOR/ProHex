@@ -73,7 +73,7 @@ void MainWindow::initToolBar() {
     // Tools
     QMenu *tools = ui->MenuBar->addMenu(tr("&Tools"));
     tools->addSection(tr("About the file"));
-    tools->addAction(tr("File analyzer"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+I"));
+    tools->addAction(tr("File analyzer"), this, SLOT(tools_analyzer()), QKeySequence("Ctrl+Shift+I"));
     tools->addSection(tr("Useful utilities"));
     tools->addAction(tr("Converter"), this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
     tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
@@ -356,6 +356,19 @@ void MainWindow::view_keybindings() {
     }
 
     m_preferences->showTab(1);
+}
+
+void MainWindow::tools_analyzer() {
+    qDebug() << "Tools->File analyzer";
+    if(m_data == nullptr || m_data->size() < 2) return;
+
+    QString output = "";
+
+    output += tr("File name: ") + m_data->getAssociatedFile() + "\n";
+    output += tr("File size: ") + QString::number(m_data->size()) + tr(" bytes\n");
+    output += tr("File type: ") + (m_data->at(0) > 33 && m_data->at(m_data->size() - 2) > 33 ? tr("Text") : tr("Binary"));
+
+    QMessageBox::information(this, tr("File analyzer"), output);
 }
 
 void MainWindow::tools_converter() {

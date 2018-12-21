@@ -56,7 +56,7 @@ class MainWindow : public QMainWindow {
     void edit_redo();
     void edit_openhistory();
     void edit_search();
-    void edit_replace(); // TODO:
+    void edit_replace();
     void edit_gotooffset();
     void edit_xor();
 
@@ -66,6 +66,7 @@ class MainWindow : public QMainWindow {
     void view_preferences();
     void view_keybindings();
 
+    void tools_analyzer();
     void tools_converter();
     void tools_strings();
     void tools_asciiTable();

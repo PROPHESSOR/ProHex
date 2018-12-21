@@ -69,6 +69,7 @@ class MainWindow : public QMainWindow {
     void tools_converter();
     void tools_strings();
     void tools_asciiTable();
+    void tools_md5();
 
     void about_about();
     void about_aboutqt();

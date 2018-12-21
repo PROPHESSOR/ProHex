@@ -79,6 +79,7 @@ void MainWindow::initToolBar() {
     tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
     tools->addAction(tr("ASCII Table"), this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
     tools->addAction(tr("Assembler commands"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
+    tools->addAction(tr("MD5 Hash"), this, SLOT(tools_md5()), QKeySequence("Ctrl+Shift+M"));
 
     // About
     QMenu *about = ui->MenuBar->addMenu(tr("&About"));
@@ -390,6 +391,12 @@ void MainWindow::tools_asciiTable() {
         m_asciitable = new AsciiTable();
     }
     m_asciitable->show();
+}
+
+void MainWindow::tools_md5() {
+    qDebug() << "Tools->MD5 Hash";
+    if(m_data == nullptr || !m_data->size()) return;
+    QMessageBox::information(this, tr("MD5 Hash"), m_data->getMD5Hash());
 }
 
 void MainWindow::about_about() {

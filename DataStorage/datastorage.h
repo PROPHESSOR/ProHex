@@ -2,6 +2,7 @@
 
 #include <QByteArray>
 #include <QDebug>
+#include <QCryptographicHash>
 
 class DataStorage {
   public:
@@ -18,6 +19,7 @@ class DataStorage {
     bool        findReplace(const QByteArray *arrayToFind, const QByteArray *arrayToReplace, int64_t position); // Find and replace
     bool        findReplace(const QByteArray *arrayToFind, const QByteArray *arrayToReplace);                   // Replace all
     void        XOR(const QString &key);
+    QString     getMD5Hash();
 
     char        operator[](int64_t position) const;
 

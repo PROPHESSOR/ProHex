@@ -93,6 +93,10 @@ void DataStorage::XOR(const QString &key) {
     }
 }
 
+QString DataStorage::getMD5Hash() {
+    return QString(QCryptographicHash::hash(m_data, QCryptographicHash::Md5).toHex());
+}
+
 char DataStorage::at(int64_t index) {
     return m_data.at(index);
 }

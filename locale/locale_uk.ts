@@ -337,114 +337,114 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="38"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="39"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="39"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="40"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="40"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="41"/>
         <source>New</source>
         <translation>Новий</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="41"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="42"/>
         <source>Open</source>
         <translation>Відкрити</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="42"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="184"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="43"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="211"/>
         <source>Save</source>
         <translation>Зберегти</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="43"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="44"/>
         <source>Save as...</source>
         <translation>Зберегти як...</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="45"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="46"/>
         <source>Exit</source>
         <translation>Вихід</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="48"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="49"/>
         <source>&amp;Edit</source>
         <translation>&amp;Правка</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="49"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="211"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="50"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="238"/>
         <source>History</source>
         <translation>Історія</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="50"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="51"/>
         <source>Undo</source>
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="51"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="52"/>
         <source>Redo</source>
         <translation>Вернути</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="52"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="53"/>
         <source>Open history</source>
         <translation>Відкрити історію</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="53"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="54"/>
         <source>Search</source>
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="54"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="55"/>
         <source>Find</source>
         <translation>Знайти</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="55"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="56"/>
         <source>Replace</source>
         <translation>Замінити</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="56"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="57"/>
         <source>Find next</source>
         <translation>Шукати далі</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="57"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="58"/>
         <source>Find previous</source>
         <translation>Шукати раніше</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="58"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="59"/>
         <source>Navigation</source>
         <translation>Навігація</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="59"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="60"/>
         <source>Goto offset</source>
         <translation>Перейти на</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="60"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="61"/>
         <source>Misc</source>
         <translation>Інше</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="61"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="62"/>
         <source>XOR encryption</source>
         <translation>XOR шифрування</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="64"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="65"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
@@ -457,7 +457,7 @@
         <translation type="vanished">Ассемблер</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="79"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="80"/>
         <source>Strings</source>
         <translation>Строки</translation>
     </message>
@@ -466,22 +466,22 @@
         <translation type="vanished">Чистий</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="65"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="66"/>
         <source>&amp;Toolbars</source>
         <translation>&amp;Області перегляду</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="66"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="67"/>
         <source>Address section</source>
         <translation>Адрес-секція</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="67"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="68"/>
         <source>Hexdecimal section</source>
         <translation>HEX-секція</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="68"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="69"/>
         <source>Ascii section</source>
         <translation>ASCII-секція</translation>
     </message>
@@ -494,33 +494,33 @@
         <translation type="vanished">Завантажити шаблон виділення</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="69"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="70"/>
         <source>Settings</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="70"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="71"/>
         <source>Preferences</source>
         <translation>Налаштування</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="71"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="72"/>
         <source>Key bindings</source>
         <translation>Налаштування клавіш</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="74"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="75"/>
         <source>&amp;Tools</source>
         <translation>&amp;Інструменти</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="75"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="76"/>
         <source>About the file</source>
         <translation>Інформація про файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="76"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="371"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="77"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="399"/>
         <source>File analyzer</source>
         <translation>Аналізатор файла</translation>
     </message>
@@ -529,211 +529,211 @@
         <translation type="vanished">Ріппер</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="77"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="78"/>
         <source>Useful utilities</source>
         <translation>Корисні утиліти</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="78"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="79"/>
         <source>Converter</source>
         <translation>Конвертер</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="80"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="81"/>
         <source>ASCII Table</source>
         <translation>ASCII Таблиця</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="81"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="82"/>
         <source>Assembler commands</source>
         <translation>Команди ассемблера</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="82"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="412"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="83"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="440"/>
         <source>MD5 Hash</source>
         <translation>MD5 Хеш</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="85"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="86"/>
         <source>&amp;About</source>
         <translation>&amp;О програмі</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="86"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="87"/>
         <source>Help</source>
         <translation>Допомога</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="87"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="88"/>
         <source>User manual (offline)</source>
         <translation>Керівництво користувача (офлайн)</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="88"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="89"/>
         <source>Online forum</source>
         <translation>Онлайн форум</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="89"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="90"/>
         <source>About</source>
         <translation>О програмі</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="90"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="417"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="91"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="445"/>
         <source>About the program</source>
         <translation>Про програму</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="91"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="422"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="92"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="450"/>
         <source>About Qt</source>
         <translation>Про Qt</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="92"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="93"/>
         <source>License</source>
         <translation>Ліцензія</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="105"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="131"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="106"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="132"/>
         <source>Can&apos;t open the file</source>
         <translation>Неможливо відкрити файл</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="105"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="131"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="106"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="132"/>
         <source>Can&apos;t open the file &quot;</source>
         <translation>Неможливо відкрити файл &quot;</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="105"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="106"/>
         <source>&quot; for reading!</source>
         <translation>&quot; для читання!</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="131"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="132"/>
         <source>&quot; for writing!</source>
         <translation>&quot; для запису!</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="153"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="180"/>
         <source>Select file</source>
         <translation>Вибір файла</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="172"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="199"/>
         <source>Select file to save</source>
         <translation>Вибір файла для зберігання</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="184"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="211"/>
         <source>Save changes?</source>
         <translation>Зберегти зміни?</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="244"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="271"/>
         <source>Out of file! Search position reset to begin</source>
         <translation>Кінець файла! Пошук буде продовжено з початку</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="248"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="270"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="275"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="297"/>
         <source>Not found</source>
         <translation>Не знайдено</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="266"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="293"/>
         <source>Out of file! Search position reset to end</source>
         <translation>Початок файла! Пошук буде продовжено з кінця</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="286"/>
-        <location filename="../MainWindow/mainwindow.cpp" line="298"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="313"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="325"/>
         <source>Replaced!</source>
         <translation>Замінено!</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="288"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="315"/>
         <source>Can&apos;t replace at this search position! Try to Find Next or Find Prev before replace</source>
         <translation>Не можу замінити на цій позиції пошуку! Спробуйте &quot;Шукати далі&quot; або &quot;Шукати раніше&quot; перед заміною</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="300"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="327"/>
         <source>Can&apos;t replace!</source>
         <translation>Не можу замінити!</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="308"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="335"/>
         <source>Offset</source>
         <translation>Відступ</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="308"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="335"/>
         <source>Enter the offset</source>
         <translation>Введіть відступ від початку файла</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="317"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="344"/>
         <source>XOR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="317"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="344"/>
         <source>Enter the XOR key</source>
         <translation>Введіть XOR ключ</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="367"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="395"/>
         <source>File name: </source>
         <translation>Ім&apos;я файла: </translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="368"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="396"/>
         <source>File size: </source>
         <translation>Розмір файла: </translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="368"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="396"/>
         <source> bytes
 </source>
         <translation>байт
 </translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="369"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="397"/>
         <source>File type: </source>
         <translation>Тип файла: </translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="369"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="397"/>
         <source>Text</source>
         <translation>Текстовий</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="369"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="397"/>
         <source>Binary</source>
         <translation>Двійковий</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="394"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="422"/>
         <source>Searching for readable strings...</source>
         <translation>Шукаю строки, які можна надрукувати...</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="397"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="425"/>
         <source>OK</source>
         <translation>ОК</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="426"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="454"/>
         <source>Not implemented</source>
         <translation>Не реалізовано</translation>
     </message>
     <message>
-        <location filename="../MainWindow/mainwindow.cpp" line="426"/>
+        <location filename="../MainWindow/mainwindow.cpp" line="454"/>
         <source>Hey! This feature doesn&apos;t implemented yet!</source>
         <translation>Хей! Ця фіча ще не реалізована!</translation>
     </message>
@@ -852,11 +852,36 @@
     </message>
     <message>
         <location filename="../Preferences/preferences.ui" line="389"/>
+        <source>Window color theme</source>
+        <translation>Тема оформлення вікон</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.ui" line="397"/>
+        <source>Light</source>
+        <translation>Світла</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.ui" line="402"/>
+        <source>Dark</source>
+        <translation>Темна</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.ui" line="410"/>
         <source>Color scheme</source>
         <translation>Кольорова тема</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="30"/>
+        <location filename="../Preferences/preferences.ui" line="431"/>
+        <source>Reset preferences</source>
+        <translation>Скинути налаштування</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.ui" line="438"/>
+        <source>Save preferences</source>
+        <translation>Зберегти налаштування</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.cpp" line="28"/>
         <source>Address area color</source>
         <translation>Колір адрес-секції</translation>
     </message>
@@ -866,70 +891,80 @@
         <translation>Колір виділення</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="32"/>
+        <location filename="../Preferences/preferences.cpp" line="34"/>
         <source>Rectangle cursor color</source>
         <translation>Колір прямокутного курсора</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="33"/>
+        <location filename="../Preferences/preferences.cpp" line="37"/>
         <source>HEX color</source>
         <translation>Колір HEX-секції</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="34"/>
+        <location filename="../Preferences/preferences.cpp" line="40"/>
         <source>Address color</source>
         <translation>Колір адреси</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="35"/>
+        <location filename="../Preferences/preferences.cpp" line="43"/>
         <source>ASCII color</source>
         <translation>Колір ASCII-секції</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="50"/>
+        <location filename="../Preferences/preferences.cpp" line="67"/>
         <source>Save</source>
         <translation>Збереження</translation>
     </message>
     <message>
-        <location filename="../Preferences/preferences.cpp" line="50"/>
+        <location filename="../Preferences/preferences.cpp" line="67"/>
         <source>Save preferences?</source>
         <translation>Зберегти налаштування?</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.cpp" line="91"/>
+        <source>Reset</source>
+        <translation>Скинути</translation>
+    </message>
+    <message>
+        <location filename="../Preferences/preferences.cpp" line="91"/>
+        <source>Are you sure to reset preferences?</source>
+        <translation>Ви дійсно хочете скинути налаштування?</translation>
     </message>
 </context>
 <context>
     <name>QHexView</name>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="502"/>
+        <location filename="../QHexView/qhexview.cpp" line="503"/>
         <source>[READONLY] </source>
         <translation>[ТІЛЬКИ ДЛЯ ЧИТАННЯ] </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="505"/>
+        <location filename="../QHexView/qhexview.cpp" line="506"/>
         <source>[INSERT] </source>
         <translation>[ВСТАВКА] </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="508"/>
+        <location filename="../QHexView/qhexview.cpp" line="509"/>
         <source>[REPLACE] </source>
         <translation>[ЗАМІНА] </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="513"/>
+        <location filename="../QHexView/qhexview.cpp" line="514"/>
         <source>Offset: </source>
         <translation>Відступ: </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="515"/>
+        <location filename="../QHexView/qhexview.cpp" line="516"/>
         <source>Selection: from </source>
         <translation>Виділення: з </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="515"/>
+        <location filename="../QHexView/qhexview.cpp" line="516"/>
         <source> to </source>
         <translation> по </translation>
     </message>
     <message>
-        <location filename="../QHexView/qhexview.cpp" line="515"/>
+        <location filename="../QHexView/qhexview.cpp" line="516"/>
         <source> total: </source>
         <translation> всього: </translation>
     </message>

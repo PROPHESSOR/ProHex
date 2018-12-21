@@ -65,7 +65,6 @@ class MainWindow : public QMainWindow {
     void view_toolbars_toggleHex();
     void view_toolbars_toggleAscii();
     void view_preferences();
-    void view_keybindings();
 
     void tools_analyzer();
     void tools_converter();

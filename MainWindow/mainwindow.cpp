@@ -69,7 +69,6 @@ void MainWindow::initToolBar() {
     toolbars->addAction(tr("Ascii section"), this, SLOT(view_toolbars_toggleAscii()));
     view->addSection(tr("Settings"));
     view->addAction(tr("Preferences"), this, SLOT(view_preferences()), QKeySequence("Ctrl+P"));
-    view->addAction(tr("Key bindings"), this, SLOT(view_keybindings()));
 
     // Tools
     QMenu *tools = ui->MenuBar->addMenu(tr("&Tools"));
@@ -374,16 +373,6 @@ void MainWindow::view_preferences() {
 
     m_preferences->show();
     m_preferences->load();
-}
-
-void MainWindow::view_keybindings() {
-    qDebug() << "View->Key bindings";
-
-    if(m_preferences == nullptr) {
-        m_preferences = new Preferences(nullptr, m_config);
-    }
-
-    m_preferences->showTab(1);
 }
 
 void MainWindow::tools_analyzer() {

@@ -57,6 +57,8 @@ void MainWindow::initToolBar() {
     edit->addAction(tr("Find previous"), this, SLOT(edit_findprev()), QKeySequence("Ctrl+Shift+P"));
     edit->addSection(tr("Navigation"));
     edit->addAction(tr("Goto offset"), this, SLOT(edit_gotooffset()), QKeySequence("Ctrl+G"));
+    edit->addSection(tr("Misc"));
+    edit->addAction(tr("XOR encryption"), this, SLOT(edit_xor()), QKeySequence("Ctrl+Shift+X"));
 
     // View
     QMenu *view = ui->MenuBar->addMenu(tr("&View"));
@@ -305,6 +307,16 @@ void MainWindow::edit_gotooffset() {
     int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
 
     if(confirmed) m_hexview->showFromOffset(offset);
+}
+
+void MainWindow::edit_xor() {
+    qDebug() << "Edit->XOR";
+    if(m_data == nullptr) return;
+
+    QString key = QInputDialog::getText(this, tr("XOR"), tr("Enter the XOR key"));
+    qDebug() << key;
+
+    if(!key.isEmpty()) m_undostack->push(new UndoXOR(m_data, key));
 }
 
 void MainWindow::view_toolbars_toggleAddress() {

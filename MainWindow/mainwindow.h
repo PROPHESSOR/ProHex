@@ -58,6 +58,7 @@ class MainWindow : public QMainWindow {
     void edit_search();
     void edit_replace(); // TODO:
     void edit_gotooffset();
+    void edit_xor();
 
     void view_toolbars_toggleAddress();
     void view_toolbars_toggleHex();

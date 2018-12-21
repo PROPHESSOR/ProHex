@@ -2,8 +2,6 @@
 
 // TODO:
 //   Исправить возможность скрытия окон через config
-//   Сделать передачу информации из QHexView и DataStorage в Converter
-//   Size increment
 
 #include "qhexview.h"
 

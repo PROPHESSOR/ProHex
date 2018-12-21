@@ -44,4 +44,6 @@ class Preferences : public QWidget {
   private slots:
     void on_listWidget_itemDoubleClicked(QListWidgetItem *);
     void on_resetPreferences_clicked();
+    void on_themeCombo_currentIndexChanged(int index);
+    void on_pushButton_clicked();
 };

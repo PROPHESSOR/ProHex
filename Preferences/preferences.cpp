@@ -23,6 +23,7 @@ void Preferences::load() {
     qDebug() << "Preferences::load()";
 
     ui->languageCombo->setCurrentText(m_config->getLanguage());
+    ui->themeCombo->setCurrentIndex(m_config->getWindowTheme());
 
     m_colorscheme[0].listItem = new QListWidgetItem(tr("Address area color"));
     m_colorscheme[0].configColor = &m_config->c_address_area;
@@ -98,4 +99,13 @@ void Preferences::on_resetPreferences_clicked() {
         default:
             break;
     }
+}
+
+void Preferences::on_themeCombo_currentIndexChanged(int index) {
+    m_config->setWindowTheme(index);
+}
+
+void Preferences::on_pushButton_clicked() {
+    save();
+    hide();
 }

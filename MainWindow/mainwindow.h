@@ -8,6 +8,7 @@
 #include <QTranslator>
 #include <QUndoStack>
 #include <QUndoView>
+#include <QStyleFactory>
 
 #include "constants.h"
 #include "../DataStorage/datastorage.h"
@@ -101,6 +102,8 @@ class MainWindow : public QMainWindow {
     void openFile(QString path);
     void saveFile();
     void saveFileAs(QString path);
+
+    void setWindowTheme(uint8_t theme);
 
   protected:
     DataStorage     *m_data         = nullptr;

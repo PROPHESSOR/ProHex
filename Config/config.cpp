@@ -35,6 +35,7 @@ bool Config::loadFromJson(QJsonObject json) {
     if(json.contains("application") && json["application"].isObject()) {
         QJsonObject application = json["application"].toObject();
         if(application.contains("language") && application["language"].isString())  a_language      = application["language"].toString();
+        if(application.contains("windowTheme") && application["windowTheme"].isDouble()) a_window_theme = application["windowTheme"].toInt();
     }
 
     if(json.contains("colorscheme") && json["colorscheme"].isObject()) {
@@ -92,6 +93,7 @@ bool Config::saveToJson(QJsonObject &json) {
     QJsonObject application;
 
     application["language"] = a_language;
+    application["windowTheme"]  = a_window_theme;
 
     json["application"]     = application;
 
@@ -118,6 +120,7 @@ void Config::reset() {
     QString locale = QLocale::system().name();
     locale.truncate(locale.lastIndexOf('_'));
     a_language      = locale;
+    a_window_theme  = 0; // Light
 
     c_address_area  = QColor(0xd4, 0xd4, 0xd4, 0xff);
     c_selection     = QColor(0x6d, 0x9e, 0xff, 0xff);
@@ -176,6 +179,10 @@ QColor Config::getColorActiveWindow() {
     return c_active_window;
 }
 
+uint8_t Config::getWindowTheme() {
+    return a_window_theme;
+}
+
 QString Config::getLanguage() {
     return a_language;
 }
@@ -192,6 +199,10 @@ void Config::setViewShowHex(bool val) {
 
 void Config::setViewShowAscii(bool val) {
     v_show_ascii = val;
+}
+
+void Config::setWindowTheme(uint8_t theme) {
+    a_window_theme = theme;
 }
 
 void Config::setLanguage(QString lang) {

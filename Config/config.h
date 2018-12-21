@@ -45,12 +45,16 @@ class Config {
     QColor  getColorAscii();
     QColor  getColorActiveWindow();
 
+    uint8_t getWindowTheme();
+
     QString getLanguage();
 
     // Setters
     void    setViewShowAddress(bool);
     void    setViewShowHex(bool);
     void    setViewShowAscii(bool);
+
+    void    setWindowTheme(uint8_t);
 
     void    setLanguage(QString);
 
@@ -61,4 +65,5 @@ class Config {
     bool    v_show_ascii;
 
     QString a_language;
+    uint8_t a_window_theme;
 };

@@ -350,19 +350,19 @@ void MainWindow::edit_xor() {
 void MainWindow::view_toolbars_toggleAddress() {
     m_config->setViewShowAddress(!m_config->getViewShowAddress());
     m_hexview->recalcView();
-    m_hexview->repaint();
+    m_hexview->update();
 }
 
 void MainWindow::view_toolbars_toggleHex() {
     m_config->setViewShowHex(!m_config->getViewShowHex());
     m_hexview->recalcView();
-    m_hexview->repaint();
+    m_hexview->update();
 }
 
 void MainWindow::view_toolbars_toggleAscii() {
     m_config->setViewShowAscii(!m_config->getViewShowAscii());
     m_hexview->recalcView();
-    m_hexview->repaint();
+    m_hexview->update();
 }
 
 void MainWindow::view_preferences() {

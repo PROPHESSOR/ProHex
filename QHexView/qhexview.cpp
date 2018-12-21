@@ -28,6 +28,7 @@ QHexView::~QHexView() {
 }
 
 void QHexView::recalcView() {
+    if(!m_data) return;
     m_maxAddressLength = uint16_t(QString::number(m_data->size() * m_bytesPerLine * 2, 16).length() - 1);
     m_addressWidth = (m_maxAddressLength + 1) * m_charWidth;
 

@@ -6,7 +6,9 @@
 #include <QJsonDocument>
 #include <QDebug>
 #include <QColor>
-#include <QRgb>
+#include <QStandardPaths>
+#include <QDir>
+
 
 #define TMPLANGS 1
 

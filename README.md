@@ -59,25 +59,25 @@ ProHex - это кроссплатформенный мультиязычный 
 # Screenshots/Скриншоты
 
 ![All modules of ProHex](README_MD/modules.png)
-> All modules of ProHex
-> Все модули ProHex
+- All modules of ProHex
+- Все модули ProHex
 
 ![Translations of ProHex](README_MD/translations.png)
-> Translations of ProHex
-> Переводы ProHex
+- Translations of ProHex
+- Переводы ProHex
 
 ![Uncommon using of Finder module](README_MD/uncommonsearch.gif)
-> Uncommon using of Finder module to convert the string to the byte sequence
-> Нестандартное использование модуля Finder для преобразования строки в последовательность байтов
+- Uncommon using of Finder module to convert the string to the byte sequence
+- Нестандартное использование модуля Finder для преобразования строки в последовательность байтов
 
 ![Uncommon using of Converter module](README_MD/uncommonconverter.gif)
-> Uncommon using of Converter module to get symbol code
-> Нестандартное использование модуля Converter для получения кода символа
+- Uncommon using of Converter module to get symbol code
+- Нестандартное использование модуля Converter для получения кода символа
 
 ![Uncommon using of ASCIITable module](README_MD/uncommonascii.gif)
-> Uncommon using of ASCIITable module to view installed fonts
-> Нестандартное использование модуля ASCIITable просмотра шрифтов
+- Uncommon using of ASCIITable module to view installed fonts
+- Нестандартное использование модуля ASCIITable просмотра шрифтов
 
 ![Strings module](README_MD/strings.png)
-> Search text data in the binary file using Strings module
-> Поиск текстовых данных в бинарных файлах с помощью модуля Strings
+- Search text data in the binary file using Strings module
+- Поиск текстовых данных в бинарных файлах с помощью модуля Strings

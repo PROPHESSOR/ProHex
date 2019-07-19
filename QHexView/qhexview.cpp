@@ -1,8 +1,5 @@
 //https://github.com/virinext/QHexView
 
-// TODO:
-//   Исправить возможность скрытия окон через config
-
 #include "qhexview.h"
 
 QHexView::QHexView(QWidget *parent, DataStorage *data, Config *config, QStatusBar *statusBar, QUndoStack *undoStack) :

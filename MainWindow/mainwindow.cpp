@@ -78,7 +78,6 @@ void MainWindow::initToolBar() {
     tools->addAction(tr("Converter"), this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
     tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
     tools->addAction(tr("ASCII Table"), this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
-    tools->addAction(tr("Assembler commands"), this, SLOT(doesntimplemented()), QKeySequence("Ctrl+Shift+B"));
     tools->addAction(tr("MD5 Hash"), this, SLOT(tools_md5()), QKeySequence("Ctrl+Shift+M"));
 
     // About

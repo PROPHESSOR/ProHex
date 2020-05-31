@@ -32,8 +32,8 @@ void Converter::calculate() {
     ui->Uint32LEInput->setText(QString::number(uint32_t(ipt),   base));
     ui->Int64LEInput->setText( QString::number(int64_t(ipt),    base));
     ui->Uint64LEInput->setText(QString::number(uint64_t(ipt),   base));
-    ui->Float32LEInput->setText(QString::number(double_t(float_t(ipt)))); // TODO: Check
-    ui->Float64LEInput->setText(QString::number(double_t(ipt)));
+    ui->Float32LEInput->setText(QString::number(double(float(ipt)))); // TODO: Check
+    ui->Float64LEInput->setText(QString::number(double(ipt)));
 }
 
 void Converter::calculate(int64_t value) {

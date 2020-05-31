@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_config->load();
     setWindowTheme(m_config->getWindowTheme());
+    setAcceptDrops(true);
 
     translator = new QTranslator();
     translator->load(":locale/locale_" + m_config->getLanguage());
@@ -157,6 +158,54 @@ void MainWindow::setWindowTheme(uint8_t theme) {
         qApp->setPalette(darkPalette);
 
         qApp->setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
+    }
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
+    qDebug() << "MainWindow::dragEnterEvent" << event;
+
+    if (event->mimeData()->hasText()) return event->acceptProposedAction();
+
+    event->dropAction();
+}
+
+void MainWindow::dragMoveEvent(QDragMoveEvent *event) {
+    event->acceptProposedAction();
+}
+
+void MainWindow::dragLeaveEvent(QDragLeaveEvent *event) {
+    event->accept();
+}
+
+void MainWindow::dropEvent(QDropEvent *event) {
+    qDebug() << "MainWindow::dropEvent" << event;
+
+    const QMimeData *mimeData = event->mimeData();
+    qDebug() << mimeData;
+
+    qDebug() << mimeData->hasColor() << mimeData->hasText() << mimeData->hasHtml() << mimeData->hasImage() << mimeData->hasUrls();
+
+    if (mimeData->hasUrls()) {
+        if (mimeData->urls().length() > 1) {
+            QMessageBox::warning(this, tr("Too many files"), tr("Only one file is supported!"));
+            return;
+        }
+
+        QUrl url = mimeData->urls()[0];
+
+        if (!url.isLocalFile()) {
+            QMessageBox::warning(this, tr("Not a local file"), tr("Only local files are supported!"));
+            return;
+        }
+
+        openFile(url.path());
+    } else if (mimeData->hasText()) {
+        file_new();
+
+        m_data = new DataStorage(mimeData->data("text/plain"), "");
+
+        m_hexview->setData(m_data);
+        m_hexview->update();
     }
 }
 

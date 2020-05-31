@@ -9,6 +9,7 @@
 #include <QUndoStack>
 #include <QUndoView>
 #include <QStyleFactory>
+#include <QMimeData>
 
 #include "constants.h"
 #include "../DataStorage/datastorage.h"
@@ -107,4 +108,9 @@ class MainWindow : public QMainWindow {
   protected:
     DataStorage     *m_data         = nullptr;
     QTranslator     *translator     = nullptr;
+
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dragLeaveEvent(QDragLeaveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 };

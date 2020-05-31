@@ -4,7 +4,7 @@
 
 // ProHex
 const QString PROHEX            = "ProHex";
-const QString PROHEX_VERSION    = "0.0.1";
+const QString PROHEX_VERSION    = "1.1.0";
 
 // Hex View
 #define GAP_ADR_HEX         10

@@ -479,7 +479,7 @@ void MainWindow::tools_md5() {
 
 void MainWindow::about_about() {
     qDebug() << "About->About the program";
-    QMessageBox::about(this, tr("About the program"), PROHEX + " v." + PROHEX_VERSION + " <br/>Copyright (c) PROPHESSOR 2018");
+    QMessageBox::about(this, tr("About the program"), PROHEX + " v." + PROHEX_VERSION + " <br/>Copyright (c) PROPHESSOR 2018-2020");
 }
 
 void MainWindow::about_aboutqt() {

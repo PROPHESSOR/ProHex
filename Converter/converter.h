@@ -8,6 +8,12 @@ namespace Ui {
 class Converter;
 }
 
+union longparser_t {
+    int64_t l;
+    float_t f;
+    double_t d;
+};
+
 class Converter : public QWidget {
     Q_OBJECT
 

@@ -19,6 +19,10 @@ void Converter::calculate() {
     int64_t ipt = input.toLongLong();
     uint8_t base = hexMode ? 16 : 10;
 
+    longparser_t parser;
+
+    parser.l = ipt;
+
     ui->DecInput->setText(input);
     ui->HexInput->setText(QString::number(ipt, 16).toUpper());
     ui->BinInput->setText(QString::number(ipt, 2));
@@ -32,8 +36,8 @@ void Converter::calculate() {
     ui->Uint32LEInput->setText(QString::number(uint32_t(ipt),   base));
     ui->Int64LEInput->setText( QString::number(int64_t(ipt),    base));
     ui->Uint64LEInput->setText(QString::number(uint64_t(ipt),   base));
-    ui->Float32LEInput->setText(QString::number(double(float(ipt)))); // TODO: Check
-    ui->Float64LEInput->setText(QString::number(double(ipt)));
+    ui->Float32LEInput->setText(QString::number(parser.f));
+    ui->Float64LEInput->setText(QString::number(parser.d));
 }
 
 void Converter::calculate(int64_t value) {

@@ -65,7 +65,7 @@ void QHexView::setData(DataStorage *pData) {
     statusBarUpdate();
 }
 
-void QHexView::showFromOffset(int64_t offset) {
+void QHexView::gotoOffset(int64_t offset) {
     if(!m_data) return;
     if(m_data && offset < m_data->size()) {
         setCursorPos(offset);

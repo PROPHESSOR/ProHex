@@ -324,7 +324,7 @@ void MainWindow::edit_findnext() {
         return;
     }
 
-    m_hexview->showFromOffset(index * 2);
+    m_hexview->gotoOffset(index * 2);
     m_hexview->select(index * 2, (index + m_searchArray->size()) * 2);
     m_hexview->update();
     m_searchIndex = index + 1;
@@ -346,7 +346,7 @@ void MainWindow::edit_findprev() {
         return;
     }
 
-    m_hexview->showFromOffset(index * 2);
+    m_hexview->gotoOffset(index * 2);
     m_hexview->select(index * 2, (index + m_searchArray->size()) * 2);
     m_hexview->update();
     m_searchIndex = index - 1;
@@ -381,7 +381,7 @@ void MainWindow::edit_gotooffset() {
     bool confirmed = false;
     int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
 
-    if(confirmed) m_hexview->showFromOffset(offset);
+    if(confirmed) m_hexview->gotoOffset(offset);
 }
 
 void MainWindow::edit_xor() {

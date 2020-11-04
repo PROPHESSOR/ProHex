@@ -10,8 +10,8 @@ class Converter;
 
 union longparser_t {
     int64_t l;
-    float_t f;
-    double_t d;
+    float f;
+    double d;
 };
 
 class Converter : public QWidget {

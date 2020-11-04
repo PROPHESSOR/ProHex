@@ -11,14 +11,15 @@ Strings::~Strings() {
 }
 
 void Strings::generateList(DataStorage *storage) {
+    qDebug() << "Strings::generateList()";
     if(storage == nullptr) return;
     ui->listWidget->clear();
 
+    m_list.clear();
+
     QByteArray data = storage->getAllData();
 
-    qDebug() << "Strings::generateList()";
     int32_t maxAddressLength = uint16_t(QString::number(data.length(), 16).length());
-    qDebug() << "maxAddressLength =" << maxAddressLength;
 
     int64_t i = 0;
 
@@ -36,61 +37,38 @@ void Strings::generateList(DataStorage *storage) {
         }
 
         if(string.length() > 1) {
-            ui->listWidget->addItem(address + " - " + string);
+            m_list.append(address + " - " + string);
         }
         i++;
     }
 
-    if(ui->listWidget->count() < LARGELIST) {
-        ui->searchInput->setStyleSheet("background-color: none;");
+    if(m_list.length() < LARGELIST) {
+        ui->filterInput->setStyleSheet("background-color: none;");
     } else {
-        ui->searchInput->setStyleSheet("background-color: #afafaf;");
+        ui->filterInput->setStyleSheet("background-color: #afafaf;");
     }
+
+    filter("");
 }
 
-void Strings::on_searchInput_textEdited(const QString &str) {
-    m_searchChanged = true;
-    if(ui->listWidget->count() < LARGELIST) search(str);
+void Strings::on_filterInput_textEdited(const QString &str) {
+    if(ui->listWidget->count() < LARGELIST) filter(str);
 }
 
-void Strings::clearSelection() {
-    ui->listWidget->clearSelection();
-}
+void Strings::filter(const QString &str) {
+    qDebug() << "Strings::filter(" << str << ")";
 
-void Strings::search(const QString &str) {
-    m_searchChanged = false;
-    clearSelection();
-
-    if(str.isEmpty()) return;
+    ui->listWidget->clear();
 
     this->setCursor(Qt::WaitCursor);
 
-    m_searchlist = ui->listWidget->findItems(str, Qt::MatchCaseSensitive | Qt::MatchContains);
-
-    if(m_searchlist.length()) {
-        m_selectedIndex = 0;
-
-        for(QListWidgetItem *tmp : m_searchlist) {
-            tmp->setSelected(true);
-        }
-
-        goToItem(-1);
+    for(QString &tmp : m_list) {
+        if(!str.length() || tmp.contains(str)) ui->listWidget->addItem(tmp);
     }
 
     this->setCursor(Qt::ArrowCursor);
 }
 
-void Strings::goToItem(int32_t idx) {
-    if(idx < 0) idx = m_selectedIndex;
-    if(idx >= ui->listWidget->selectedItems().length()) idx %= ui->listWidget->selectedItems().length();
-
-    ui->listWidget->scrollToItem(ui->listWidget->selectedItems().at(idx));
-    ui->listWidget->setCurrentItem(ui->listWidget->selectedItems().at(idx));
-}
-
-void Strings::on_searchInput_returnPressed() {
-    if(m_searchChanged)
-        search(ui->searchInput->text());
-    else
-        goToItem(m_selectedIndex++);
+void Strings::on_filterInput_returnPressed() {
+    filter(ui->filterInput->text());
 }

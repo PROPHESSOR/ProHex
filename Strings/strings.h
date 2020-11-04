@@ -7,7 +7,8 @@
 
 #include "../DataStorage/datastorage.h"
 
-#define LARGELIST 100
+#define LARGELIST 10000000
+// TODO: Add to settings
 
 namespace Ui {
 class Strings;
@@ -23,18 +24,13 @@ class Strings : public QWidget {
     void generateList(DataStorage *);
 
   private slots:
-    void on_searchInput_textEdited(const QString &);
-
-    void on_searchInput_returnPressed();
+    void on_filterInput_textEdited(const QString &);
+    void on_filterInput_returnPressed();
 
   private:
     Ui::Strings             *ui;
 
-    QList<QListWidgetItem *> m_searchlist;
-    int32_t                  m_selectedIndex;
-    bool                     m_searchChanged; // Using for optimized "Enter" search
+    QList<QString> m_list;
 
-    void clearSelection();
-    void search(const QString &);
-    void goToItem(int32_t idx = -1);
+    void filter(const QString &);
 };

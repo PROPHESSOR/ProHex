@@ -379,7 +379,7 @@ void MainWindow::edit_gotooffset() {
     qDebug() << "Edit->Goto offset";
     if(m_data == nullptr) return;
     bool confirmed = false;
-    int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), 0, 0, 2147483647, 1, &confirmed));
+    int64_t offset = int64_t(QInputDialog::getInt(this, tr("Offset"), tr("Enter the offset"), m_hexview->getCursorPosition(), 0, 2147483647, 1, &confirmed));
 
     if(confirmed) m_hexview->gotoOffset(offset);
 }
@@ -453,6 +453,8 @@ void MainWindow::tools_strings() {
 
     if(m_strings == nullptr) {
         m_strings = new Strings();
+        connect(m_strings, SIGNAL(offsetChanged(int64_t)), this, SLOT(gotoOffset(int64_t)));
+        //connect(m_strings, SIGNAL(offsetChanged()), qApp, SLOT(about_qt()));
     }
 
     this->setCursor(Qt::WaitCursor);
@@ -494,6 +496,12 @@ void MainWindow::doesntimplemented() {
 void MainWindow::historyindexchanged() {
     qDebug() << "MainWindow::historyindexchanged";
     m_hexview->update();
+}
+
+void MainWindow::gotoOffset(int64_t offset) {
+    qDebug() << "[S]MainWindow::gotoOffset(" << offset << ")";
+    assert(offset >= 0 && "offset must be >= 0");
+    m_hexview->gotoOffset(offset);
 }
 
 void MainWindow::statusBarMessage(const QString &message) { // TODO: Remove

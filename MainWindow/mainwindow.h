@@ -47,6 +47,8 @@ class MainWindow : public QMainWindow {
 
     void historyindexchanged();
 
+    void gotoOffset(int64_t);
+
   private slots:
     void file_new();
     void file_open();

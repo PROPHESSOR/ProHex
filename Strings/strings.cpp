@@ -28,9 +28,9 @@ void Strings::generateList(DataStorage *storage) {
         QString address = QString("%1").arg(i, maxAddressLength, 16, QChar('0'));
 
         while(i < data.length()) {
-            char tmp = data[int32_t(i)];
+            char tmp = data.at(i);
 
-            if(tmp < 33) break;
+            if(tmp < 33) break; // Unprintable separator
 
             string += QChar(tmp);
             i++;
@@ -71,4 +71,11 @@ void Strings::filter(const QString &str) {
 
 void Strings::on_filterInput_returnPressed() {
     filter(ui->filterInput->text());
+}
+
+void Strings::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous) {
+    int64_t offset = current->text().split('-')[0].toLongLong(nullptr, 16);
+    int64_t prevOffset = previous && previous->text().split('-')[0].toLongLong(nullptr, 16);
+    qDebug() << "currentItemChanged(" << prevOffset << "->" << offset;
+    emit offsetChanged(offset);
 }

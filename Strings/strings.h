@@ -23,9 +23,15 @@ class Strings : public QWidget {
 
     void generateList(DataStorage *);
 
+  public slots:
+  signals:
+    void offsetChanged(int64_t newOffset);
+
   private slots:
     void on_filterInput_textEdited(const QString &);
     void on_filterInput_returnPressed();
+
+    void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
   private:
     Ui::Strings             *ui;

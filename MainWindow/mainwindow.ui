@@ -31,5 +31,6 @@
  <connections/>
  <slots>
   <slot>file_new()</slot>
+  <slot>gotoOffset()</slot>
  </slots>
 </ui>

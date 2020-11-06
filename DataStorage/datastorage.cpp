@@ -87,9 +87,8 @@ bool DataStorage::findReplace(const QByteArray *arrayToFind, const QByteArray *a
 
 void DataStorage::XOR(const QString &key) {
     const std::string stdkey = key.toStdString();
-    for(int64_t i = 0; i < m_data.size(); i++) {
-        char tmp[] = {m_data.at(i) ^ stdkey[i % key.length()]};
-        m_data.replace(i, 1, tmp);
+    for(int32_t i = 0; i < m_data.size(); i++) {
+        m_data[i] = m_data[i] ^ stdkey[i % key.length()];
     }
 }
 

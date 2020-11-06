@@ -67,8 +67,8 @@ void QHexView::setData(DataStorage *pData) {
 
 void QHexView::gotoOffset(int64_t offset) {
     if(!m_data) return;
-    if(m_data && offset < m_data->size()) {
-        setCursorPos(offset);
+    if(offset < m_data->size()) {
+        setCursorPos(offset * 2);
 
         int32_t cursorY = int32_t((m_cursorPos / 2) / (2 * m_bytesPerLine));
 

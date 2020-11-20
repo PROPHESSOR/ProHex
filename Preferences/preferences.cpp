@@ -52,6 +52,8 @@ void Preferences::load() {
 
         ui->listWidget->addItem(m_colorscheme[i].listItem);
     }
+
+    ui->largeListSpin->setValue(m_config->getLargelist());
 }
 
 void Preferences::save() {
@@ -110,4 +112,8 @@ void Preferences::on_themeCombo_currentIndexChanged(int index) {
 void Preferences::on_pushButton_clicked() {
     save();
     hide();
+}
+
+void Preferences::on_largeListSpin_valueChanged(int value) {
+    m_config->setLargelist(value);
 }

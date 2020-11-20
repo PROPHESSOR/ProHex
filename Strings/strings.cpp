@@ -1,8 +1,8 @@
 #include "strings.h"
 #include "ui_strings.h"
 
-Strings::Strings(QWidget *parent) :
-    QWidget(parent), ui(new Ui::Strings) {
+Strings::Strings(QWidget *parent, Config *config) :
+    QWidget(parent), ui(new Ui::Strings), m_config(config) {
     ui->setupUi(this);
     minStringLength = ui->stringLength->value();
 }
@@ -41,7 +41,7 @@ void Strings::generateList(DataStorage *storage) {
         i++;
     }
 
-    if(m_list.length() < LARGELIST) {
+    if(m_list.length() < m_config->getLargelist()) {
         ui->filterInput->setStyleSheet("background-color: none;");
     } else {
         ui->filterInput->setStyleSheet("background-color: #afafaf;");
@@ -51,7 +51,7 @@ void Strings::generateList(DataStorage *storage) {
 }
 
 void Strings::on_filterInput_textEdited(const QString &str) {
-    if(ui->listWidget->count() < LARGELIST) filter(str);
+    if(ui->listWidget->count() < m_config->getLargelist()) filter(str);
 }
 
 void Strings::filter(const QString &str) {
@@ -87,5 +87,5 @@ void Strings::on_stringLength_valueChanged(int value) {
     qDebug() << "on_stringLength_valueChanged(" << value << ")";
     minStringLength = value;
 
-    if (m_list.length() < LARGELIST) filter(ui->filterInput->text());
+    if (m_list.length() < m_config->getLargelist()) filter(ui->filterInput->text());
 }

@@ -36,6 +36,7 @@ bool Config::loadFromJson(QJsonObject json) {
         QJsonObject application = json["application"].toObject();
         if(application.contains("language") && application["language"].isString())  a_language      = application["language"].toString();
         if(application.contains("windowTheme") && application["windowTheme"].isDouble()) a_window_theme = application["windowTheme"].toInt();
+        if(application.contains("largelist") && application["largelist"].isDouble()) a_largelist = application["largelist"].toInt();
     }
 
     if(json.contains("colorscheme") && json["colorscheme"].isObject()) {
@@ -92,10 +93,11 @@ bool Config::saveToJson(QJsonObject &json) {
 
     QJsonObject application;
 
-    application["language"] = a_language;
+    application["language"]     = a_language;
     application["windowTheme"]  = a_window_theme;
+    application["largelist"]    = a_largelist;
 
-    json["application"]     = application;
+    json["application"]         = application;
 
     QJsonObject colorscheme;
 
@@ -121,6 +123,7 @@ void Config::reset() {
     locale.truncate(locale.lastIndexOf('_'));
     a_language      = locale;
     a_window_theme  = 0; // Light
+    a_largelist     = 10000000;
 
     c_address_area  = QColor(0xd4, 0xd4, 0xd4, 0xff);
     c_selection     = QColor(0x6d, 0x9e, 0xff, 0xff);
@@ -187,6 +190,10 @@ QString Config::getLanguage() {
     return a_language;
 }
 
+int Config::getLargelist() {
+    return a_largelist;
+}
+
 // Setters
 
 void Config::setViewShowAddress(bool val) {
@@ -209,4 +216,8 @@ void Config::setLanguage(QString lang) {
     if(lang == "en" || lang == "ru" || lang == "uk") {
         a_language = lang;
     } else qDebug() << "Config::setLanguage ERROR: Unknown language " << lang;
+}
+
+void Config::setLargelist(int value) {
+    a_largelist = value;
 }

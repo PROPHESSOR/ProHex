@@ -453,7 +453,7 @@ void MainWindow::tools_strings() {
     qDebug() << "Tools->Strings";
 
     if(m_strings == nullptr) {
-        m_strings = new Strings();
+        m_strings = new Strings(nullptr, m_config);
         connect(m_strings, SIGNAL(offsetChanged(int64_t)), this, SLOT(gotoOffset(int64_t)));
         //connect(m_strings, SIGNAL(offsetChanged()), qApp, SLOT(about_qt()));
     }

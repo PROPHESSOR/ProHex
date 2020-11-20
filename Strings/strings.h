@@ -6,10 +6,9 @@
 #include <QListWidgetItem>
 
 #include "../DataStorage/datastorage.h"
+#include "../Config/config.h"
 
-#define LARGELIST 10000000
 #define STRINGS_SEPARATOR " - "
-// TODO: Add to settings
 
 namespace Ui {
 class Strings;
@@ -19,7 +18,7 @@ class Strings : public QWidget {
     Q_OBJECT
 
   public:
-    explicit Strings(QWidget *parent = nullptr);
+    explicit Strings(QWidget *parent = nullptr, Config *config = nullptr);
     ~Strings();
 
     void generateList(DataStorage *);
@@ -38,6 +37,7 @@ class Strings : public QWidget {
 
 private:
     Ui::Strings    *ui;
+    Config         *m_config = nullptr;
 
     QList<QString> m_list;
     uint8_t minStringLength;

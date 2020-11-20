@@ -51,6 +51,8 @@ class Config {
 
     QString getLanguage();
 
+    int     getLargelist();
+
     // Setters
     void    setViewShowAddress(bool);
     void    setViewShowHex(bool);
@@ -60,6 +62,8 @@ class Config {
 
     void    setLanguage(QString);
 
+    void    setLargelist(int);
+
     static QString getConfigFilePath();
   private:
     bool    v_show_address;
@@ -68,4 +72,5 @@ class Config {
 
     QString a_language;
     uint8_t a_window_theme;
+    int     a_largelist;
 };

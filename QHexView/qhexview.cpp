@@ -570,6 +570,10 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
     statusBarUpdate();
 }
 
+void QHexView::mouseDoubleClickEvent(QMouseEvent *) {
+    emit doubleClick();
+}
+
 uint64_t QHexView::getCursorPos(const QPoint &position) {
     if(!m_data) return 0;
     uint64_t pos = 0;

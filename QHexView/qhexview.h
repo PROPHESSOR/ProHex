@@ -43,6 +43,7 @@ class QHexView : public QAbstractScrollArea {
 
   signals:
     void valueChanged(uint8_t value);
+    void doubleClick(void);
 
   protected:
     void paintEvent(QPaintEvent *event);
@@ -50,6 +51,7 @@ class QHexView : public QAbstractScrollArea {
     void keyReleaseEvent(QKeyEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
   private:
     uint16_t              m_posHex;
     uint16_t              m_hexWidth;

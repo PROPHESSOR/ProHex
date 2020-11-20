@@ -94,6 +94,7 @@ void MainWindow::initToolBar() {
 
 void MainWindow::initHexView() {
     m_hexview = new QHexView(this, m_data, m_config, statusBar(), m_undostack);
+    connect(m_hexview, SIGNAL(doubleClick(void)), this, SLOT(tools_converter(void)));
     setCentralWidget(m_hexview);
 }
 

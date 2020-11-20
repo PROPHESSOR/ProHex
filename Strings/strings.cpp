@@ -68,6 +68,8 @@ void Strings::filter(const QString &str) {
     }
 
     this->setCursor(Qt::ArrowCursor);
+
+    ui->bottomLabel->setText(QString::asprintf("%d lines", ui->listWidget->count()));
 }
 
 void Strings::on_filterInput_returnPressed() {

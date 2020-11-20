@@ -69,6 +69,13 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="QLabel" name="bottomLabel">
+     <property name="text">
+      <string>Calculating...</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

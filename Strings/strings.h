@@ -8,6 +8,7 @@
 #include "../DataStorage/datastorage.h"
 
 #define LARGELIST 10000000
+#define STRINGS_SEPARATOR " - "
 // TODO: Add to settings
 
 namespace Ui {
@@ -33,10 +34,13 @@ class Strings : public QWidget {
 
     void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
-  private:
-    Ui::Strings             *ui;
+    void on_stringLength_valueChanged(int arg1);
+
+private:
+    Ui::Strings    *ui;
 
     QList<QString> m_list;
+    uint8_t minStringLength;
 
     void filter(const QString &);
 };

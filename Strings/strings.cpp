@@ -4,6 +4,7 @@
 Strings::Strings(QWidget *parent) :
     QWidget(parent), ui(new Ui::Strings) {
     ui->setupUi(this);
+    minStringLength = ui->stringLength->value();
 }
 
 Strings::~Strings() {
@@ -36,9 +37,7 @@ void Strings::generateList(DataStorage *storage) {
             i++;
         }
 
-        if(string.length() > 1) {
-            m_list.append(address + " - " + string);
-        }
+        m_list.append(address + STRINGS_SEPARATOR + string);
         i++;
     }
 
@@ -63,7 +62,9 @@ void Strings::filter(const QString &str) {
     this->setCursor(Qt::WaitCursor);
 
     for(QString &tmp : m_list) {
-        if(!str.length() || tmp.contains(str)) ui->listWidget->addItem(tmp);
+        bool noFilter = !str.length();
+        bool isInMinStringLength = tmp.split(STRINGS_SEPARATOR)[1].length() >= minStringLength;
+        if((noFilter || tmp.contains(str)) && isInMinStringLength) ui->listWidget->addItem(tmp);
     }
 
     this->setCursor(Qt::ArrowCursor);
@@ -74,8 +75,15 @@ void Strings::on_filterInput_returnPressed() {
 }
 
 void Strings::on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous) {
-    int64_t offset = current->text().split('-')[0].toLongLong(nullptr, 16);
-    int64_t prevOffset = previous && previous->text().split('-')[0].toLongLong(nullptr, 16);
+    int64_t offset = current->text().split(STRINGS_SEPARATOR)[0].toLongLong(nullptr, 16);
+    int64_t prevOffset = previous && previous->text().split(STRINGS_SEPARATOR)[0].toLongLong(nullptr, 16);
     qDebug() << "currentItemChanged(" << prevOffset << "->" << offset;
     emit offsetChanged(offset);
+}
+
+void Strings::on_stringLength_valueChanged(int value) {
+    qDebug() << "on_stringLength_valueChanged(" << value << ")";
+    minStringLength = value;
+
+    if (m_list.length() < LARGELIST) filter(ui->filterInput->text());
 }

@@ -22,6 +22,7 @@
 #include "../Preferences/preferences.h"
 #include "../Strings/strings.h"
 #include "../Finder/finder.h"
+#include "../Assembler/assembler.h"
 //\\ Windows
 
 namespace Ui {
@@ -73,6 +74,7 @@ class MainWindow : public QMainWindow {
     void tools_converter();
     void tools_strings();
     void tools_asciiTable();
+    void tools_assembler();
     void tools_md5();
 
     void about_about();
@@ -90,6 +92,7 @@ class MainWindow : public QMainWindow {
     Preferences     *m_preferences    = nullptr;
     Strings         *m_strings        = nullptr;
     Finder          *m_finder         = nullptr;
+    Assembler       *m_assembler      = nullptr;
 
     QByteArray      *m_searchArray    = nullptr;
     uint16_t         m_searchIndex    = 0;

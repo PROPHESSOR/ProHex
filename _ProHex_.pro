@@ -30,6 +30,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Assembler/assembler.cpp \
         main.cpp \
         MainWindow/mainwindow.cpp \
         DataStorage/datastorage.cpp \
@@ -46,6 +47,7 @@ SOURCES += \
     UndoCommands/undoxor.cpp
 
 HEADERS += \
+    Assembler/assembler.h \
         constants.h \
         MainWindow/mainwindow.h \
         DataStorage/datastorage.h \
@@ -63,6 +65,7 @@ HEADERS += \
     UndoCommands/undoxor.h
 
 FORMS += \
+        Assembler/assembler.ui \
         MainWindow/mainwindow.ui \
         Converter/converter.ui \
         AsciiTable/asciitable.ui \

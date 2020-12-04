@@ -79,6 +79,7 @@ void MainWindow::initToolBar() {
     tools->addAction(tr("Converter"), this, SLOT(tools_converter()), QKeySequence("Ctrl+Shift+C"));
     tools->addAction(tr("Strings"), this, SLOT(tools_strings()), QKeySequence("Ctrl+Shift+G"));
     tools->addAction(tr("ASCII Table"), this, SLOT(tools_asciiTable()), QKeySequence("Ctrl+Shift+A"));
+    tools->addAction(tr("Assembler"), this, SLOT(tools_assembler()), QKeySequence("Ctrl+Shift+B"));
     tools->addAction(tr("MD5 Hash"), this, SLOT(tools_md5()), QKeySequence("Ctrl+Shift+M"));
 
     // About
@@ -472,6 +473,14 @@ void MainWindow::tools_asciiTable() {
         m_asciitable = new AsciiTable();
     }
     m_asciitable->show();
+}
+
+void MainWindow::tools_assembler() {
+    qDebug() << "Tools->Assembler";
+    if(m_assembler == nullptr) {
+        m_assembler = new Assembler();
+    }
+    m_assembler->show();
 }
 
 void MainWindow::tools_md5() {

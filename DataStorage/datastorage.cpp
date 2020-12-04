@@ -100,6 +100,20 @@ char DataStorage::at(int64_t index) {
     return m_data.at(index);
 }
 
+int64_t DataStorage::longAt(int64_t position) {
+   int64_t out = 0;
+   const uint8_t size = 8; // bytes
+
+   for(uint8_t i = size - 1; i >= 0; i--) {
+       if (position + i >= m_data.size()) break;
+
+       out <<= 8;
+       out += m_data.at(position + i);
+   }
+
+   return out;
+}
+
 char DataStorage::operator[](int64_t index) const {
     return m_data.at(index);
 }

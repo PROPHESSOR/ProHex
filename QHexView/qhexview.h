@@ -42,7 +42,7 @@ class QHexView : public QAbstractScrollArea {
     void clear();
 
   signals:
-    void valueChanged(uint8_t value);
+    void valueChanged(int64_t value);
     void doubleClick(void);
 
   protected:

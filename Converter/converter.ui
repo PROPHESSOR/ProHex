@@ -203,6 +203,17 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -321,6 +332,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0.0</string>
     </property>
@@ -336,6 +355,14 @@
       <width>281</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>0</string>
@@ -353,6 +380,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -368,6 +403,14 @@
       <width>281</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>0</string>
@@ -404,6 +447,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -419,6 +470,14 @@
       <width>271</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>0</string>
@@ -436,6 +495,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -452,6 +519,14 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -467,6 +542,14 @@
       <width>271</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>false</italic>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>0.0</string>

@@ -21,21 +21,21 @@ void Converter::calculate() {
 
     longparser_t parser;
 
-    parser.l = ipt;
+    parser.int64 = ipt;
 
     ui->DecInput->setText(input);
     ui->HexInput->setText(QString::number(ipt, 16).toUpper());
     ui->BinInput->setText(QString::number(ipt, 2));
-    ui->CharInput->setText(ipt < 9 ? "" : QString(char(ipt)));
+    ui->CharInput->setText(ipt < 9 ? "" : QString(parser.uint8));
 
-    ui->Int8LEInput->setText( QString::number(int8_t(ipt),      base));
-    ui->Uint8LEInput->setText(QString::number(uint8_t(ipt),     base));
-    ui->Int16LEInput->setText( QString::number(int16_t(ipt),    base));
-    ui->Uint16LEInput->setText(QString::number(uint16_t(ipt),   base));
-    ui->Int32LEInput->setText( QString::number(int32_t(ipt),    base));
-    ui->Uint32LEInput->setText(QString::number(uint32_t(ipt),   base));
-    ui->Int64LEInput->setText( QString::number(int64_t(ipt),    base));
-    ui->Uint64LEInput->setText(QString::number(uint64_t(ipt),   base));
+    ui->Int8LEInput->setText(  QString::number(parser.int8,     base));
+    ui->Uint8LEInput->setText(  QString::number(parser.uint8,   base));
+    ui->Int16LEInput->setText(  QString::number(parser.int16,   base));
+    ui->Uint16LEInput->setText(QString::number(parser.uint16,   base));
+    ui->Int32LEInput->setText(  QString::number(parser.int32,   base));
+    ui->Uint32LEInput->setText(QString::number(parser.uint32,   base));
+    ui->Int64LEInput->setText(  QString::number(parser.int64,   base));
+    ui->Uint64LEInput->setText(QString::number(parser.uint64,   base));
     ui->Float32LEInput->setText(QString::number(parser.f));
     ui->Float64LEInput->setText(QString::number(parser.d));
 }
@@ -45,7 +45,7 @@ void Converter::calculate(int64_t value) {
     calculate();
 }
 
-void Converter::on_innerValue(uint8_t value) {
+void Converter::on_innerValue(int64_t value) {
     input = QString::number(value);
     if(!isHidden()) {
         qDebug() << "Converter::on_innerValue(" << value << ")";

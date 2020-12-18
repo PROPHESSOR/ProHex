@@ -21,6 +21,9 @@ public:
 
     void filter(QString);
 
+public slots:
+    void on_innerValue(uint8_t);
+
 private slots:
     void on_filterInput_textEdited(const QString &);
 

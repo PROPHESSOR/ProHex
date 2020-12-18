@@ -643,8 +643,10 @@ void QHexView::setCursorPos(int64_t tmpposition = 0) {
         position = maxPos;
 
     m_cursorPos = uint64_t(position);
-    qDebug() << "valueChanged" << uint8_t(m_data->at(m_cursorPos / 2)) << m_data->longAt(m_cursorPos / 2);
-    if(m_data && m_data->size()) emit valueChanged(m_data->longAt(m_cursorPos / 2));
+    if(m_data && m_data->size()) {
+        emit valueChanged(m_data->longAt(m_cursorPos / 2));
+        emit byteChanged(m_data->at(m_cursorPos / 2));
+    }
 }
 
 void QHexView::ensureVisible() {

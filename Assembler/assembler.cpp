@@ -37,6 +37,12 @@ void Assembler::filter(QString filter) {
     }
 }
 
+void Assembler::on_innerValue(uint8_t value) {
+    QString filterValue = QString::number(value, 16);
+
+    ui->filterInput->setText(filterValue);
+}
+
 void Assembler::on_filterInput_textEdited(const QString &text) {
     filter(text);
 }

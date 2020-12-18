@@ -479,6 +479,7 @@ void MainWindow::tools_assembler() {
     qDebug() << "Tools->Assembler";
     if(m_assembler == nullptr) {
         m_assembler = new Assembler();
+        connect(m_hexview, SIGNAL(byteChanged(uint8_t)), m_assembler, SLOT(on_innerValue(uint8_t)));
     }
     m_assembler->show();
 }

@@ -1,24 +1,33 @@
 #include "assembler.h"
 #include "ui_assembler.h"
 
-Assembler::Assembler(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Assembler) {
+Assembler::Assembler(QWidget *parent, Config *config) :
+    QWidget(parent), ui(new Ui::Assembler), m_config(config) {
     ui->setupUi(this);
 
-    QFile map(QDir("./assemblers/x86.json").absolutePath());
-    map.open(QFile::ReadOnly);
+    QString specs = config->getAssemblerSpecs();
+    QString specsFile = QDir("./assemblers/").absoluteFilePath(specs);
 
-    QJsonDocument json(QJsonDocument::fromJson(map.readAll()));
+    qDebug() << "Assembler::loadSpec" << specs << specsFile;
 
-    QJsonArray array = json.array();
+    setWindowTitle("Assembler (" + specs + ")");
 
     list.clear();
 
-    for (auto ref : array) {
-        QJsonObject object = ref.toObject();
+    QFile map(specsFile);
+    if (!map.open(QFile::ReadOnly)) {
+        QMessageBox::information(this, tr("Specification error!"), tr("Can't open assembler specification file!\nTry to change spec file in Preferences."));
+        setWindowTitle(tr("Assembler (Can't load specs)"));
+    } else {
+        QJsonDocument json(QJsonDocument::fromJson(map.readAll()));
 
-        list.append(object["po"].toString() + " - " + object["mnemonic"].toString() + "   " + object["description"].toString());
+        QJsonArray array = json.array();
+
+        for (auto ref : array) {
+            QJsonObject object = ref.toObject();
+
+            list.append(object["po"].toString() + " - " + object["mnemonic"].toString() + "   " + object["description"].toString());
+        }
     }
 
     filter("");

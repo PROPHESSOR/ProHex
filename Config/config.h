@@ -53,6 +53,8 @@ class Config {
 
     int     getLargelist();
 
+    QString getAssemblerSpecs();
+
     // Setters
     void    setViewShowAddress(bool);
     void    setViewShowHex(bool);
@@ -64,6 +66,8 @@ class Config {
 
     void    setLargelist(int);
 
+    void    setAssemblerSpecs(QString);
+
     static QString getConfigFilePath();
   private:
     bool    v_show_address;
@@ -73,4 +77,6 @@ class Config {
     QString a_language;
     uint8_t a_window_theme;
     int     a_largelist;
+
+    QString as_assembler_specs;
 };

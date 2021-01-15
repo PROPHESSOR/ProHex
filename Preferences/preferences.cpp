@@ -22,10 +22,11 @@ void Preferences::showTab(uint8_t tab) {
 void Preferences::load() {
     qDebug() << "Preferences::load()";
 
+    ui->listWidget->clear();
+    ui->assemblerSpecsCombo->clear();
+
     ui->languageCombo->setCurrentText(m_config->getLanguage());
     ui->themeCombo->setCurrentIndex(m_config->getWindowTheme());
-
-    ui->listWidget->clear();
 
     m_colorscheme[0].listItem = new QListWidgetItem(tr("Address area color"));
     m_colorscheme[0].configColor = &m_config->c_address_area;
@@ -54,12 +55,24 @@ void Preferences::load() {
     }
 
     ui->largeListSpin->setValue(m_config->getLargelist());
+
+    QDir specDir("./assemblers");
+    QStringList specList = specDir.entryList(QStringList() << "*.json" << "*.JSON", QDir::Files);
+
+    for(QString filename : specList) {
+        ui->assemblerSpecsCombo->addItem(filename);
+    }
+
+    ui->assemblerSpecsCombo->setCurrentText(m_config->getAssemblerSpecs());
 }
 
 void Preferences::save() {
     qDebug() << "Preferences::save()";
 
     m_config->setLanguage(ui->languageCombo->currentText());
+    m_config->setLargelist(ui->largeListSpin->value());
+    m_config->setAssemblerSpecs(ui->assemblerSpecsCombo->currentText());
+    m_config->setWindowTheme(ui->themeCombo->currentIndex());
     m_config->save();
 }
 
@@ -105,15 +118,7 @@ void Preferences::on_resetPreferences_clicked() {
     }
 }
 
-void Preferences::on_themeCombo_currentIndexChanged(int index) {
-    m_config->setWindowTheme(index);
-}
-
 void Preferences::on_pushButton_clicked() {
     save();
     hide();
-}
-
-void Preferences::on_largeListSpin_valueChanged(int value) {
-    m_config->setLargelist(value);
 }

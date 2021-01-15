@@ -8,6 +8,9 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QDebug>
+#include <QMessageBox>
+
+#include "../Config/config.h"
 
 namespace Ui {
 class Assembler;
@@ -17,7 +20,7 @@ class Assembler : public QWidget {
     Q_OBJECT
 
 public:
-    explicit Assembler(QWidget *parent = nullptr);
+    explicit Assembler(QWidget *parent = nullptr, Config * = nullptr);
     ~Assembler();
 
     void filter(QString);
@@ -30,6 +33,8 @@ private slots:
 
 private:
     Ui::Assembler *ui;
+
+    Config *m_config = nullptr;
 
     QVector<QString> list;
 };

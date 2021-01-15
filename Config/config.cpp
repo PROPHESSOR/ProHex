@@ -57,6 +57,13 @@ bool Config::loadFromJson(QJsonObject json) {
             c_active_window = QColor(colorscheme["activeWindow"].toString());
     }
 
+    if(json.contains("assembler") && json["assembler"].isObject()) {
+        QJsonObject assembler = json["assembler"].toObject();
+
+        if(assembler.contains("specs") && assembler["specs"].isString())
+            as_assembler_specs = assembler["specs"].toString();
+    }
+
     return true;
 }
 
@@ -109,7 +116,13 @@ bool Config::saveToJson(QJsonObject &json) {
     colorscheme["ascii"]        = c_ascii.name();
     colorscheme["activeWindow"] = c_active_window.name();
 
-    json["colorscheme"] = colorscheme;
+    json["colorscheme"]         = colorscheme;
+
+    QJsonObject assembler;
+
+    assembler["specs"]          = as_assembler_specs;
+
+    json["assembler"]           = assembler;
 
     return true;
 }
@@ -124,6 +137,7 @@ void Config::reset() {
     a_language      = locale;
     a_window_theme  = 0; // Light
     a_largelist     = 10000000;
+    as_assembler_specs = "x86.json";
 
     c_address_area  = QColor(0xd4, 0xd4, 0xd4, 0xff);
     c_selection     = QColor(0x6d, 0x9e, 0xff, 0xff);
@@ -195,6 +209,10 @@ int Config::getLargelist() {
     return a_largelist;
 }
 
+QString Config::getAssemblerSpecs() {
+    return as_assembler_specs;
+}
+
 // Setters
 
 void Config::setViewShowAddress(bool val) {
@@ -221,4 +239,8 @@ void Config::setLanguage(QString lang) {
 
 void Config::setLargelist(int value) {
     a_largelist = value;
+}
+
+void Config::setAssemblerSpecs(QString filename) {
+    as_assembler_specs = filename;
 }

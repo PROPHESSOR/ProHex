@@ -104,7 +104,7 @@ int64_t DataStorage::longAt(int64_t position) {
    int64_t out = 0;
    const uint8_t size = 8; // bytes
 
-   for(uint8_t i = size - 1; i >= 0; i--) {
+   for(int8_t i = size - 1; i >= 0; i--) {
        if (position + i >= m_data.size()) break;
 
        out <<= 8;

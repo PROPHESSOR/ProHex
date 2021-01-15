@@ -6,11 +6,10 @@ Assembler::Assembler(QWidget *parent) :
     ui(new Ui::Assembler) {
     ui->setupUi(this);
 
-    QResource map(":/assembler/Assembler/x86.json");
+    QFile map(QDir("./assemblers/x86.json").absolutePath());
+    map.open(QFile::ReadOnly);
 
-    QJsonDocument json(QJsonDocument::fromJson(map.uncompressedData()));
-
-    //qDebug() << "Json" << json.array()[0] << json.array().size();
+    QJsonDocument json(QJsonDocument::fromJson(map.readAll()));
 
     QJsonArray array = json.array();
 

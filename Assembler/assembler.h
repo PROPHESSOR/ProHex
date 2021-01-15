@@ -1,7 +1,8 @@
 #pragma once
 
 #include <QWidget>
-#include <QResource>
+#include <QFile>
+#include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>

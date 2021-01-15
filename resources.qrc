@@ -3,7 +3,4 @@
         <file alias="locale_ru.qm">locale/locale_ru.qm</file>
         <file alias="locale_uk.qm">locale/locale_uk.qm</file>
     </qresource>
-    <qresource prefix="/assembler">
-        <file>Assembler/x86.json</file>
-    </qresource>
 </RCC>

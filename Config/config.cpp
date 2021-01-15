@@ -137,7 +137,8 @@ void Config::reset() {
 }
 
 QString Config::getConfigFilePath() {
-    return QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).absoluteFilePath("prohex_config.json");
+    // return QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).absoluteFilePath("prohex_config.json");
+    return QDir("./prohex_config.json").absolutePath();
 }
 
 // Getters

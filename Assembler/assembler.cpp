@@ -10,7 +10,7 @@ Assembler::Assembler(QWidget *parent, Config *config) :
 
     qDebug() << "Assembler::loadSpec" << specs << specsFile;
 
-    setWindowTitle("Assembler (" + specs + ")");
+    setWindowTitle(tr("Assembler") + " (" + specs + ")");
 
     list.clear();
 

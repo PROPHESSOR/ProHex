@@ -6,24 +6,26 @@ AsciiTable::AsciiTable(QWidget *parent) :
     ui(new Ui::AsciiTable) {
     ui->setupUi(this);
 
+    setFont(QFont("Arial 99"));
+
     m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
     m_charHeight    = uint16_t(fontMetrics().height());
 
     ui->tableWidget->setRowCount(ASCII_MATRIX_SIZE);
     ui->tableWidget->setColumnCount(ASCII_MATRIX_SIZE);
 
-    for(short i = 0; i < ASCII_MATRIX_SIZE; i++) {
-        QTableWidgetItem *header = new QTableWidgetItem(QString::number(i, 16));
+    for(short row = 0; row < ASCII_MATRIX_SIZE; row++) {
+        QTableWidgetItem *header = new QTableWidgetItem(QString::number(row, 16));
 
-        ui->tableWidget->setHorizontalHeaderItem(i, header);
-        ui->tableWidget->setVerticalHeaderItem(i, header);
+        ui->tableWidget->setHorizontalHeaderItem(row, header);
+        ui->tableWidget->setVerticalHeaderItem(row, header);
 
-        for(short j = 0; j < ASCII_MATRIX_SIZE; j++) {
-            QTableWidgetItem *tmp = new QTableWidgetItem(QChar(j * ASCII_MATRIX_SIZE + i));
+        for(short column = 0; column < ASCII_MATRIX_SIZE; column++) {
+            QTableWidgetItem *tmp = new QTableWidgetItem(QChar(row * ASCII_MATRIX_SIZE + column));
 
             tmp->setTextAlignment(Qt::AlignCenter);
 
-            ui->tableWidget->setItem(i, j, tmp);
+            ui->tableWidget->setItem(row, column, tmp);
         }
     }
 
@@ -39,9 +41,11 @@ void AsciiTable::paintEvent(QPaintEvent *event) {
 
 
 void AsciiTable::on_tableWidget_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn) {
-    ui->symbolCode->setText(QString::number(currentColumn * ASCII_MATRIX_SIZE + currentRow));
-    ui->symbolHexCode->setText(QString::number(currentColumn * ASCII_MATRIX_SIZE + currentRow, 16));
-    ui->symbol->setText(QChar(currentColumn * ASCII_MATRIX_SIZE + currentRow));
+    short charCode = currentRow * ASCII_MATRIX_SIZE + currentColumn;
+
+    ui->symbolCode->setText(QString::number(charCode));
+    ui->symbolHexCode->setText(QString::number(charCode, 16));
+    ui->symbol->setText(QChar(charCode));
 }
 
 void AsciiTable::resize() {

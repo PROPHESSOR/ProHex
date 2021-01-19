@@ -6,9 +6,7 @@ AsciiTable::AsciiTable(QWidget *parent) :
     ui(new Ui::AsciiTable) {
     ui->setupUi(this);
 
-    setFont(QFont("Arial 99"));
-
-    m_charWidth     = uint16_t(fontMetrics().width(QLatin1Char('9')));
+    m_charWidth     = uint16_t(fontMetrics().horizontalAdvance(QLatin1Char('9')));
     m_charHeight    = uint16_t(fontMetrics().height());
 
     ui->tableWidget->setRowCount(ASCII_MATRIX_SIZE);
@@ -49,6 +47,9 @@ void AsciiTable::on_tableWidget_currentCellChanged(int currentRow, int currentCo
 }
 
 void AsciiTable::resize() {
+    m_charWidth     = uint16_t(fontMetrics().horizontalAdvance(QLatin1Char('9')));
+    m_charHeight    = uint16_t(fontMetrics().height());
+
     uint16_t cellWidth = uint16_t(ui->tableWidget->width() / ASCII_MATRIX_SIZE) - m_charWidth / 2;
     uint16_t cellHeight = uint16_t(ui->tableWidget->height() / ASCII_MATRIX_SIZE) - m_charHeight / 2;
 
@@ -70,4 +71,14 @@ void AsciiTable::on_font_currentFontChanged(const QFont &newFont) {
     font.setFamily(newFont.family());
 
     ui->tableWidget->setFont(font);
+}
+
+void AsciiTable::on_size_textEdited(const QString &value) {
+    int size = value.toInt();
+    QFont font = ui->tableWidget->font();
+    font.setPointSize(size);
+
+    ui->tableWidget->setFont(font);
+
+    resize();
 }

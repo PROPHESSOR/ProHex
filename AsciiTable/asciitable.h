@@ -24,7 +24,9 @@ class AsciiTable : public QWidget {
     void on_tableWidget_currentCellChanged(int, int, int, int);
     void on_font_currentFontChanged(const QFont &);
 
-  private:
+    void on_size_textEdited(const QString &arg1);
+
+private:
     Ui::AsciiTable *ui;
 
     uint16_t        m_charWidth;
